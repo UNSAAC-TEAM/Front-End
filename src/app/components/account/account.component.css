@@ -1,0 +1,48 @@
+:host {
+  display: block; /* Asegura que el estilo se aplique al componente en lugar de a un elemento hijo */
+  background-color: #0f0f0f;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #0f0f0f;
+}
+
+.content {
+
+  /* Otros estilos de tu contenido aquí */
+}
+.navigation{
+  display: flex;
+}
+.top-menu-items{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin: 15px;
+}
+.top-menu-item{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  margin: 0.8rem;
+  padding: 10px;
+  width: 200px;
+  border-radius: 0.5rem;
+  border-color: white;
+  border: rgba(255, 255, 255, 0.24) 1px solid;
+}
+.top-menu-item span{
+  margin-left: 5px;
+  margin-top: 4px;
+}
+.top-active{
+  background-color: #272727 !important;
+  border: rgba(255, 255, 255, 0.11) 1px solid;
+}

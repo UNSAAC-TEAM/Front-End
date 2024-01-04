@@ -1,0 +1,292 @@
+.greetings{
+  display: flex;
+  justify-content: left;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13) !important;
+}
+.greetings-words{
+  margin-left: 10px;
+  color: white !important;
+}
+.hello{
+  height: 5px;
+  display: flex;
+  justify-content: left;
+}
+.welcome{
+  font-size: 12px;
+  height: 10px;
+  display: flex;
+  justify-content: left;
+}
+.profile-items{
+  padding: 0;
+}
+.profile-item{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 40px;
+  color: #d5d5d5;
+  font-size: 13px;
+}
+.profile-item :hover{
+  color: white;
+}
+.profile-menu-container {
+  position: relative;
+  display: inline-block;
+  float: end;
+}
+
+.profile-menu-container:hover .dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  right: auto;
+  left: 0;
+  transform: translateX(-60%); /* Desplaza el menú a la izquierda */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #282828;
+  padding: 10px;
+  min-width: 158px;
+  z-index: 1000;
+  top: 50px; /* Ajusta este valor según sea necesario */
+  border-radius: 8px; /* Ajusta este valor según sea necesario */
+}
+
+.profile-menu {
+  position: relative;
+  display: inline-block;
+  float: right;
+}
+
+.profile-avatar{
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.circle-profile-avatar{
+  height: 25px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: #bf360c;
+  color: white;
+  border-radius: 2rem;
+  padding: 8px ;
+}
+.profile-avatar p{
+  padding-top: 1px;
+  margin: 0;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.notification-box{
+width: 280px;
+}
+.notification-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 15px;
+  margin: 10px;
+}
+.notification-header span{
+  margin-left: 10px;
+}
+::placeholder {
+  color: #c4c4c4;
+}
+.menu-items-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.box{
+  height: 20px;
+  display: flex;
+  cursor: pointer;
+  color: white;
+  padding: 5px 10px;
+  background: #222222;
+  border-radius: 30px;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+.box:hover input{
+  width: 200px;
+}
+.box input {
+  color: white;
+  width: 0;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  transition: 0.8s;
+  background: transparent;
+}
+.box button{
+  color: white;
+  font-size: 18px;
+}
+.top-menu-shortcut{
+  display: flex;
+  flex-direction: row;
+  color: #8e8e8e;
+}
+
+.top-menu-shortcut a{
+  color: #bdbdbd !important;
+  margin: 15px 0px 15px 0px;
+  padding: 0 ;
+
+}
+
+.top-menu-shortcut a:hover{
+  color: white !important;
+}
+.mat-toolbar{
+  height: 64px;
+  background-color: #0f0f0f;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.mat-sidenav{
+  background-color: #0f0f0f;
+}
+.top-menu-items{
+  display: flex;
+  flex-direction: row;
+  color: white;
+  margin: 15px 0 15px 15px;
+}
+.top-menu-items :hover{
+  border-bottom: 4px solid #da0101 !important;
+}
+
+.side-profile-items{
+  margin-top: 0.5rem;
+  padding: 0;
+
+}
+.premium{
+  margin-left: 0
+}
+.side-profile-item{
+  cursor: pointer;
+  margin-left: 15px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 40px;
+  font-size: 20px;
+}
+.side-profile-item span{
+  margin-left: 5px;
+}
+
+.side-profile-avatar{
+  cursor: pointer;
+  color: white;
+  margin: 1rem 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+.side-profile-avatar:hover {
+  background-color: #272727;
+}
+
+.side-hello{
+  padding-top: 15px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.side-circle-profile-avatar{
+  height: 78px;
+  width: 78px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: #bf360c !important;
+  color: white;
+  border-radius: 5rem;
+  padding: 8px ;
+}
+
+.side-circle-profile-avatar h1{
+  font-size: 30px;
+  margin-top: 15px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.side-menu-items{
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding-right: 5px;
+}
+
+.side-menu-items :hover{
+  background-color: #272727 !important;
+  border-right: 5px solid #272727 !important;
+}
+.side-active{
+  border-right: 5px solid #da0101 !important;
+  background-color: #0f0f0f !important;
+}
+.top-active{
+  border-bottom: 4px solid #da0101 !important;
+}
+
+@media (min-width: 990px) {
+  #menuIcon{
+    display: none;
+  }
+  .mat-sidenav{
+    display: none;
+  }
+
+}
+@media (max-width: 990px) {
+  .top-menu-items{
+    display: none;
+  }
+  .profile-menu-container{
+    display: none !important;
+  }
+  .my-courses{
+    display: none;
+  }
+  .premium{
+    display: none;
+  }
+}

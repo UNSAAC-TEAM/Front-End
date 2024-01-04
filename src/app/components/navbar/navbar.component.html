@@ -1,0 +1,182 @@
+<mat-toolbar>
+  <button mat-icon-button (click)="sidenav.toggle()" id="menuIcon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>CourseApp</span>
+  <div class="menu-items-container">
+    <mat-nav-list class="top-menu-items">
+      <a [routerLinkActive]="'top-active'" [routerLinkActiveOptions]="{exact: true}" routerLink="/courses" class="top-menu-items">Cursos</a>
+      <a [routerLinkActive]="'top-active'" [routerLinkActiveOptions]="{exact: true}" routerLink="/routes" class="top-menu-items">Rutas</a>
+      <a [routerLinkActive]="'top-active'" [routerLinkActiveOptions]="{exact: true}" routerLink="/blogs" class="top-menu-items">Blog</a>
+      <a [routerLinkActive]="'top-active'" [routerLinkActiveOptions]="{exact: true}" routerLink="/teachers" class="top-menu-items">Docentes</a>
+      <a [routerLinkActive]="'top-active'" [routerLinkActiveOptions]="{exact: true}" routerLink="/events" class="top-menu-items">Eventos</a>
+    </mat-nav-list>
+    <mat-nav-list class="premium">
+      <a mat-list-item routerLink="/premium">
+        <mat-icon matListIcon style="color: gold">whatshot</mat-icon>
+        <span style="color: gold">Premium</span>
+      </a>
+    </mat-nav-list>
+    <div class="box">
+      <input type="text" placeholder="Buscar..." [(ngModel)]="searchText">
+      <button (click)="search()" mat-icon-button aria-label="search">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+    <mat-nav-list class="top-menu-shortcut">
+      <div class="my-courses">
+        <a mat-list-item routerLink="/account/courses">
+          <mat-icon matListIcon>library_books</mat-icon>
+          <span >Mis cursos</span>
+        </a>
+      </div>
+      <a mat-list-item>
+        <button mat-icon-button [matMenuTriggerFor]="notification" (click)="toggleNotifi()" aria-label="Example icon-button with a menu">
+          <mat-icon matListIcon class="icon">notifications</mat-icon>
+        </button>
+        <mat-menu #notification="matMenu">
+          <div class="notification-box">
+            <div class="notification-header">
+              <mat-icon matListIcon>notifications</mat-icon>
+              <span>Notificaciones pendientes</span>
+            </div>
+           <div>
+
+           </div>
+          </div>
+        </mat-menu>
+      </a>
+      <a mat-list-item class="profile-menu-container">
+        <div class="profile-avatar">
+          <div class="circle-profile-avatar">
+            <p>DT</p>
+          </div>
+        </div>
+        <div class="dropdown-menu">
+          <div class="greetings">
+            <div style="height: 100%;margin: 0;padding: 0">
+              <div class="circle-profile-avatar">
+                <p style="margin-top: 15px">DT</p>
+              </div>
+            </div>
+            <div class="greetings-words">
+              <p class="hello">Hola Diego</p>
+              <p class="welcome">Bienvenido</p>
+            </div>
+          </div>
+          <div class="profile-items">
+            <div class="profile-item" routerLink="/account">
+              <mat-icon matListIcon>person</mat-icon>
+              <span >Mi perfil</span>
+            </div>
+            <div class="profile-item" routerLink="/account/payment">
+              <mat-icon matListIcon>credit_card</mat-icon>
+              <span >Mis pagos</span>
+            </div>
+            <div class="profile-item" routerLink="/account/courses">
+              <mat-icon matListIcon>library_books</mat-icon>
+              <span >Mis cursos</span>
+            </div>
+            <div class="profile-item" routerLink="/account/subscriptions">
+              <mat-icon matListIcon>credit_card</mat-icon>
+              <span >Mis subscripciones</span>
+            </div>
+            <div class="profile-item" routerLink="/account/credentials">
+              <mat-icon matListIcon>stars</mat-icon>
+              <span >Credenciales</span>
+            </div>
+            <div class="profile-item" routerLink="/">
+              <mat-icon matListIcon>lock</mat-icon>
+              <span>Cerrar sesion</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </mat-nav-list>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container hasBackdrop="false">
+  <mat-sidenav #sidenav [fixedInViewport]="true" [fixedTopGap]="64" mode="over"  [style.width]="'280px'">
+    <div *ngIf="!isSideMenuOptionsActive">
+      <div class="side-profile-avatar" (click)="openSideMenuOptions()">
+        <div class="side-circle-profile-avatar">
+          <h1>DT</h1>
+        </div>
+        <div class="side-greetings-words">
+          <p class="side-hello">Hola Diego</p>
+          <p class="side-welcome">Bienvenido</p>
+        </div>
+        <div>
+          <mat-icon>chevron_right</mat-icon>
+        </div>
+      </div>
+      <mat-nav-list class="side-menu-items">
+        <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
+           mat-list-item (click)="sidenav.close()" routerLink="/courses" class="side-menu-items">
+          <span matlistitemtitle>Cursos</span>
+        </a>
+        <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
+           mat-list-item (click)="sidenav.close()" routerLink="/routes" class="side-menu-items">
+          <span matlistitemtitle>Rutas</span>
+        </a>
+        <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
+           mat-list-item (click)="sidenav.close()" routerLink="/blogs" class="side-menu-items">
+          <span matlistitemtitle>Blog</span>
+        </a>
+        <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
+           mat-list-item (click)="sidenav.close()" routerLink="/teachers" class="side-menu-items">
+          <span matlistitemtitle>Profesores</span>
+        </a>
+        <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
+           mat-list-item (click)="sidenav.close()" routerLink="/events" class="side-menu-items">
+          <span matlistitemtitle>Eventos</span>
+        </a>
+      </mat-nav-list>
+    </div>
+    <div *ngIf="isSideMenuOptionsActive">
+      <div class="side-profile-items">
+        <div class="side-profile-item" (click)="openSideMenuOptions()">
+          <mat-icon matListIcon style="color: #ffffff">chevron_left</mat-icon>
+          <span style="color: #ffffff">Atras</span>
+        </div>
+        <mat-nav-list class="side-menu-items">
+          <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
+             mat-list-item (click)="sidenav.close()" routerLink="/account" class="side-menu-items">
+            <mat-icon matListIcon>person</mat-icon>
+            <span>Mi perfil</span>
+          </a>
+          <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
+             mat-list-item (click)="sidenav.close()" routerLink="/account/payment" class="side-menu-items">
+            <mat-icon matListIcon>credit_card</mat-icon>
+            <span>Mis pagos</span>
+          </a>
+          <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
+             mat-list-item (click)="sidenav.close()" routerLink="/account/courses" class="side-menu-items">
+            <mat-icon matListIcon>library_books</mat-icon>
+            <span>Mis cursos</span>
+          </a>
+          <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
+             mat-list-item (click)="sidenav.close()" routerLink="/account/subscriptions" class="side-menu-items">
+            <mat-icon matListIcon>credit_card</mat-icon>
+            <span>Mis subscripciones</span>
+          </a>
+          <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
+             mat-list-item (click)="sidenav.close()" routerLink="/account/credentials" class="side-menu-items">
+            <mat-icon matListIcon>stars</mat-icon>
+            <span>Credenciales</span>
+          </a>
+          <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
+             mat-list-item (click)="sidenav.close()" routerLink="/" class="side-menu-items">
+            <mat-icon matListIcon>lock</mat-icon>
+            <span>Cerrar sesion</span>
+          </a>
+        </mat-nav-list>
+      </div>
+    </div>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

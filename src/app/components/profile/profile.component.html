@@ -1,0 +1,79 @@
+<div class="banner">
+  <div class="upper-part">
+    <div class="profile">
+      <div class="picture">
+        <img [src]="imageUrl" alt="Imagen de perfil">
+      </div>
+      <div class="greetings">
+        <div>
+          <div class="hello">
+            <h2>Hola, {{username}}</h2>
+          </div>
+          <div class="welcome">
+            <p>Bienvenido</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="edit">
+      <button mat-mini-fab disabled aria-label="Example icon button with a home icon" >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="downer-part">
+    <button mat-stroked-button>Renovar</button>
+  </div>
+</div>
+<div class="user-data">
+  <div class="progress">
+    <h2 style="margin: 0">Mi progreso</h2>
+    <div class="statistics">
+      <div class="total-courses">
+        <div class="spinner-container">
+          <mat-progress-spinner
+            class="spinner"
+            [color]="'primary'"
+            [mode]="'determinate'"
+            [value]="totalCoursesSpinnerValue"
+          >
+          </mat-progress-spinner>
+          <p class="spinner-value">{{ totalCoursesSpinnerValue }} %</p>
+        </div>
+        <p>Total de cursos</p>
+      </div>
+      <div class="premium-courses">
+        <div class="spinner-container">
+          <mat-progress-spinner
+            class="spinner"
+            [color]="'primary'"
+            [mode]="'determinate'"
+            [value]="premiumCoursesSpinnerValue"
+          >
+          </mat-progress-spinner>
+          <p class="spinner-value">{{ premiumCoursesSpinnerValue }} %</p>
+        </div>
+        <p>Cursos premium</p>
+      </div>
+      <div class="certificated-courses">
+        <div class="spinner-container">
+          <mat-progress-spinner
+            class="spinner"
+            [color]="'primary'"
+            [mode]="'determinate'"
+            [value]="certificatedCoursesSpinnerValue"
+          >
+          </mat-progress-spinner>
+          <p class="spinner-value">{{ certificatedCoursesSpinnerValue }} %</p>
+        </div>
+        <p>Programa certificados</p>
+      </div>
+    </div>
+  </div>
+  <div class="information">
+    <h2>Sobre mi</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In nulla posuere sollicitudin aliquam ultrices. Neque volutpat ac tincidunt vitae semper. Nibh tellus molestie nunc non blandit.
+    </p>
+  </div>
+</div>
