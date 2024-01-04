@@ -3,6 +3,9 @@ body {
   margin: 0;
   padding: 0;
   background-color: #282828;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 .block-item-premium h1{
   text-align: center;
@@ -139,6 +142,8 @@ li {
 
 /* Tablets and Smaller Screens */
 @media (max-width: 768px) {
+
+
 
   .pricing-table {
     flex-direction: column;
