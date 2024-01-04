@@ -1,0 +1,140 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0f0f0f;
+  background: linear-gradient(180deg,#04183e 0,#020a15);
+  height: 100vh;
+}
+.block-item-premium{
+}
+.block-item-premium h1{
+  text-align: center;
+  color: #f4f5f7;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  padding-top: 50px;
+  line-height: 1.2;
+}
+
+.block-item-premium > p {
+  color: #2a94fd;
+  text-align: center;
+  line-height: 140%;
+  font-size: 16px;
+
+}
+.pricing-table {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.pricing-column {
+  flex: 1;
+  background: transparent;
+  border: 2px solid #1d2f4c;
+  border-radius: 8px;
+  margin: 20px;
+  color: #d1d5dc;
+
+}
+
+.header-column > span  {
+  color: #f5c12c;
+  font-size: 20px;
+  font-weight: 700;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 17px;
+}
+
+.header-column{
+  text-align: center;
+  border-bottom: 2px solid #1d2f4c;
+  padding: 23px 15px 27px;
+}
+
+.body-column{
+  font-weight: 500;
+  text-align: left;
+  padding: 23px 15px 27px;
+}
+
+.bullet-list li {
+  display: flex;
+  padding-left: 15px;
+  margin-bottom: 15px;
+}
+.bullet-list li::before {
+  content: "\E876";
+  font-family: 'Material Icons';
+  font-size: 18px;
+  color: #4CAF50;
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.footer-column {
+  padding: 0px 15px 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+
+.price {
+  font-size: 34px;
+  color: #f4f5f7;
+  font-weight: 900;
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+.price span{
+  font-size: 18px;
+  font-weight: 500;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+}
+
+.btn{
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  padding: 10px 20px;
+  border: 2px solid #e7744c;
+  background: transparent;
+  font-weight: 500;
+  color: #e7744c;
+  text-decoration: none;
+  border-radius: 55px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+.btn::before {
+  content: "\E8CC"; /* Código Unicode del ícono del carrito de compras en Material Icons */
+  font-family: 'Material Icons';
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+.btn:hover {
+  background: linear-gradient(45deg, #fd932a, #b93f21);
+  color: white;
+}

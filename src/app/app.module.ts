@@ -37,7 +37,7 @@ import { environment } from '../environments/environment';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
-
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -98,6 +98,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
         MatProgressSpinnerModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
+        MatTableModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideStorage(() => getStorage())
     ],
