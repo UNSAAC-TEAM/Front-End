@@ -2,11 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #0f0f0f;
-  background: linear-gradient(180deg,#04183e 0,#020a15);
-  height: 100vh;
-}
-.block-item-premium{
+  background-color: #282828;
 }
 .block-item-premium h1{
   text-align: center;
@@ -35,7 +31,7 @@ body {
 .pricing-column {
   flex: 1;
   background: transparent;
-  border: 2px solid #1d2f4c;
+  border: 2px solid #d1d5dc;
   border-radius: 8px;
   margin: 20px;
   color: #d1d5dc;
@@ -53,7 +49,7 @@ body {
 
 .header-column{
   text-align: center;
-  border-bottom: 2px solid #1d2f4c;
+  border-bottom: 2px solid #d1d5dc;
   padding: 23px 15px 27px;
 }
 
@@ -115,10 +111,10 @@ li {
   justify-content: center;
   width: 80%;
   padding: 10px 20px;
-  border: 2px solid #e7744c;
+  border: 2px solid #E7625F;
   background: transparent;
   font-weight: 500;
-  color: #e7744c;
+  color: #E7625F;
   text-decoration: none;
   border-radius: 55px;
   transition: background-color 0.3s ease;
@@ -135,6 +131,20 @@ li {
 }
 
 .btn:hover {
-  background: linear-gradient(45deg, #fd932a, #b93f21);
+  background: linear-gradient(45deg, #C85250,#C85250);
+  border-color: #C85250;
   color: white;
+}
+
+
+/* Tablets and Smaller Screens */
+@media (max-width: 768px) {
+
+  .pricing-table {
+    flex-direction: column;
+  }
+
+  .pricing-column {
+    flex: 1 0 auto;
+  }
 }
