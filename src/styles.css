@@ -3,6 +3,22 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-progress-spinner circle, .mat-spinner circle {
+
   stroke: #676767 !important;
   border-color: white !important;
+}
+.mat-dialog-container{
+  border-radius: 1rem !important;
+  background-color: #1f1f1f;
+}
+/* Estilo del fondo oscuro detrás del diálogo */
+.custom-dialog-backdrop {
+  background-color: rgba(0, 0, 0, 0.6) !important; /* Ajusta el último valor para cambiar la opacidad */
+}
+
+/* Estilo del panel del diálogo */
+.custom-dialog-panel {
+  background-color: #111111 !important; /* Cambia el color a tu preferencia */
+  color: white !important; /* Cambia el color del texto a tu preferencia */
+  border-radius: 10px; /* Agrega bordes redondeados si es necesario */
 }

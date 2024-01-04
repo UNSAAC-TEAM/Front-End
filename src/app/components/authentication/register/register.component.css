@@ -22,11 +22,11 @@
   justify-content: center;
 }
 .register-button{
-  width: 90%;
+  width: 95%;
   border-radius: 3rem;
 }
 .login-redirect-container{
-  width: 90%;
+  width: 95%;
   display: flex;
   justify-content: right;
 }
@@ -46,8 +46,35 @@
   text-decoration: underline;
 }
 .form{
-  background-color: white !important;
+  background-color: #1f1f1f !important;
   color: black !important;
 }
+.form-field{
+  width: 100%;
+  color: white !important;
+}
+/* Border */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #0f0f0f !important;
+  background-color: #0f0f0f;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Font color */
+input.mat-input-element {
+  color: white !important;
+}
 
+/* Color de la barra de parpadeo (cursor) */
+input.mat-input-element {
+  caret-color: white !important;
+}
+.mat-select-value {
+  color: white !important;
+}
+
+/* Para el ícono de flecha en mat-select */
+.mat-select-arrow {
+  color: white !important;
+}
 

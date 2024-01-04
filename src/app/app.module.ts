@@ -42,6 +42,8 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { RegisterComponent } from './components/authentication/register/register.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {ErrorStateMatcher} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
 import {FormControl, Validators} from '@angular/forms';
 
 
@@ -110,6 +112,7 @@ import {FormControl, Validators} from '@angular/forms';
     AngularFirestoreModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSelectModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
     ReactiveFormsModule
