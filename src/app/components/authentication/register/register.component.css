@@ -1,0 +1,53 @@
+.container{
+  background-color: #1f1f1f;
+  color: white;
+}
+.header{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+}
+.header h1{
+  margin-bottom: 0.5rem;
+}
+.actions{
+  display: flex;
+  flex-direction: column;
+}
+.register-button-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.register-button{
+  width: 90%;
+  border-radius: 3rem;
+}
+.login-redirect-container{
+  width: 90%;
+  display: flex;
+  justify-content: right;
+}
+.login-redirect{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;  /* Alinea los elementos hacia la derecha */
+  margin-top: 0.5rem;
+}
+
+.login-redirect-container p {
+  margin-right: 5px;
+  margin-top: 12px;  /* Ajusta el espacio entre el párrafo y el icono según sea necesario */
+}
+.login-redirect-container :hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.form{
+  background-color: white !important;
+  color: black !important;
+}
+
+

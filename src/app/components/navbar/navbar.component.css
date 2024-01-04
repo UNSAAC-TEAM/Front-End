@@ -294,7 +294,7 @@ width: 280px;
 .top-register{
   border-radius: 3rem;
 }
-@media (min-width: 990px) {
+@media (min-width: 1150px) {
   #menuIcon{
     display: none;
   }
@@ -303,7 +303,7 @@ width: 280px;
   }
 
 }
-@media (max-width: 990px) {
+@media (max-width: 1150px) {
   .top-menu-items{
     display: none;
   }

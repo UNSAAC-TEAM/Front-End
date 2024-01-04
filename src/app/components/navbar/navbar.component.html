@@ -93,8 +93,8 @@
         </div>
       </a>
       <a mat-list-item *ngIf="!isLogged" class="authentication-container">
-        <button class="top-login" mat-button (click)="showLoginDialog()" >Ingresar</button>
-        <button class="top-register" mat-flat-button (click)="showRegisterDialog()" >Registrarse</button>
+        <button class="top-login" mat-button (click)="showLoginDialog('100ms', '100ms')" >Ingresar</button>
+        <button class="top-register" mat-flat-button (click)="showRegisterDialog('100ms', '100ms')" >Registrarse</button>
       </a>
     </mat-nav-list>
   </div>
@@ -116,8 +116,8 @@
         </div>
       </div>
       <div *ngIf="!isLogged" class="side-authentication-container">
-        <button class="side-login" mat-button (click)="showLoginDialog()">Ingresar</button>
-        <button class="side-register" mat-flat-button (click)="showRegisterDialog()">Registrarse</button>
+        <button class="side-login" mat-button (click)="showLoginDialog('100ms', '100ms')">Ingresar</button>
+        <button class="side-register" mat-flat-button (click)="showRegisterDialog('100ms', '100ms')">Registrarse</button>
       </div>
       <mat-nav-list class="side-menu-items">
         <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"

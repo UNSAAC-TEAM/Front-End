@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogTitle,
+  MatDialogContent,
+} from '@angular/material/dialog';
+import {LoginComponent} from "../authentication/login/login.component";
+import {RegisterComponent} from "../authentication/register/register.component";
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +21,7 @@ export class NavbarComponent implements OnInit {
   searchText: string = '';
   isSideMenuOptionsActive: Boolean =false;
 
-  constructor(private route: Router) { }
+  constructor(public dialog: MatDialog,private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -33,10 +43,20 @@ export class NavbarComponent implements OnInit {
     this.isLogged=!this.isLogged
     this.isSideMenuOptionsActive=false
   }
-  showLoginDialog(){
-    this.isLogged=!this.isLogged
+  showLoginDialog(enterAnimationDuration: string, exitAnimationDuration: string){
+    this.dialog.open(LoginComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+    //this.isLogged=!this.isLogged
   }
-  showRegisterDialog(){
-    this.isLogged=!this.isLogged
+  showRegisterDialog(enterAnimationDuration: string, exitAnimationDuration: string){
+    this.dialog.open(RegisterComponent, {
+      width: '500px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+    //this.isLogged=!this.isLogged
   }
 }
