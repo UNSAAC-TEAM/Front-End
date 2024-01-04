@@ -271,6 +271,29 @@ width: 280px;
   border-bottom: 4px solid #da0101 !important;
 }
 
+.authentication-container{
+  border-left: 1px solid #414141;
+}
+.side-authentication-container{
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  color: white;
+}
+.side-login{
+  border-radius: 3rem;
+  border: 2px solid white;
+  margin-bottom: 1rem;
+}
+.side-register{
+  border-radius: 3rem;
+}
+.top-login{
+  margin: 0 20px 0 5px;
+}
+.top-register{
+  border-radius: 3rem;
+}
 @media (min-width: 990px) {
   #menuIcon{
     display: none;
@@ -285,6 +308,9 @@ width: 280px;
     display: none;
   }
   .profile-menu-container{
+    display: none !important;
+  }
+  .authentication-container{
     display: none !important;
   }
   .my-courses{

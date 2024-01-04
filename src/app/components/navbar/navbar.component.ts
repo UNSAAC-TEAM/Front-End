@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  isLogged: Boolean = false;
   searchText: string = '';
   isSideMenuOptionsActive: Boolean =false;
 
@@ -27,5 +28,15 @@ export class NavbarComponent implements OnInit {
   }
   toggleNotifi() {
     console.log("NOTI")
+  }
+  logOut(){
+    this.isLogged=!this.isLogged
+    this.isSideMenuOptionsActive=false
+  }
+  showLoginDialog(){
+    this.isLogged=!this.isLogged
+  }
+  showRegisterDialog(){
+    this.isLogged=!this.isLogged
   }
 }

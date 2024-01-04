@@ -46,7 +46,7 @@
           </div>
         </mat-menu>
       </a>
-      <a mat-list-item class="profile-menu-container">
+      <a mat-list-item *ngIf="isLogged" class="profile-menu-container">
         <div class="profile-avatar">
           <div class="circle-profile-avatar">
             <p>DT</p>
@@ -85,12 +85,16 @@
               <mat-icon matListIcon>stars</mat-icon>
               <span >Credenciales</span>
             </div>
-            <div class="profile-item" routerLink="/">
+            <div class="profile-item" routerLink="/" (click)="logOut()">
               <mat-icon matListIcon>lock</mat-icon>
               <span>Cerrar sesion</span>
             </div>
           </div>
         </div>
+      </a>
+      <a mat-list-item *ngIf="!isLogged" class="authentication-container">
+        <button class="top-login" mat-button (click)="showLoginDialog()" >Ingresar</button>
+        <button class="top-register" mat-flat-button (click)="showRegisterDialog()" >Registrarse</button>
       </a>
     </mat-nav-list>
   </div>
@@ -99,7 +103,7 @@
 <mat-sidenav-container hasBackdrop="false">
   <mat-sidenav #sidenav [fixedInViewport]="true" [fixedTopGap]="64" mode="over"  [style.width]="'280px'">
     <div *ngIf="!isSideMenuOptionsActive">
-      <div class="side-profile-avatar" (click)="openSideMenuOptions()">
+      <div *ngIf="isLogged" class="side-profile-avatar" (click)="openSideMenuOptions()">
         <div class="side-circle-profile-avatar">
           <h1>DT</h1>
         </div>
@@ -110,6 +114,10 @@
         <div>
           <mat-icon>chevron_right</mat-icon>
         </div>
+      </div>
+      <div *ngIf="!isLogged" class="side-authentication-container">
+        <button class="side-login" mat-button (click)="showLoginDialog()">Ingresar</button>
+        <button class="side-register" mat-flat-button (click)="showRegisterDialog()">Registrarse</button>
       </div>
       <mat-nav-list class="side-menu-items">
         <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
@@ -166,10 +174,10 @@
             <mat-icon matListIcon>stars</mat-icon>
             <span>Credenciales</span>
           </a>
-          <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
-             mat-list-item (click)="sidenav.close()" routerLink="/" class="side-menu-items">
-            <mat-icon matListIcon>lock</mat-icon>
-            <span>Cerrar sesion</span>
+          <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true} "
+             mat-list-item (click)="sidenav.close()" routerLink="/" class="side-menu-items" >
+            <mat-icon matListIcon (click)="logOut()">lock</mat-icon>
+            <span (click)="logOut()">Cerrar sesion</span>
           </a>
         </mat-nav-list>
       </div>
