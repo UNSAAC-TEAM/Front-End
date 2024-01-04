@@ -167,6 +167,10 @@ width: 280px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: fixed;  /* Fijar la barra de navegación en la parte superior */
+  width: 100%;      /* Ocupar to do el ancho de la ventana */
+  top: 0;           /* Pegar en la parte superior */
+  z-index: 1000;    /* Ajustar la superposición con otros elementos */
 }
 .mat-sidenav{
   background-color: #0f0f0f;
