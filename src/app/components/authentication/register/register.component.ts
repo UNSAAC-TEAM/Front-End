@@ -92,21 +92,19 @@ export class RegisterComponent implements OnInit {
     this.isSelectBoxActive = false; // Close the dropdown after selection
   }
   getPhoneMaskLength(): number {
-    // Elimina los espacios en blanco y luego calcula la longitud
-    return this.selectedPhoneMask.replace(/\s/g, '').length;
+    return this.selectedPhoneMask.replace(/[\s-]/g, '').length;
+
   }
   getPhoneNumberLength(): number {
-    // Elimina los espacios en blanco y luego calcula la longitud
-    return this.number.replace(/\s/g, '').length;
+    return this.number.replace(/[\s-]/g, '').length;
+
   }
   onInputChangePhoneNumber(number: any){
     console.log(this.getPhoneMaskLength())
-    if(this.getPhoneNumberLength()!=this.getPhoneMaskLength()){
-      setTimeout(() => {
-        this.isNumberErrorActive=true
-      }, 1000);
-
-    }else {
+    if(this.getPhoneNumberLength()==0 || this.getPhoneNumberLength()>this.getPhoneMaskLength()){
+      this.isNumberErrorActive=true
+    }
+    else {
       this.isNumberErrorActive=false
     }
 

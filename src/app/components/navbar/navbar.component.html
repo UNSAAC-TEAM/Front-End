@@ -24,13 +24,13 @@
       </button>
     </div>
     <mat-nav-list class="top-menu-shortcut">
-      <div class="my-courses">
-        <a mat-list-item routerLink="/account/courses">
+      <div class="my-courses" *ngIf="isLogged">
+        <a mat-list-item routerLink="/account/courses" >
           <mat-icon matListIcon>library_books</mat-icon>
           <span >Mis cursos</span>
         </a>
       </div>
-      <a mat-list-item>
+      <a mat-list-item *ngIf="isLogged">
         <button mat-icon-button [matMenuTriggerFor]="notification" (click)="toggleNotifi()" aria-label="Example icon-button with a menu">
           <mat-icon matListIcon class="icon">notifications</mat-icon>
         </button>

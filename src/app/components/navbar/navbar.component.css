@@ -271,9 +271,7 @@ width: 280px;
   border-bottom: 4px solid #da0101 !important;
 }
 
-.authentication-container{
-  border-left: 1px solid #414141;
-}
+
 .side-authentication-container{
   display: flex;
   flex-direction: column;
