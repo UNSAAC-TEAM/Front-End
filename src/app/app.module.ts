@@ -38,6 +38,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -99,7 +101,8 @@ import { MatTableModule } from '@angular/material/table';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         MatTableModule,
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        MatCardModule,
+      provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideStorage(() => getStorage())
     ],
   providers: [],
