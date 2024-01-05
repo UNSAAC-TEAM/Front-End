@@ -41,7 +41,6 @@ export class RegisterComponent implements OnInit {
     lastname: new FormControl('',[Validators.required]),
     password: new FormControl('',[Validators.required]),
     email : new FormControl('', [Validators.required, Validators.email]),
-    selected : new FormControl('', [Validators.required, Validators.pattern('')]),
     country: new FormControl(this.country[5], [Validators.required]),
   });
   number=""
@@ -102,7 +101,6 @@ export class RegisterComponent implements OnInit {
 
   }
   onInputChangePhoneNumber(number: any){
-    console.log(this.getPhoneMaskLength())
     if(this.getPhoneNumberLength()==0 || this.getPhoneNumberLength()>this.getPhoneMaskLength()){
       this.isNumberErrorActive=true
     }
@@ -121,6 +119,22 @@ export class RegisterComponent implements OnInit {
       });
     }, 200);
 
+  }
+  register(){
+    if (this.userFormGroup.valid) {
+      if(this.getPhoneMaskLength()!=this.getPhoneNumberLength() || this.isNumberErrorActive){
+        this.isNumberErrorActive=true
+      }else{
+        let name: string = <string>this.userFormGroup.get('name')?.value;
+        let lastname: string = <string>this.userFormGroup.get('lastname')?.value;
+        let email: string = <string>this.userFormGroup.get('email')?.value;
+        let password: string = <string>this.userFormGroup.get('password')?.value;
+        let country: Country = <Country>this.userFormGroup.get('country')?.value;
+        let phoneNumber: String = "+"+country.phone+" "+this.number
+        this.dialogRef.close(); // Cierra el dialog actual
+      }
+
+    }
   }
 
 }

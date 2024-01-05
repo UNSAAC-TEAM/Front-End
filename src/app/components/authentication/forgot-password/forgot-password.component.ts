@@ -19,7 +19,9 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit(): void {
   }
   sendForgotPassword(){
-    this.dialogRef.close(); // Cierra el dialog actual
-
+    if (this.userFormGroup.valid) {
+      let email: string = <string>this.userFormGroup.get('email')?.value;
+      this.dialogRef.close(); // Cierra el dialog actual
+    }
   }
 }

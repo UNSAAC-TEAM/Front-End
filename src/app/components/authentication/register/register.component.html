@@ -7,7 +7,7 @@
     <form [formGroup]="userFormGroup"  >
       <mat-form-field class= "form-field" appearance="outline">
         <mat-label style="color: white">Nombres</mat-label>
-        <input matInput autocomplete="off"  type="password" formControlName="name">
+        <input matInput autocomplete="off"  type="name" formControlName="name">
         <mat-error *ngIf="userFormGroup.get('name')?.hasError('required')">
           Nombre <strong>requerido</strong>
         </mat-error>
@@ -15,7 +15,7 @@
 
       <mat-form-field class= "form-field" appearance="outline">
         <mat-label style="color: white">Apellidos</mat-label>
-        <input matInput autocomplete="off"  type="password" formControlName="lastname">
+        <input matInput autocomplete="off"  type="name" formControlName="lastname">
         <mat-error *ngIf="userFormGroup.get('lastname')?.hasError('required')">
           Apellidos <strong>requeridos</strong>
         </mat-error>
@@ -83,7 +83,7 @@
   </div>
   <div class="actions" mat-dialog-actions>
     <div class="register-button-container">
-      <button mat-flat-button mat-dialog-close class="register-button">Registrarte</button>
+      <button mat-flat-button (click)="register()" class="register-button">Registrarte</button>
     </div>
     <div class="login-redirect-container">
       <div class="login-redirect">
