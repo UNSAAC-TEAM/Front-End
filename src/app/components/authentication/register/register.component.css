@@ -1,0 +1,225 @@
+.container{
+  background-color: #1f1f1f;
+  color: white;
+}
+.header{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+}
+.header h1{
+  margin-bottom: 0.5rem;
+}
+.actions{
+  display: flex;
+  flex-direction: column;
+}
+.register-button-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.register-button{
+  width: 95%;
+  border-radius: 3rem;
+}
+.login-redirect-container{
+  width: 95%;
+  display: flex;
+  justify-content: right;
+}
+.login-redirect{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;  /* Alinea los elementos hacia la derecha */
+  margin-top: 0.5rem;
+}
+
+.login-redirect-container p {
+  margin-right: 5px;
+  margin-top: 12px;  /* Ajusta el espacio entre el párrafo y el icono según sea necesario */
+}
+.login-redirect-container :hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.form{
+  background-color: #1f1f1f !important;
+  color: black !important;
+}
+.form-field{
+  width: 100%;
+  color: white !important;
+}
+/* Border */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #0f0f0f !important;
+  background-color: #0f0f0f;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Font color */
+input.mat-input-element {
+  color: white !important;
+}
+
+/* Color de la barra de parpadeo (cursor) */
+input.mat-input-element {
+  caret-color: white !important;
+}
+.mat-select-value {
+  color: white !important;
+}
+
+/* Para el ícono de flecha en mat-select */
+.mat-select-arrow {
+  color: white !important;
+}
+
+/********************************/
+:root {
+  --primary: #fff;
+  --secondary: #111;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.select-box {
+  position: relative;
+  width: 100%;
+  padding-bottom: 18px;
+}
+
+.select-box input {
+  width: 100%;
+  padding: 1rem .6rem;
+  font-size: 1.1rem;
+
+  border: .1rem solid transparent;
+  outline: none;
+}
+
+input[type="tel"] {
+  border-radius: 0 .5rem .5rem 0;
+}
+
+.select-box input:focus {
+  border: .1rem solid #0f0f0f;
+}
+
+.selected-option {
+  background-color: #0f0f0f;
+  color: white;
+  border-radius: .1rem;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selected-option div{
+  position: relative;
+
+  width: 6rem;
+  padding: 0 2.8rem 0 .5rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.selected-option div::after{
+  position: absolute;
+  content: "";
+  right: .8rem;
+  top: 50%;
+  transform: translateY(-80%) rotate(45deg);
+
+  width: .5rem;
+  height: .5rem;
+  border-right: .2rem solid white;
+  border-bottom: .2rem solid white;
+
+  transition: .2s;
+}
+
+.selected-option div.active::after{
+  transform: translateY(-50%) rotate(225deg);
+}
+
+.select-box .options {
+  position: absolute;
+  top: 4rem;
+
+  width: 100%;
+  background-color: #fff;
+  border-radius: .5rem;
+}
+
+.select-box .options.active {
+  display: block;
+}
+
+.select-box .options::before {
+  position: absolute;
+  content: "";
+  left: 1rem;
+  top: -1.2rem;
+
+  width: 0;
+  height: 0;
+  border: .6rem solid transparent;
+  border-bottom-color: var(--primary);
+}
+
+input.search-box {
+  background-color: var(--primary);
+  color: #fff;
+  border-radius: .5rem .5rem 0 0;
+  padding: 1.4rem 1rem;
+}
+
+.select-box ol {
+  list-style: none;
+  max-height: 23rem;
+  overflow: auto;
+}
+
+.select-box ol::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.select-box ol::-webkit-scrollbar-thumb {
+  width: 0.4rem;
+  height: 3rem;
+  background-color: #ccc;
+  border-radius: .4rem;
+}
+
+.select-box ol li {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.select-box ol li.hide {
+  display: none;
+}
+
+.select-box ol li:not(:last-child) {
+  border-bottom: .1rem solid #eee;
+}
+
+.select-box ol li:hover {
+  background-color: lightcyan;
+}
+
+.select-box ol li .country-name {
+  margin-left: .4rem;
+}

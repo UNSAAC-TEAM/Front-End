@@ -15,7 +15,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from "@angular/material/list";
 import { SpecializationsComponent } from './components/specializations/specializations.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -37,6 +37,15 @@ import { environment } from '../environments/environment';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {MatDialogModule} from '@angular/material/dialog';
+import { LoginComponent } from './components/authentication/login/login.component';
+import { RegisterComponent } from './components/authentication/register/register.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {ErrorStateMatcher} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import {FormControl, Validators} from '@angular/forms';
+import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -59,48 +68,57 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
     CredentialsComponent,
     SupportComponent,
     CreateBlogComponent,
-  ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-      EditorModule,
-        RouterModule.forRoot([
-            {path: 'courses', component: CoursesComponent},
-            {
-                path: 'account', component: AccountComponent,
-                children: [
-                    {path: '', component: ProfileComponent},
-                    {path: 'edit-profile', component: EditProfileComponent},
-                    {path: 'payment', component: PaymentsComponent},
-                    {path: 'courses', component: MyCoursesComponent},
-                  {path: 'subscriptions', component: SubscriptionComponent},
-                  {path: 'credentials', component: CredentialsComponent},
-                  {path: 'support', component: SupportComponent},
-                ]
-            },
-            {path: 'routes', component: RoutesComponent},
-          {path: 'blogs', component: BlogsComponent},
-          {path: 'teachers', component: TeachersComponent},
-          {path: 'events', component: EventsComponent},
-          {path: 'premium', component: PremiumComponent},
-          {path: 'create-blog', component: CreateBlogComponent},
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
 
-        ]),
-        MatToolbarModule,
-        MatIconModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatListModule,
-        FormsModule,
-        MatMenuModule,
-        MatDividerModule,
-        MatProgressSpinnerModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule,
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
-        provideStorage(() => getStorage())
-    ],
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    EditorModule,
+    RouterModule.forRoot([
+      {path: 'courses', component: CoursesComponent},
+      {
+        path: 'account', component: AccountComponent,
+        children: [
+          {path: '', component: ProfileComponent},
+          {path: 'edit-profile', component: EditProfileComponent},
+          {path: 'payment', component: PaymentsComponent},
+          {path: 'courses', component: MyCoursesComponent},
+          {path: 'subscriptions', component: SubscriptionComponent},
+          {path: 'credentials', component: CredentialsComponent},
+          {path: 'support', component: SupportComponent},
+        ]
+      },
+      {path: 'routes', component: RoutesComponent},
+      {path: 'blogs', component: BlogsComponent},
+      {path: 'teachers', component: TeachersComponent},
+      {path: 'events', component: EventsComponent},
+      {path: 'premium', component: PremiumComponent},
+      {path: 'create-blog', component: CreateBlogComponent},
+
+    ]),
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    FormsModule,
+    MatMenuModule,
+    MatDividerModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage()),
+    ReactiveFormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

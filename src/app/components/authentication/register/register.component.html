@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="header">
+    <h1>Regístrate</h1>
+    <p>Crea tu nueva cuenta, nos alegra que te uniste a nosotros.</p>
+  </div>
+  <div class="form" mat-dialog-content>
+    <form [formGroup]="userFormGroup"  >
+      <mat-form-field class= "form-field" appearance="outline">
+        <mat-label style="color: white">Nombres</mat-label>
+        <input matInput autocomplete="off"  type="name" formControlName="name">
+        <mat-error *ngIf="userFormGroup.get('name')?.hasError('required')">
+          Nombre <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class= "form-field" appearance="outline">
+        <mat-label style="color: white">Apellidos</mat-label>
+        <input matInput autocomplete="off"  type="name" formControlName="lastname">
+        <mat-error *ngIf="userFormGroup.get('lastname')?.hasError('required')">
+          Apellidos <strong>requeridos</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class= "form-field" appearance="outline">
+        <mat-label style="color: white">Email</mat-label>
+        <input matInput autocomplete="off"  formControlName="email">
+        <mat-error *ngIf="userFormGroup.get('email')?.hasError('required')">
+          Email <strong>requerido</strong>
+        </mat-error>
+        <mat-error *ngIf="userFormGroup.get('email')?.hasError('email')">
+          Email <strong>invalido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class= "form-field" appearance="outline">
+        <mat-label style="color: white">Contraseña</mat-label>
+        <input matInput autocomplete="off"  type="password" formControlName="password">
+        <mat-error *ngIf="userFormGroup.get('password')?.hasError('required')">
+          Contraseña <strong>requerida</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class= "form-field" appearance="outline">
+        <mat-label style="color: white">Pais</mat-label>
+        <mat-select formControlName="country" (selectionChange)="onCountrySelectionChange($event)">
+          <mat-option *ngFor="let country of country" [value]="country">
+            <span class="fi fi-{{country.alpha2.toLowerCase()}}" style="margin-right: 5px"></span>
+            {{country.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="userFormGroup.get('country')?.hasError('required')">
+          Pais <strong>requerido</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+
+
+    <div class="select-box">
+      <div class="selected-option" >
+        <div (click)="toggleSelectBox()" style="display: flex;">
+          <span class="fi fi-{{selectedCountryAlpha2}}" style="margin-right: 5px"></span>
+          <strong>+{{ selectedCountryPhone }}</strong>
+        </div>
+        <input type="tel" name="tel" placeholder="{{this.selectedPhoneMask}}" (input)="onInputChangePhoneNumber($event)" [(ngModel)]="this.number" style="background-color: #0f0f0f;color: rgba(255,255,255,0.74)">
+      </div>
+      <mat-error *ngIf="this.isNumberErrorActive">
+        Numero celular <strong>invalido</strong>
+      </mat-error>
+      <div class="options" *ngIf="isSelectBoxActive">
+        <ol>
+          <li class="option" *ngFor="let country of filteredCountries" (click)="selectOption(country)">
+            <div>
+              <span class="fi fi-{{country.alpha2.toLowerCase()}}" style="margin-right: 5px"></span>
+              <span class="country-name">{{ country.name }}</span>
+            </div>
+            <strong>+{{ country.phone }}</strong>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="actions" mat-dialog-actions>
+    <div class="register-button-container">
+      <button mat-flat-button (click)="register()" class="register-button">Registrarte</button>
+    </div>
+    <div class="login-redirect-container">
+      <div class="login-redirect">
+        <p (click)="loginRedirect()" >Ya estoy registrado</p>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_forward" ></mat-icon>
+      </div>
+    </div>
+
+  </div>
+</div>
+

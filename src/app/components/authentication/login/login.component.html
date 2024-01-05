@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="header">
+    <h1>Inicia Sesión</h1>
+  </div>
+  <div class="form">
+    <form [formGroup]="userFormGroup"  >
+      <mat-form-field class="login-form-field" appearance="outline">
+        <mat-label style="color: white">Email</mat-label>
+        <input matInput autocomplete="off"  formControlName="email">
+        <mat-error *ngIf="userFormGroup.get('email')?.hasError('required')">
+          Email <strong>requerido</strong>
+        </mat-error>
+        <mat-error *ngIf="userFormGroup.get('email')?.hasError('email')">
+          Email <strong>invalido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="login-form-field" appearance="outline">
+        <mat-label style="color: white">Contraseña</mat-label>
+        <input matInput autocomplete="off"  type="password" formControlName="password">
+        <mat-error *ngIf="userFormGroup.get('password')?.hasError('required')">
+          Contraseña <strong>requerida</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="actions" mat-dialog-actions>
+    <div class="forgot-password-container">
+      <div class="forgot-password">
+        <p (click)="forgotPassword()" >¿Olvidé mi contraseña?</p>
+      </div>
+    </div>
+    <div class="login-button-container">
+      <button mat-flat-button (click)="login()" class="login-button">Iniciar Sesion</button>
+    </div>
+    <div class="register-redirect-container">
+      <div class="register-redirect">
+        <p (click)="registerRedirect()" >Aun no estoy registrado</p>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_forward" ></mat-icon>
+      </div>
+    </div>
+
+  </div>
+</div>

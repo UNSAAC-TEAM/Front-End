@@ -271,9 +271,7 @@ width: 280px;
   border-bottom: 4px solid #da0101 !important;
 }
 
-.authentication-container{
-  border-left: 1px solid #414141;
-}
+
 .side-authentication-container{
   display: flex;
   flex-direction: column;
@@ -294,7 +292,7 @@ width: 280px;
 .top-register{
   border-radius: 3rem;
 }
-@media (min-width: 990px) {
+@media (min-width: 1150px) {
   #menuIcon{
     display: none;
   }
@@ -303,7 +301,7 @@ width: 280px;
   }
 
 }
-@media (max-width: 990px) {
+@media (max-width: 1150px) {
   .top-menu-items{
     display: none;
   }
@@ -320,3 +318,4 @@ width: 280px;
     display: none;
   }
 }
+
