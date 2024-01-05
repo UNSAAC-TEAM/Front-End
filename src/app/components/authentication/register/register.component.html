@@ -51,8 +51,30 @@
           Pais <strong>requerido</strong>
         </mat-error>
       </mat-form-field>
-
     </form>
+
+    <div class="select-box">
+      <div class="selected-option" >
+        <div (click)="toggleSelectBox()">
+          <span class="iconify" [attr.data-icon]="'flag:' + selectedCountryCode.toLowerCase() + '-4x3'"></span>
+          <strong>+{{ selectedCountryPhone }}</strong>
+        </div>
+        <input type="tel" name="tel" placeholder="Phone Number">
+      </div>
+      <div class="options" *ngIf="isSelectBoxActive">
+        <ol>
+          <li class="option" *ngFor="let country of filteredCountries" (click)="selectOption(country)">
+            <div>
+              <span class="iconify" [attr.data-icon]="'flag:' + country.code.toLowerCase() + '-4x3'"></span>
+              <span class="country-name">{{ country.name }}</span>
+            </div>
+            <strong>+{{ country.phone }}</strong>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+
   </div>
   <div class="actions" mat-dialog-actions>
     <div class="register-button-container">
