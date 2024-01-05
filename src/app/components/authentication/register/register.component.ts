@@ -14,8 +14,10 @@ interface Country {
   phoneMask: string;
 }
 import {
+  MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
+import {LoginComponent} from "../login/login.component";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -62,7 +64,7 @@ export class RegisterComponent implements OnInit {
   ];
 
 
-  constructor(public dialogRef: MatDialogRef<RegisterComponent>) { }
+  constructor(private dialog: MatDialog,public dialogRef: MatDialogRef<RegisterComponent>) { }
 
   ngOnInit(): void {
   }
@@ -107,6 +109,17 @@ export class RegisterComponent implements OnInit {
     else {
       this.isNumberErrorActive=false
     }
+
+  }
+  loginRedirect(){
+    this.dialogRef.close(); // Cierra el dialog actual
+    setTimeout(() => {
+      // Abre el dialog de registro
+      const dialogRef = this.dialog.open(LoginComponent, {
+        width: '500px',
+        // Otras configuraciones
+      });
+    }, 200);
 
   }
 

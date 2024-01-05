@@ -45,6 +45,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {FormControl, Validators} from '@angular/forms';
+import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import {FormControl, Validators} from '@angular/forms';
     CreateBlogComponent,
     LoginComponent,
     RegisterComponent,
+    ForgotPasswordComponent,
 
   ],
   imports: [
