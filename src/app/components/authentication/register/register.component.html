@@ -36,14 +36,15 @@
         <mat-label style="color: white">Contraseña</mat-label>
         <input matInput autocomplete="off"  type="password" formControlName="password">
         <mat-error *ngIf="userFormGroup.get('password')?.hasError('required')">
-          Password is <strong>required</strong>
+          Contraseña <strong>requerida</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class= "form-field" appearance="outline">
         <mat-label style="color: white">Pais</mat-label>
-        <mat-select formControlName="country">
-          <mat-option *ngFor="let country of country" [value]="country.viewValue">
+        <mat-select formControlName="country" (selectionChange)="onCountrySelectionChange($event)">
+          <mat-option *ngFor="let country of country" [value]="country">
+            <span class="fi fi-{{country.alpha2.toLowerCase()}}" style="margin-right: 5px"></span>
             {{country.viewValue}}
           </mat-option>
         </mat-select>
@@ -53,19 +54,23 @@
       </mat-form-field>
     </form>
 
+
     <div class="select-box">
       <div class="selected-option" >
-        <div (click)="toggleSelectBox()">
-          <span class="iconify" [attr.data-icon]="'flag:' + selectedCountryCode.toLowerCase() + '-4x3'"></span>
+        <div (click)="toggleSelectBox()" style="display: flex;">
+          <span class="fi fi-{{selectedCountryAlpha2}}" style="margin-right: 5px"></span>
           <strong>+{{ selectedCountryPhone }}</strong>
         </div>
-        <input type="tel" name="tel" placeholder="Phone Number">
+        <input type="tel" name="tel" placeholder="{{this.selectedPhoneMask}}" (input)="onInputChangePhoneNumber($event)" [(ngModel)]="this.number" style="background-color: #0f0f0f;color: rgba(255,255,255,0.74)">
       </div>
+      <mat-error *ngIf="this.isNumberErrorActive">
+        Numero celular <strong>invalido</strong>
+      </mat-error>
       <div class="options" *ngIf="isSelectBoxActive">
         <ol>
           <li class="option" *ngFor="let country of filteredCountries" (click)="selectOption(country)">
             <div>
-              <span class="iconify" [attr.data-icon]="'flag:' + country.code.toLowerCase() + '-4x3'"></span>
+              <span class="fi fi-{{country.alpha2.toLowerCase()}}" style="margin-right: 5px"></span>
               <span class="country-name">{{ country.name }}</span>
             </div>
             <strong>+{{ country.phone }}</strong>

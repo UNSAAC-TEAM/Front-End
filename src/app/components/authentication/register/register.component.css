@@ -92,9 +92,8 @@ input.mat-input-element {
 
 .select-box {
   position: relative;
-
-  width: 26rem;
-  margin: 7rem auto;
+  width: 100%;
+  padding-bottom: 18px;
 }
 
 .select-box input {
@@ -111,12 +110,13 @@ input[type="tel"] {
 }
 
 .select-box input:focus {
-  border: .1rem solid var(--primary);
+  border: .1rem solid #0f0f0f;
 }
 
 .selected-option {
-  background-color: #eee;
-  border-radius: .5rem;
+  background-color: #0f0f0f;
+  color: white;
+  border-radius: .1rem;
   overflow: hidden;
 
   display: flex;
@@ -138,12 +138,12 @@ input[type="tel"] {
   content: "";
   right: .8rem;
   top: 50%;
-  transform: translateY(-50%) rotate(45deg);
+  transform: translateY(-80%) rotate(45deg);
 
-  width: .8rem;
-  height: .8rem;
-  border-right: .12rem solid var(--primary);
-  border-bottom: .12rem solid var(--primary);
+  width: .5rem;
+  height: .5rem;
+  border-right: .2rem solid white;
+  border-bottom: .2rem solid white;
 
   transition: .2s;
 }

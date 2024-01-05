@@ -1,5 +1,6 @@
 import { Component, OnInit,ViewEncapsulation  } from '@angular/core';
 import {FormControl, Validators, FormGroup,FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import {ErrorStateMatcher} from '@angular/material/core';
 import {
   FormGroupDirective,
@@ -8,6 +9,9 @@ import {
 
 interface Country {
   viewValue: string;
+  alpha2: string;
+  phone: number;
+  phoneMask: string;
 }
 import {
   MatDialogRef,
@@ -19,46 +23,56 @@ import {
   encapsulation: ViewEncapsulation.None
 })
 export class RegisterComponent implements OnInit {
+  country: Country[] = [
+    { viewValue: 'Argentina', alpha2: 'AR', phone: 54, phoneMask: '000 000 0000' },
+    { viewValue: 'Brazil', alpha2: 'BR', phone: 55, phoneMask: '00 0000-0000' },
+    { viewValue: 'Chile', alpha2: 'CL', phone: 56, phoneMask: '0 0000 0000' },
+    { viewValue: 'Colombia', alpha2: 'CO', phone: 57, phoneMask: '000 000 0000' },
+    { viewValue: 'Mexico', alpha2: 'MX', phone: 52, phoneMask: '000 000 0000' },
+    { viewValue: 'Peru', alpha2: 'PE', phone: 51, phoneMask: '000 000 000' },
+    { viewValue: 'Uruguay', alpha2: 'UY', phone: 598, phoneMask: '00 000 0000' },
+    // Add more countries as needed
+  ];
+
   userFormGroup  = new FormGroup({
     name: new FormControl('',[Validators.required]),
     lastname: new FormControl('',[Validators.required]),
     password: new FormControl('',[Validators.required]),
     email : new FormControl('', [Validators.required, Validators.email]),
     selected : new FormControl('', [Validators.required, Validators.pattern('')]),
-    country: new FormControl('Peru', [Validators.required]),
-    capital: new FormControl('', [Validators.required, Validators.min(65200), Validators.max(464200)]),
+    country: new FormControl(this.country[5], [Validators.required]),
   });
-  country: Country[] = [
-    { viewValue: 'Argentina' },
-    { viewValue: 'Bolivia' },
-    { viewValue: 'Brazil' },
-    { viewValue: 'Chile' },
-    { viewValue: 'Colombia' },
-    { viewValue: 'Ecuador' },
-    { viewValue: 'Paraguay' },
-    { viewValue: 'Peru' },
-    { viewValue: 'Uruguay' },
-    { viewValue: 'Venezuela' }
-  ];
+  number=""
+  isNumberErrorActive=false
+
   isSelectBoxActive = false;
-  selectedCountryCode = 'pe'; // Replace with your default country code
   selectedCountryPhone = '54'; // Replace with your default country phone
+  selectedCountryAlpha2 = 'pe'; // Replace with your default country phone
+  selectedPhoneMask="000 000 000";
   searchQuery = '';
   countries = [
-    { code: '+54', name: 'Argentina', phone: 54 },
-    { code: '+55', name: 'Brazil', phone: 55 },
-    { code: '+56', name: 'Chile', phone: 56 },
-    { code: '+57', name: 'Colombia', phone: 57 },
-    { code: '+52', name: 'Mexico', phone: 52 },
-    { code: '+51', name: 'Peru', phone: 51 },
-    { code: '+598', name: 'Uruguay', phone: 598 },
-    // Agrega más países según sea necesario
+    { name: 'Argentina', alpha2: 'AR', phone: 54, phoneMask: '000 000 0000' },
+    { name: 'Brazil', alpha2: 'BR', phone: 55, phoneMask: '00 0000-0000' },
+    { name: 'Chile', alpha2: 'CL', phone: 56, phoneMask: '0 0000 0000' },
+    { name: 'Colombia', alpha2: 'CO', phone: 57, phoneMask: '000 000 0000' },
+    { name: 'Mexico', alpha2: 'MX', phone: 52, phoneMask: '000 000 0000' },
+    { name: 'Peru', alpha2: 'PE', phone: 51, phoneMask: '000 000 000' },
+    { name: 'Uruguay', alpha2: 'UY', phone: 598, phoneMask: '00 000 0000' },
+    // Add more countries as needed
   ];
 
 
   constructor(public dialogRef: MatDialogRef<RegisterComponent>) { }
 
   ngOnInit(): void {
+  }
+
+  onCountrySelectionChange(event: any) {
+    // Puedes acceder al valor seleccionado utilizando event.value
+    const selectedCountry = event.value;
+    this.selectedCountryAlpha2 = selectedCountry.alpha2.toString().toLowerCase();
+    this.selectedCountryPhone = selectedCountry.phone.toString();
+    this.selectedPhoneMask=selectedCountry.phoneMask.toString();
   }
 
   get filteredCountries() {
@@ -72,9 +86,30 @@ export class RegisterComponent implements OnInit {
   }
 
   selectOption(country: any) {
-    this.selectedCountryCode = country.code.toLowerCase();
+    this.selectedCountryAlpha2 = country.alpha2.toLowerCase();
     this.selectedCountryPhone = country.phone;
+    this.selectedPhoneMask=country.phoneMask;
     this.isSelectBoxActive = false; // Close the dropdown after selection
+  }
+  getPhoneMaskLength(): number {
+    // Elimina los espacios en blanco y luego calcula la longitud
+    return this.selectedPhoneMask.replace(/\s/g, '').length;
+  }
+  getPhoneNumberLength(): number {
+    // Elimina los espacios en blanco y luego calcula la longitud
+    return this.number.replace(/\s/g, '').length;
+  }
+  onInputChangePhoneNumber(number: any){
+    console.log(this.getPhoneMaskLength())
+    if(this.getPhoneNumberLength()!=this.getPhoneMaskLength()){
+      setTimeout(() => {
+        this.isNumberErrorActive=true
+      }, 1000);
+
+    }else {
+      this.isNumberErrorActive=false
+    }
+
   }
 
 }
