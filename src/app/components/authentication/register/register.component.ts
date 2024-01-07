@@ -22,7 +22,6 @@ import {LoginComponent} from "../login/login.component";
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class RegisterComponent implements OnInit {
   country: Country[] = [

@@ -50,15 +50,12 @@ export class NavbarComponent implements OnInit {
       exitAnimationDuration,
 
     });
-    //this.isLogged=!this.isLogged
   }
   showRegisterDialog(enterAnimationDuration: string, exitAnimationDuration: string){
     this.dialog.open(RegisterComponent, {
       width: '500px',
       enterAnimationDuration,
       exitAnimationDuration,
-      panelClass: 'custom-dialog-panel', // Clase para el contenido del panel
-      backdropClass: 'custom-dialog-backdrop', // Clase para el fondo del diálogo
     });
     //this.isLogged=!this.isLogged
   }
