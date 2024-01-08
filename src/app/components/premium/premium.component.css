@@ -59,6 +59,7 @@ body {
 .premium {
   background: rgb(218,153,56);
   background: linear-gradient(9deg, rgba(218,153,56,1) 21%, rgba(155,25,25,1) 100%);
+  border-bottom: 2px solid white;
 }
 
 .btn-premium{
