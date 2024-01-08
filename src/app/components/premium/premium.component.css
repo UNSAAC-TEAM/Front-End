@@ -29,6 +29,7 @@ body {
   justify-content: space-around;
   max-width: 70rem;
   margin: 20px auto;
+  align-items: center;
 }
 
 .pricing-column {
@@ -55,6 +56,16 @@ body {
   border-bottom: 2px solid rgba(155, 25, 45, 0.66);
   padding: 23px 15px 27px;
 }
+.premium {
+  background: linear-gradient(45deg,#da9938,#9b192d);
+}
+
+.premium > span,
+.premium > svg {
+  color: white;
+  fill: white;
+}
+
 
 .body-column{
   font-weight: 500;
