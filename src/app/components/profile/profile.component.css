@@ -1,7 +1,8 @@
 .banner{
   min-width: 704px;
-  background-color: #272727;
-  border-radius: 1rem;
+  background-color: #9b192d;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.38);
+  border-radius: 0.5rem;
   margin-top: 2rem;
 }
 .profile{
@@ -43,7 +44,8 @@ img {
   align-content: center;
   color: white;
   border-radius: 2rem;
-  background-color: #0f0f0f;
+  background-color: #9b192d;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.38);
   border: white solid 1.5px
 }
 .downer-part{
@@ -51,16 +53,16 @@ img {
   justify-content: right;
 }
 .downer-part button{
-  margin: 0 1rem 1rem 1rem; background-color: #f08329;color: white;border-radius: 2rem
+  margin: 0 1rem 1rem 1rem; background-color: #f08329;color: white;border-radius: 0.8rem
 }
 .user-data{
   display: flex;
   flex-direction: row;
 }
 .progress{
-  color: white;
+  color: black;
   max-width: 405px;
-  border: rgba(255, 255, 255, 0.37) solid 1px;
+  border: #9b192d solid 2px;
   border-radius: 1rem;
   padding: 1rem;
   margin-top: 1rem;
@@ -85,6 +87,9 @@ img {
   transform: translate(-50%, -50%);
   font-size: 20px; /* Ajusta el tamaño de la fuente según sea necesario */
 }
+
+
+
 .total-courses{
   width: 101px;
   margin: 1rem 1rem 0 1rem;
@@ -110,9 +115,9 @@ img {
   text-align: center;
 }
 .information{
-  color: white;
+  color: black;
   width: 275px;
-  border: rgba(255, 255, 255, 0.37) solid 1px;
+  border: #9b192d solid 2px;
   border-radius: 1rem;
   padding: 1rem;
   margin-top: 1rem;

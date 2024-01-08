@@ -3,9 +3,9 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-progress-spinner circle, .mat-spinner circle {
-
-  stroke: #676767 !important;
-  border-color: white !important;
+  stroke-linecap: round;
+  stroke: #9b192d !important;
+  border-color: #9b192d !important;
 }
 .mat-dialog-container{
   border-radius: 1rem !important;
