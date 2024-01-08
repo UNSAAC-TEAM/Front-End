@@ -61,6 +61,20 @@ body {
   background: linear-gradient(9deg, rgba(218,153,56,1) 21%, rgba(155,25,25,1) 100%);
 }
 
+.btn-premium{
+  background: rgb(218,153,56) !important;
+  background: linear-gradient(9deg, rgba(218,153,56,1) 21%, rgba(155,25,25,1) 100%) !important;
+  color: white !important;
+  border-color: white !important;
+}
+
+.btn-premium:hover{
+  background: rgb(218,153,56) !important;
+  background: linear-gradient(189deg, rgba(218,153,56,1) 21%, rgba(155,25,25,1) 100%) !important;
+  color: white !important;
+  border-color: white !important;
+}
+
 .premium > span,
 .premium > svg {
   color: white;
