@@ -57,7 +57,8 @@ body {
   padding: 23px 15px 27px;
 }
 .premium {
-  background: linear-gradient(45deg,#da9938,#9b192d);
+  background: rgb(218,153,56);
+  background: linear-gradient(9deg, rgba(218,153,56,1) 21%, rgba(155,25,25,1) 100%);
 }
 
 .premium > span,
