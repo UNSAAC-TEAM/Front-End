@@ -19,10 +19,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 
-import {PremiumModule} from "./modules/premium/premium.module";
 import {SharedModule} from "./shared/shared.module";
-import {AccountModule} from "./modules/account/account.module";
-
 
 @NgModule({
   declarations: [
@@ -37,15 +34,13 @@ import {AccountModule} from "./modules/account/account.module";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PremiumModule,
-    AccountModule,
     BrowserAnimationsModule,
     EditorModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
-    SharedModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
