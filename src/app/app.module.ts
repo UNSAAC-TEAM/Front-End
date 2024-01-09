@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { EditorModule } from '@tinymce/tinymce-angular';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -46,6 +45,8 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {FormControl, Validators} from '@angular/forms';
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
+import { NgToastModule } from 'ng-angular-popup';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome' // to be added
 
 
 @NgModule({
@@ -115,9 +116,11 @@ import { ForgotPasswordComponent } from './components/authentication/forgot-pass
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    NgToastModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

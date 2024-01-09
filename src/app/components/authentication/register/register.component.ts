@@ -18,6 +18,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import {LoginComponent} from "../login/login.component";
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -87,7 +88,7 @@ export class RegisterComponent implements OnInit {
   ];
 
 
-  constructor(private dialog: MatDialog,public dialogRef: MatDialogRef<RegisterComponent>) { }
+  constructor(private toast: NgToastService,private dialog: MatDialog,public dialogRef: MatDialogRef<RegisterComponent>) { }
 
   ngOnInit(): void {
   }
@@ -145,6 +146,7 @@ export class RegisterComponent implements OnInit {
 
   }
   register(){
+    this.toast.success({detail:"Registro exitoso",summary:'Cuenta registrada',duration:5000});
     if (this.userFormGroup.valid) {
       if(this.getPhoneMaskLength()!=this.getPhoneNumberLength() || this.isNumberErrorActive){
         this.isNumberErrorActive=true
@@ -155,7 +157,8 @@ export class RegisterComponent implements OnInit {
         let password: string = <string>this.userFormGroup.get('password')?.value;
         let country: Country = <Country>this.userFormGroup.get('country')?.value;
         let phoneNumber: String = "+"+country.phone+" "+this.number
-        this.dialogRef.close(); // Cierra el dialog actual
+
+        this.loginRedirect(); // Cierra el dialog actual
       }
 
     }
