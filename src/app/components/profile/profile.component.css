@@ -1,7 +1,7 @@
 .banner{
   min-width: 704px;
   background-color: #9b192d;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.38);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
   border-radius: 0.5rem;
   margin-top: 2rem;
 }
@@ -60,9 +60,10 @@ img {
   flex-direction: row;
 }
 .progress{
+  background-color: #f6f6f6;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
   color: black;
   max-width: 405px;
-  border: #9b192d solid 2px;
   border-radius: 1rem;
   padding: 1rem;
   margin-top: 1rem;
@@ -112,9 +113,10 @@ img {
   text-align: center;
 }
 .information{
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  background-color: #f6f6f6;
   color: black;
   width: 275px;
-  border: #9b192d solid 2px;
   border-radius: 1rem;
   padding: 1rem;
   margin-top: 1rem;
@@ -140,7 +142,8 @@ img {
   align-items: center;
   justify-content: center;
   box-shadow: inset 3px 3px 6px -2px rgba(0, 0, 0, 0.2),
-  inset -3px -3px 6px -2px rgba(255, 255, 255, 0.7);
+  inset -3px -3px 6px -2px rgba(255, 255, 255, 0.2);
+
 }
 .progress-container {
   position: relative;
@@ -189,4 +192,11 @@ img {
 .spinner-value{
   margin: 0 0 0 5px;
   font-size: 18px; /* Ajusta el tamaño de la fuente según sea necesario */
+}
+.edit button{
+  background-color: #f08329;
+  border: #fff solid 2px ;
+}
+.edit mat-icon{
+  color: white;
 }

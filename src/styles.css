@@ -31,12 +31,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 /* Font color */
 input.mat-input-element {
-  color: white !important;
+  color: black !important;
 }
 
 /* Color de la barra de parpadeo (cursor) */
 input.mat-input-element {
-  caret-color: white !important;
+  caret-color: black !important;
 }
 .mat-select-value {
   color: black !important;

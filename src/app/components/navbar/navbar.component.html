@@ -24,13 +24,13 @@
       </button>
     </div>
     <mat-nav-list class="top-menu-shortcut">
-      <div class="my-courses" *ngIf="isLogged">
+      <div *ngIf="loginDataService.userAccount.isLogged" class="my-courses">
         <a routerLink="/account/courses" >
           <mat-icon matListIcon>library_books</mat-icon>
           <span >Mis cursos</span>
         </a>
       </div>
-      <a mat-list-item *ngIf="isLogged">
+      <a *ngIf="loginDataService.userAccount.isLogged" mat-list-item>
         <button mat-icon-button [matMenuTriggerFor]="notification" (click)="toggleNotifi()" style="color: white" aria-label="Example icon-button with a menu">
           <mat-icon matListIcon class="icon">notifications</mat-icon>
         </button>
@@ -46,10 +46,10 @@
           </div>
         </mat-menu>
       </a>
-      <div *ngIf="isLogged" class="profile-menu-container">
+      <div *ngIf="loginDataService.userAccount.isLogged" class="profile-menu-container">
         <div class="profile-avatar">
           <div class="circle-profile-avatar">
-            <p>DT</p>
+            <p>{{loginDataService.userAccount.alias}}</p>
           </div>
         </div>
         <div class="dropdown-menu">
@@ -60,7 +60,7 @@
               </div>
             </div>
             <div class="greetings-words">
-              <p class="hello">Hola Diego</p>
+              <p class="hello">Hola {{loginDataService.userAccount.name}}</p>
               <p class="welcome">Bienvenido</p>
             </div>
           </div>
@@ -92,7 +92,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="!isLogged" class="authentication-container">
+      <div *ngIf="!loginDataService.userAccount.isLogged" class="authentication-container">
         <button class="top-login" mat-button (click)="showLoginDialog('100ms', '100ms')" >Ingresar</button>
         <button class="top-register" mat-flat-button (click)="showRegisterDialog('100ms', '100ms')" >Registrarse</button>
       </div>
@@ -103,19 +103,19 @@
 <mat-sidenav-container hasBackdrop="false">
   <mat-sidenav #sidenav [fixedInViewport]="true" [fixedTopGap]="64" mode="over"  [style.width]="'280px'">
     <div *ngIf="!isSideMenuOptionsActive">
-      <div *ngIf="isLogged" class="side-profile-avatar" (click)="openSideMenuOptions()">
+      <div *ngIf="loginDataService.userAccount.isLogged" class="side-profile-avatar" (click)="openSideMenuOptions()">
         <div class="side-circle-profile-avatar">
-          <h1>DT</h1>
+          <h1>{{loginDataService.userAccount.alias}}</h1>
         </div>
         <div class="side-greetings-words">
-          <p class="side-hello">Hola Diego</p>
+          <p class="side-hello">Hola {{loginDataService.userAccount.name}}</p>
           <p class="side-welcome">Bienvenido</p>
         </div>
         <div>
           <mat-icon>chevron_right</mat-icon>
         </div>
       </div>
-      <div *ngIf="!isLogged" class="side-authentication-container">
+      <div *ngIf="!loginDataService.userAccount.isLogged" class="side-authentication-container">
         <button class="side-login" mat-button (click)="showLoginDialog('100ms', '100ms')">Ingresar</button>
         <button class="side-register" mat-flat-button (click)="showRegisterDialog('100ms', '100ms')">Registrarse</button>
       </div>

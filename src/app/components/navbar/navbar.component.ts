@@ -10,6 +10,7 @@ import {
 } from '@angular/material/dialog';
 import {LoginComponent} from "../authentication/login/login.component";
 import {RegisterComponent} from "../authentication/register/register.component";
+import {LoginDataService} from "../../services/comunication/login/login-data.service";
 
 @Component({
   selector: 'app-navbar',
@@ -17,11 +18,13 @@ import {RegisterComponent} from "../authentication/register/register.component";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isLogged: Boolean = true;
+  isLogged: Boolean = false;
   searchText: string = '';
   isSideMenuOptionsActive: Boolean =false;
 
-  constructor(public dialog: MatDialog,private route: Router) { }
+  constructor( public loginDataService: LoginDataService,public dialog: MatDialog,private route: Router) {
+    this.isLogged=loginDataService.userAccount.isLogged
+  }
 
   ngOnInit(): void {
   }

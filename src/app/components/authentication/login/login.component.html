@@ -24,7 +24,7 @@
 
       <mat-form-field class="login-form-field" appearance="outline">
         <mat-label style="color: black">Contraseña</mat-label>
-        <input matInput autocomplete="off"  type="password" formControlName="password">
+        <input matInput autocomplete="off"  type="password" formControlName="password" >
         <mat-error *ngIf="userFormGroup.get('password')?.hasError('required')">
           Contraseña <strong>requerida</strong>
         </mat-error>

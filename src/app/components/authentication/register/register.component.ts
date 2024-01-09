@@ -146,7 +146,6 @@ export class RegisterComponent implements OnInit {
 
   }
   register(){
-    this.toast.success({detail:"Registro exitoso",summary:'Cuenta registrada',duration:5000});
     if (this.userFormGroup.valid) {
       if(this.getPhoneMaskLength()!=this.getPhoneNumberLength() || this.isNumberErrorActive){
         this.isNumberErrorActive=true
@@ -159,6 +158,7 @@ export class RegisterComponent implements OnInit {
         let phoneNumber: String = "+"+country.phone+" "+this.number
 
         this.loginRedirect(); // Cierra el dialog actual
+        this.toast.success({detail:"Registro exitoso",summary:'Cuenta registrada',duration:5000});
       }
 
     }
