@@ -44,6 +44,7 @@ export class NavbarComponent implements OnInit {
   }
   logOut(){
     this.loginDataService.userAccount.isLogged=false
+    sessionStorage.removeItem("jwt")
     this.isSideMenuOptionsActive=false
   }
   showLoginDialog(enterAnimationDuration: string, exitAnimationDuration: string){

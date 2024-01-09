@@ -10,6 +10,7 @@ import {LoginDataService} from "../../../services/comunication/login/login-data.
 import {UserAccount} from "../../../Models/User";
 import {NgToastService} from "ng-angular-popup";
 import {UserServices} from "../../../services/user.api-service";
+import { jwtDecode } from "jwt-decode";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -62,21 +63,28 @@ export class LoginComponent implements OnInit {
     if (this.userFormGroup.valid) {
       let email: string = <string>this.userFormGroup.get('email')?.value;
       let password: string = <string>this.userFormGroup.get('password')?.value;
-      let userLogged: UserAccount= {
-        id:1,
-        name: "Alonso",
-        lastName: "Talledo Sanchez",
-        email: "diego@gmail.com",
-        imageUrl: null,
-        alias: null,
-        isLogged: true
-      }
-      if(userLogged.imageUrl==null){
-        userLogged.alias=this.getAlias(userLogged.name,userLogged.lastName)
-      }
       new UserServices().login(email,password).then(response=>{
-        console.log(response.data)
+
+        sessionStorage.setItem("jwt",response.data.token)
+        sessionStorage.setItem("name",response.data.token)
+
+        const decoded = jwtDecode(response.data.token);
+        console.log(decoded);
+
+        let userLogged: UserAccount= {
+          id:null,
+          name: "Alonso",
+          lastName: email,
+          email: "diego@gmail.com",
+          imageUrl: null,
+          alias: null,
+          isLogged: true
+        }
+        if(userLogged.imageUrl==null){
+          userLogged.alias=this.getAlias(userLogged.name,userLogged.lastName)
+        }
         this.loginDataService.userAccount=userLogged;
+
         this.toast.success({detail:"Inicio de sesion exitoso",summary:'Cuenta iniciada correctamente',duration:5000});
         this.dialogRef.close(); // Cierra el dialog actual
       }).catch(error=>{
