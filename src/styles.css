@@ -9,7 +9,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .mat-dialog-container{
   border-radius: 1rem !important;
-  background-color: white;
+  background-color: #9b192d;
 }
 /* Estilo del fondo oscuro detrás del diálogo */
 .custom-dialog-backdrop {
