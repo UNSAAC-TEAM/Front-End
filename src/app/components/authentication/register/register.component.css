@@ -1,6 +1,6 @@
 .container{
-  background-color: #1f1f1f;
-  color: white;
+  background-color: white;
+  color: black;
 }
 .header{
   width: 100%;
@@ -46,31 +46,31 @@
   text-decoration: underline;
 }
 .form{
-  background-color: #1f1f1f !important;
+  background-color: white !important;
   color: black !important;
 }
 .form-field{
   width: 100%;
-  color: white !important;
+  color: black !important;
 }
 /* Border */
 .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #0f0f0f !important;
-  background-color: #0f0f0f;
+  color: black !important;
+  background-color: #f3f3f3;
   border-radius: 5px;
   cursor: pointer;
 }
 /* Font color */
 input.mat-input-element {
-  color: white !important;
+  color: black !important;
 }
 
 /* Color de la barra de parpadeo (cursor) */
 input.mat-input-element {
-  caret-color: white !important;
+  caret-color: black !important;
 }
 .mat-select-value {
-  color: white !important;
+  color: black !important;
 }
 
 /* Para el ícono de flecha en mat-select */
@@ -110,11 +110,11 @@ input[type="tel"] {
 }
 
 .select-box input:focus {
-  border: .1rem solid #0f0f0f;
+  border: .1rem solid #f3f3f3;
 }
 
 .selected-option {
-  background-color: #0f0f0f;
+  background-color: #f3f3f3;
   color: white;
   border-radius: .1rem;
   overflow: hidden;

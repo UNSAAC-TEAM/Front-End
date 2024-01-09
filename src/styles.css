@@ -9,7 +9,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .mat-dialog-container{
   border-radius: 1rem !important;
-  background-color: #1f1f1f;
+  background-color: white;
 }
 /* Estilo del fondo oscuro detrás del diálogo */
 .custom-dialog-backdrop {
@@ -18,14 +18,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Estilo del panel del diálogo */
 .custom-dialog-panel {
-  background-color: #111111 !important; /* Cambia el color a tu preferencia */
-  color: white !important; /* Cambia el color del texto a tu preferencia */
+  background-color: white !important; /* Cambia el color a tu preferencia */
+  color: black !important; /* Cambia el color del texto a tu preferencia */
   border-radius: 10px; /* Agrega bordes redondeados si es necesario */
 }
 /* Border */
 .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #0f0f0f !important;
-  background-color: #0f0f0f !important;
+  color: white !important;
+  background-color: #f3f3f3 !important;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -39,7 +39,7 @@ input.mat-input-element {
   caret-color: white !important;
 }
 .mat-select-value {
-  color: white !important;
+  color: black !important;
 }
 
 /* Para el ícono de flecha en mat-select */

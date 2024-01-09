@@ -11,7 +11,7 @@
   <div class="form" mat-dialog-content>
     <form [formGroup]="userFormGroup"  >
       <mat-form-field class= "form-field" appearance="outline">
-        <mat-label style="color: white">Nombres</mat-label>
+        <mat-label style="color: black">Nombres</mat-label>
         <input matInput autocomplete="off"  type="name" formControlName="name">
         <mat-error *ngIf="userFormGroup.get('name')?.hasError('required')">
           Nombre <strong>requerido</strong>
@@ -19,7 +19,7 @@
       </mat-form-field>
 
       <mat-form-field class= "form-field" appearance="outline">
-        <mat-label style="color: white">Apellidos</mat-label>
+        <mat-label style="color: black">Apellidos</mat-label>
         <input matInput autocomplete="off"  type="name" formControlName="lastname">
         <mat-error *ngIf="userFormGroup.get('lastname')?.hasError('required')">
           Apellidos <strong>requeridos</strong>
@@ -27,7 +27,7 @@
       </mat-form-field>
 
       <mat-form-field class= "form-field" appearance="outline">
-        <mat-label style="color: white">Email</mat-label>
+        <mat-label style="color: black">Email</mat-label>
         <input matInput autocomplete="off"  formControlName="email">
         <mat-error *ngIf="userFormGroup.get('email')?.hasError('required')">
           Email <strong>requerido</strong>
@@ -38,7 +38,7 @@
       </mat-form-field>
 
       <mat-form-field class= "form-field" appearance="outline">
-        <mat-label style="color: white">Contraseña</mat-label>
+        <mat-label style="color: black">Contraseña</mat-label>
         <input matInput autocomplete="off"  type="password" formControlName="password">
         <mat-error *ngIf="userFormGroup.get('password')?.hasError('required')">
           Contraseña <strong>requerida</strong>
@@ -46,8 +46,8 @@
       </mat-form-field>
 
       <mat-form-field class= "form-field" appearance="outline">
-        <mat-label style="color: white">Pais</mat-label>
-        <mat-select formControlName="country" (selectionChange)="onCountrySelectionChange($event)">
+        <mat-label style="color: black">Pais</mat-label>
+        <mat-select  formControlName="country" (selectionChange)="onCountrySelectionChange($event)">
           <mat-option *ngFor="let country of country" [value]="country">
             <span class="fi fi-{{country.alpha2.toLowerCase()}}" style="margin-right: 5px"></span>
             {{country.viewValue}}
@@ -64,9 +64,9 @@
       <div class="selected-option" >
         <div (click)="toggleSelectBox()" style="display: flex;">
           <span class="fi fi-{{selectedCountryAlpha2}}" style="margin-right: 5px"></span>
-          <strong>+{{ selectedCountryPhone }}</strong>
+          <strong style="color: black">+{{ selectedCountryPhone }}</strong>
         </div>
-        <input type="tel" name="tel" placeholder="{{this.selectedPhoneMask}}" (input)="onInputChangePhoneNumber($event)" [(ngModel)]="this.number" style="background-color: #0f0f0f;color: rgba(255,255,255,0.74)">
+        <input style="background-color: #f3f3f3 !important;color: black" type="tel" name="tel" placeholder="{{this.selectedPhoneMask}}" (input)="onInputChangePhoneNumber($event)" [(ngModel)]="this.number">
       </div>
       <mat-error *ngIf="this.isNumberErrorActive">
         Numero celular <strong>invalido</strong>
