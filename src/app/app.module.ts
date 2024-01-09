@@ -26,7 +26,6 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { RoutesComponent } from './components/routes/routes.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { EventsComponent } from './components/events/events.component';
-import { PremiumComponent } from './modules/premium/components/premium/premium.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import { CredentialsComponent } from './components/credentials/credentials.component';
@@ -39,8 +38,8 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
-import { FooterComponent } from './core/components/footer/footer.component';
 
+import {PremiumModule} from "./modules/premium/premium.module";
 
 @NgModule({
   declarations: [
@@ -56,19 +55,18 @@ import { FooterComponent } from './core/components/footer/footer.component';
     RoutesComponent,
     TeachersComponent,
     EventsComponent,
-    PremiumComponent,
     BlogsComponent,
     SubscriptionComponent,
     CredentialsComponent,
     SupportComponent,
     CreateBlogComponent,
-    FooterComponent,
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
+        PremiumModule,
         BrowserAnimationsModule,
-      EditorModule,
+        EditorModule,
         RouterModule.forRoot([
             {path: 'courses', component: CoursesComponent},
             {
@@ -87,7 +85,7 @@ import { FooterComponent } from './core/components/footer/footer.component';
           {path: 'blogs', component: BlogsComponent},
           {path: 'teachers', component: TeachersComponent},
           {path: 'events', component: EventsComponent},
-          {path: 'premium', component: PremiumComponent},
+          {path: 'premium', component: PremiumModule},
           {path: 'create-blog', component: CreateBlogComponent},
 
         ]),
