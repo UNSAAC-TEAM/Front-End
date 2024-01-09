@@ -101,16 +101,20 @@ export class PremiumComponent{
       (slider) => {
         let timeout: string | number | NodeJS.Timeout | undefined;
         let mouseOver = false;
+        let manualControl = false; // Variable para rastrear el control manual
+
         function clearNextTimeout() {
           clearTimeout(timeout);
         }
+
         function nextTimeout() {
           clearTimeout(timeout);
-          if (mouseOver) return;
+          if (mouseOver || manualControl) return;
           timeout = setTimeout(() => {
             slider.next();
           }, 4000);
         }
+
         slider.on("created", () => {
           slider.container.addEventListener("mouseover", () => {
             mouseOver = true;
@@ -120,10 +124,12 @@ export class PremiumComponent{
             mouseOver = false;
             nextTimeout();
           });
+
           nextTimeout();
         });
         slider.on("animationEnded", nextTimeout);
         slider.on("updated", nextTimeout);
+        slider.on("dragStarted", clearNextTimeout);
       },
     ]);
   }

@@ -26,7 +26,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { RoutesComponent } from './components/routes/routes.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { EventsComponent } from './components/events/events.component';
-import { PremiumComponent } from './components/premium/premium.component';
+import { PremiumComponent } from './modules/premium/components/premium/premium.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import { CredentialsComponent } from './components/credentials/credentials.component';
@@ -39,6 +39,7 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { FooterComponent } from './core/components/footer/footer.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { MatCardModule } from '@angular/material/card';
     CredentialsComponent,
     SupportComponent,
     CreateBlogComponent,
+    FooterComponent,
   ],
     imports: [
         BrowserModule,
