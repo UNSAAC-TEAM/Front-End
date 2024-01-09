@@ -9,6 +9,7 @@ import {ForgotPasswordComponent} from "../forgot-password/forgot-password.compon
 import {LoginDataService} from "../../../services/comunication/login/login-data.service";
 import {UserAccount} from "../../../Models/User";
 import {NgToastService} from "ng-angular-popup";
+import {UserServices} from "../../../services/user.api-service";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -61,7 +62,6 @@ export class LoginComponent implements OnInit {
     if (this.userFormGroup.valid) {
       let email: string = <string>this.userFormGroup.get('email')?.value;
       let password: string = <string>this.userFormGroup.get('password')?.value;
-      this.dialogRef.close(); // Cierra el dialog actual
       let userLogged: UserAccount= {
         id:1,
         name: "Alonso",
@@ -74,8 +74,15 @@ export class LoginComponent implements OnInit {
       if(userLogged.imageUrl==null){
         userLogged.alias=this.getAlias(userLogged.name,userLogged.lastName)
       }
-      this.loginDataService.userAccount=userLogged;
-      this.toast.success({detail:"Inicio de sesion exitoso",summary:'Cuenta iniciada correctamente',duration:5000});
+      new UserServices().login(email,password).then(response=>{
+        console.log(response.data)
+        this.loginDataService.userAccount=userLogged;
+        this.toast.success({detail:"Inicio de sesion exitoso",summary:'Cuenta iniciada correctamente',duration:5000});
+        this.dialogRef.close(); // Cierra el dialog actual
+      }).catch(error=>{
+        this.toast.error({detail:"ERROR",summary:'Error al iniciar sesion',sticky:true});
+      })
+
     }
 
   }
