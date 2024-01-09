@@ -38,17 +38,22 @@
   display: flex;
   justify-content: center;
 }
-.register-button{
-  width: 95%;
-  border-radius: 1rem;
-  background-color: white;
-  color: black;
-}
 .login-redirect-container{
   width: 95%;
   display: flex;
   justify-content: right;
 }
+.register-button{
+  width: 95%;
+  border-radius: 1rem;
+  background-color: white;
+  color: black;
+  border: white solid 2px;
+  height: 36px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .login-redirect{
   color: white;
   display: flex;
@@ -172,6 +177,9 @@ input[type="tel"] {
 
 .selected-option div.active::after{
   transform: translateY(-50%) rotate(225deg);
+}
+.selected-option input{
+  font-size: 15px;
 }
 
 .select-box .options {

@@ -43,7 +43,7 @@ export class NavbarComponent implements OnInit {
     console.log("NOTI")
   }
   logOut(){
-    this.isLogged=!this.isLogged
+    this.loginDataService.userAccount.isLogged=false
     this.isSideMenuOptionsActive=false
   }
   showLoginDialog(enterAnimationDuration: string, exitAnimationDuration: string){

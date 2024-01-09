@@ -8,6 +8,7 @@ import {RegisterComponent} from "../register/register.component";
 import {ForgotPasswordComponent} from "../forgot-password/forgot-password.component";
 import {LoginDataService} from "../../../services/comunication/login/login-data.service";
 import {UserAccount} from "../../../Models/User";
+import {NgToastService} from "ng-angular-popup";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     email : new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('',[Validators.required]),
   });
-  constructor(private loginDataService: LoginDataService,private dialog: MatDialog,public dialogRef: MatDialogRef<LoginComponent>) { }
+  constructor(private loginDataService: LoginDataService,private toast: NgToastService,private dialog: MatDialog,public dialogRef: MatDialogRef<LoginComponent>) { }
 
   ngOnInit(): void {
   }
@@ -74,6 +75,7 @@ export class LoginComponent implements OnInit {
         userLogged.alias=this.getAlias(userLogged.name,userLogged.lastName)
       }
       this.loginDataService.userAccount=userLogged;
+      this.toast.success({detail:"Inicio de sesion exitoso",summary:'Cuenta iniciada correctamente',duration:5000});
     }
 
   }
