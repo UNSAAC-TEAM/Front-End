@@ -5,8 +5,15 @@
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
 }
-.container{
+.end{
+  height: 20px;
+  width: 100%;
   background-color: white;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+.container{
+  background-color: #9b192d;
   color: black;
   border-radius: 1rem;
 }
@@ -22,6 +29,7 @@
   margin-bottom: 0.5rem;
 }
 .actions{
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -32,9 +40,9 @@
 }
 .register-button{
   width: 95%;
-  border-radius: 0.5rem;
-  background-color: #9b192d;
-  color: white;
+  border-radius: 1rem;
+  background-color: white;
+  color: black;
 }
 .login-redirect-container{
   width: 95%;
@@ -42,6 +50,7 @@
   justify-content: right;
 }
 .login-redirect{
+  color: white;
   display: flex;
   align-items: center;
   justify-content: flex-end;  /* Alinea los elementos hacia la derecha */
@@ -58,7 +67,8 @@
 }
 .form{
   color: black !important;
-  margin: 1rem;
+  background-color: white;
+  padding: 0 1rem;
 }
 .form-field{
   width: 100%;
