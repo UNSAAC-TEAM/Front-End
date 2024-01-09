@@ -1,18 +1,35 @@
+.pass{
+  height: 20px;
+  width: 100%;
+  background-color: white;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+.end{
+  height: 20px;
+  width: 100%;
+  background-color: white;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
 .container{
-  background-color: #1f1f1f;
-  color: white;
+  background-color: #9b192d;
+  color: black;
+  border-radius: 1rem;
 }
 .header{
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 0 1rem 0;
+  background-color: #9b192d;
+  color: white !important;
 }
 .header h1{
   margin-bottom: 0.5rem;
 }
 .actions{
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -23,7 +40,9 @@
 }
 .register-button{
   width: 95%;
-  border-radius: 3rem;
+  border-radius: 1rem;
+  background-color: white;
+  color: black;
 }
 .login-redirect-container{
   width: 95%;
@@ -31,6 +50,7 @@
   justify-content: right;
 }
 .login-redirect{
+  color: white;
   display: flex;
   align-items: center;
   justify-content: flex-end;  /* Alinea los elementos hacia la derecha */
@@ -46,31 +66,32 @@
   text-decoration: underline;
 }
 .form{
-  background-color: #1f1f1f !important;
   color: black !important;
+  background-color: white;
+  padding: 0 1rem;
 }
 .form-field{
   width: 100%;
-  color: white !important;
+  color: black !important;
 }
 /* Border */
 .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #0f0f0f !important;
-  background-color: #0f0f0f;
+  color: black !important;
+  background-color: #f3f3f3;
   border-radius: 5px;
   cursor: pointer;
 }
 /* Font color */
 input.mat-input-element {
-  color: white !important;
+  color: black !important;
 }
 
 /* Color de la barra de parpadeo (cursor) */
 input.mat-input-element {
-  caret-color: white !important;
+  caret-color: black !important;
 }
 .mat-select-value {
-  color: white !important;
+  color: black !important;
 }
 
 /* Para el ícono de flecha en mat-select */
@@ -94,6 +115,7 @@ input.mat-input-element {
   position: relative;
   width: 100%;
   padding-bottom: 18px;
+
 }
 
 .select-box input {
@@ -110,13 +132,13 @@ input[type="tel"] {
 }
 
 .select-box input:focus {
-  border: .1rem solid #0f0f0f;
+  border: .1rem solid #f3f3f3;
 }
 
 .selected-option {
-  background-color: #0f0f0f;
-  color: white;
-  border-radius: .1rem;
+  background-color: #f3f3f3;
+  color: black;
+  border-radius: .5rem;
   overflow: hidden;
 
   display: flex;
@@ -142,8 +164,8 @@ input[type="tel"] {
 
   width: .5rem;
   height: .5rem;
-  border-right: .2rem solid white;
-  border-bottom: .2rem solid white;
+  border-right: .2rem solid black;
+  border-bottom: .2rem solid black;
 
   transition: .2s;
 }
@@ -157,7 +179,7 @@ input[type="tel"] {
   top: 4rem;
 
   width: 100%;
-  background-color: #fff;
+  background-color: #f3f3f3;
   border-radius: .5rem;
 }
 

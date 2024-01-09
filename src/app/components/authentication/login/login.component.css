@@ -1,9 +1,24 @@
+.pass{
+  height: 20px;
+  width: 100%;
+  background-color: white;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+.end{
+  height: 20px;
+  width: 100%;
+  background-color: white;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
 .container{
-  background-color: #1f1f1f;
+  background-color: #9b192d;
   color: white;
 }
 .login-form-field{
   width: 100%;
+  background-color: white;
   color: white !important;
 }
 .header{
@@ -11,7 +26,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 0 1rem 0;
 }
 .actions{
   display: flex;
@@ -54,4 +68,8 @@
 .register-redirect-container :hover {
   cursor: pointer;
   text-decoration: underline;
+}
+.form{
+  padding: 0 1rem;
+  background-color: white;
 }

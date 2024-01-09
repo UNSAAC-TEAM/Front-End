@@ -17,7 +17,7 @@ import {RegisterComponent} from "../authentication/register/register.component";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isLogged: Boolean = false;
+  isLogged: Boolean = true;
   searchText: string = '';
   isSideMenuOptionsActive: Boolean =false;
 

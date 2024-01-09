@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileComponent implements OnInit {
   imageUrl = 'https://i.imgur.com/tdi3NGag.jpg';
   username= 'Diego'
-  totalCoursesSpinnerValue: number = 10;
+  totalCoursesSpinnerValue: number = 50;
   premiumCoursesSpinnerValue: number = 5;
   certificatedCoursesSpinnerValue: number = 1;
   constructor() { }
