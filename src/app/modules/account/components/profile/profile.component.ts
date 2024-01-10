@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginDataService} from "../../services/comunication/login/login-data.service";
+import {LoginDataService} from "../../../../services/comunication/login/login-data.service";
 
 @Component({
   selector: 'app-profile',
