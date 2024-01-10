@@ -65,7 +65,6 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-
   ],
   imports: [
     BrowserModule,
