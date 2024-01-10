@@ -10,15 +10,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { FooterComponent } from "./components/footer/footer.component";
-import {NavbarComponent} from "./components/navbar/navbar.component";
-import { FormsModule } from '@angular/forms';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
-  declarations: [FooterComponent, NavbarComponent],
+  declarations: [FooterComponent],
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
@@ -27,12 +26,12 @@ import { FormsModule } from '@angular/forms';
     MatMenuModule,
     MatDividerModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatSelectModule,
   ],
   exports:[
     RouterModule,
     FooterComponent,
-    NavbarComponent,
-    FormsModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
@@ -40,6 +39,8 @@ import { FormsModule } from '@angular/forms';
     MatListModule,
     MatMenuModule,
     MatDividerModule,
-    MatProgressSpinnerModule]
+    MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatSelectModule,]
 })
 export class SharedModule { }
