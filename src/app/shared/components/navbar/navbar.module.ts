@@ -9,7 +9,7 @@ import {SharedModule} from "../../shared.module";
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule,
+    SharedModule
   ],
   exports:[NavbarComponent]
 })

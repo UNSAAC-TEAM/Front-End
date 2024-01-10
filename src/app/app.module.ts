@@ -51,6 +51,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
   declarations: [
     AppComponent,
     SpecializationsComponent,
+
     TeachersComponent,
     BlogsComponent,
     CreateBlogComponent,
@@ -71,6 +72,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     AppRoutingModule,
     NavbarModule,
     BrowserAnimationsModule,
+
     EditorModule,
     MatProgressSpinnerModule,
     MatIconModule,
@@ -80,7 +82,6 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
 
-    BrowserAnimationsModule,
     EditorModule,
     NgxWebstorageModule.forRoot(),
 
