@@ -10,20 +10,28 @@ import {
 } from '@angular/material/dialog';
 import {LoginComponent} from "../authentication/login/login.component";
 import {RegisterComponent} from "../authentication/register/register.component";
-
+import {LoginDataService} from "../../services/comunication/login/login-data.service";
+import {SessionStorageService } from 'ngx-webstorage';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isLogged: Boolean = true;
+  isLogged: Boolean = false;
   searchText: string = '';
   isSideMenuOptionsActive: Boolean =false;
 
-  constructor(public dialog: MatDialog,private route: Router) { }
+  constructor(private sessionStorageService: SessionStorageService, public loginDataService: LoginDataService,public dialog: MatDialog,private route: Router) {
+    this.isLogged=loginDataService.userAccount.isLogged
+  }
 
   ngOnInit(): void {
+    const userSession = this.sessionStorageService.retrieve('userSession');
+    if(userSession!=null){
+      console.log(userSession)
+      this.loginDataService.userAccount=userSession;
+    }
   }
   ngAfterViewInit(): void {
 
@@ -40,7 +48,8 @@ export class NavbarComponent implements OnInit {
     console.log("NOTI")
   }
   logOut(){
-    this.isLogged=!this.isLogged
+    this.loginDataService.userAccount.isLogged=false
+    this.sessionStorageService.clear();
     this.isSideMenuOptionsActive=false
   }
   showLoginDialog(enterAnimationDuration: string, exitAnimationDuration: string){

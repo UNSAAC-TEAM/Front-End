@@ -18,6 +18,9 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import {LoginComponent} from "../login/login.component";
+import { NgToastService } from 'ng-angular-popup';
+import {UserServices} from "../../../services/user.api-service";
+import {RegisterModel} from "../../../Models/RegisterModel";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -87,7 +90,7 @@ export class RegisterComponent implements OnInit {
   ];
 
 
-  constructor(private dialog: MatDialog,public dialogRef: MatDialogRef<RegisterComponent>) { }
+  constructor(private toast: NgToastService,private dialog: MatDialog,public dialogRef: MatDialogRef<RegisterComponent>) { }
 
   ngOnInit(): void {
   }
@@ -154,8 +157,24 @@ export class RegisterComponent implements OnInit {
         let email: string = <string>this.userFormGroup.get('email')?.value;
         let password: string = <string>this.userFormGroup.get('password')?.value;
         let country: Country = <Country>this.userFormGroup.get('country')?.value;
-        let phoneNumber: String = "+"+country.phone+" "+this.number
-        this.dialogRef.close(); // Cierra el dialog actual
+        let phoneNumber: string = "+"+country.phone+" "+this.number
+        let registerModel: RegisterModel={
+          name:name,
+          lastName:lastname,
+          email:email,
+          password:password,
+          country:country.viewValue.toString(),
+          phoneNumber: phoneNumber,
+          roll:'USER'
+        }
+        new UserServices().register(registerModel).then(response=>{
+          console.log(response.data)
+          this.toast.success({detail:"Registro exitoso",summary:'Cuenta registrada',duration:5000});
+          this.loginRedirect(); // Cierra el dialog actual
+        }).catch(error=>{
+          this.toast.error({detail:"ERROR",summary:'Error al registrarse',sticky:true});
+        })
+
       }
 
     }
