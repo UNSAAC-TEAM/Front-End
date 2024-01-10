@@ -7,10 +7,12 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {RegisterComponent} from "../register/register.component";
 import {ForgotPasswordComponent} from "../forgot-password/forgot-password.component";
 import {LoginDataService} from "../../../services/comunication/login/login-data.service";
-import {UserAccount} from "../../../Models/User";
+import {UserSession} from "../../../Models/UserSession";
 import {NgToastService} from "ng-angular-popup";
 import {UserServices} from "../../../services/user.api-service";
 import { jwtDecode } from "jwt-decode";
+import {SessionStorageService } from 'ngx-webstorage';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,7 +23,7 @@ export class LoginComponent implements OnInit {
     email : new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('',[Validators.required]),
   });
-  constructor(private loginDataService: LoginDataService,private toast: NgToastService,private dialog: MatDialog,public dialogRef: MatDialogRef<LoginComponent>) { }
+  constructor(private sessionStorageService: SessionStorageService,private loginDataService: LoginDataService,private toast: NgToastService,private dialog: MatDialog,public dialogRef: MatDialogRef<LoginComponent>) { }
 
   ngOnInit(): void {
   }
@@ -65,17 +67,12 @@ export class LoginComponent implements OnInit {
       let password: string = <string>this.userFormGroup.get('password')?.value;
       new UserServices().login(email,password).then(response=>{
 
-        sessionStorage.setItem("jwt",response.data.token)
-        sessionStorage.setItem("name",response.data.token)
+        //const decoded = jwtDecode(response.data.token);
 
-        const decoded = jwtDecode(response.data.token);
-        console.log(decoded);
-
-        let userLogged: UserAccount= {
-          id:null,
+        let userLogged: UserSession= {
+          sessionToken:response.data.token,
           name: "Alonso",
           lastName: email,
-          email: "diego@gmail.com",
           imageUrl: null,
           alias: null,
           isLogged: true
@@ -84,6 +81,8 @@ export class LoginComponent implements OnInit {
           userLogged.alias=this.getAlias(userLogged.name,userLogged.lastName)
         }
         this.loginDataService.userAccount=userLogged;
+
+        this.sessionStorageService.store('userSession', userLogged);
 
         this.toast.success({detail:"Inicio de sesion exitoso",summary:'Cuenta iniciada correctamente',duration:5000});
         this.dialogRef.close(); // Cierra el dialog actual

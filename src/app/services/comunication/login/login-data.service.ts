@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import {UserAccount} from "../../../Models/User";
+import {UserSession} from "../../../Models/UserSession";
 @Injectable({
   providedIn: 'root'
 })
 export class LoginDataService {
-  userAccount: UserAccount = {
-    id:null ,
+  userAccount: UserSession = {
+    sessionToken:null ,
     name:null,
     lastName:null,
-    email:null,
     imageUrl: null,
     alias: null,
     isLogged: false

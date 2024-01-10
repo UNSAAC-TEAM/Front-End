@@ -47,7 +47,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome' // to be added
-
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -79,6 +79,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome' // to be ad
     AppRoutingModule,
     BrowserAnimationsModule,
     EditorModule,
+    NgxWebstorageModule.forRoot(),
     RouterModule.forRoot([
       {path: 'courses', component: CoursesComponent},
       {

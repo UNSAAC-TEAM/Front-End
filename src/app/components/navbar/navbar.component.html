@@ -174,7 +174,7 @@
             <mat-icon matListIcon>stars</mat-icon>
             <span>Credenciales</span>
           </a>
-          <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true} "
+          <a
              mat-list-item (click)="sidenav.close()" routerLink="/" class="side-menu-items" >
             <mat-icon matListIcon (click)="logOut()">lock</mat-icon>
             <span (click)="logOut()">Cerrar sesion</span>
