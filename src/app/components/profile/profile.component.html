@@ -7,7 +7,7 @@
       <div class="greetings">
         <div>
           <div class="hello">
-            <h2>Hola, {{username}}</h2>
+            <h2>Hola, {{loginDataService.userAccount.name}}</h2>
           </div>
           <div class="welcome">
             <p>Bienvenido</p>
@@ -30,43 +30,80 @@
     <h2 style="margin: 0">Mi progreso</h2>
     <div class="statistics">
       <div class="total-courses">
-        <div class="spinner-container">
-          <mat-progress-spinner
-            class="spinner"
-            [color]="'primary'"
-            [mode]="'determinate'"
-            [value]="totalCoursesSpinnerValue"
-          >
-          </mat-progress-spinner>
-          <p class="spinner-value">{{ totalCoursesSpinnerValue }} %</p>
+        <div class="total-progress-bar">
+          <div class="element1">
+            <div class="progress-container">
+              <div class="spinner-container">
+                <mat-progress-spinner
+                  class="spinner"
+                  [color]="'primary'"
+                  [mode]="'determinate'"
+                  [value]=totalCoursesSpinnerValue>
+                </mat-progress-spinner>
+              </div>
+              <div class="empty-progress">
+                <div class="outer">
+                  <div class="inner"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="element2">
+            <p class="spinner-value">{{ totalCoursesSpinnerValue }} %</p>
+          </div>
         </div>
-        <p>Total de cursos</p>
+        <p style="margin-top: 1rem">Total de cursos</p>
+
       </div>
       <div class="premium-courses">
-        <div class="spinner-container">
-          <mat-progress-spinner
-            class="spinner"
-            [color]="'primary'"
-            [mode]="'determinate'"
-            [value]="premiumCoursesSpinnerValue"
-          >
-          </mat-progress-spinner>
-          <p class="spinner-value">{{ premiumCoursesSpinnerValue }} %</p>
+        <div class="total-progress-bar">
+          <div class="element1">
+            <div class="progress-container">
+              <div class="spinner-container">
+                <mat-progress-spinner
+                  class="spinner"
+                  [color]="'primary'"
+                  [mode]="'determinate'"
+                  [value]=premiumCoursesSpinnerValue>
+                </mat-progress-spinner>
+              </div>
+              <div class="empty-progress">
+                <div class="outer">
+                  <div class="inner"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="element2">
+            <p class="spinner-value">{{ premiumCoursesSpinnerValue }} %</p>
+          </div>
         </div>
-        <p>Cursos premium</p>
+        <p style="margin-top: 1rem">Cursos premium</p>
       </div>
       <div class="certificated-courses">
-        <div class="spinner-container">
-          <mat-progress-spinner
-            class="spinner"
-            [color]="'primary'"
-            [mode]="'determinate'"
-            [value]="certificatedCoursesSpinnerValue"
-          >
-          </mat-progress-spinner>
-          <p class="spinner-value">{{ certificatedCoursesSpinnerValue }} %</p>
+        <div class="total-progress-bar">
+          <div class="element1">
+            <div class="progress-container">
+              <div class="spinner-container">
+                <mat-progress-spinner
+                  class="spinner"
+                  [color]="'primary'"
+                  [mode]="'determinate'"
+                  [value]=certificatedCoursesSpinnerValue>
+                </mat-progress-spinner>
+              </div>
+              <div class="empty-progress">
+                <div class="outer">
+                  <div class="inner"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="element2">
+            <p class="spinner-value">{{ certificatedCoursesSpinnerValue }} %</p>
+          </div>
         </div>
-        <p>Programa certificados</p>
+        <p style="margin-top: 1rem">Programas certificados</p>
       </div>
     </div>
   </div>

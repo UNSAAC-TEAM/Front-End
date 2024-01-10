@@ -19,6 +19,46 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-progress-spinner circle, .mat-spinner circle {
-  stroke: #676767 !important;
-  border-color: white !important;
+  stroke-linecap: round;
+  stroke: #9b192d !important;
+  border-color: #9b192d !important;
+}
+.mat-dialog-container{
+  border-radius: 1rem !important;
+  background-color: #9b192d;
+}
+/* Estilo del fondo oscuro detrás del diálogo */
+.custom-dialog-backdrop {
+  background-color: rgba(0, 0, 0, 0.6) !important; /* Ajusta el último valor para cambiar la opacidad */
+}
+
+/* Estilo del panel del diálogo */
+.custom-dialog-panel {
+  background-color: white !important; /* Cambia el color a tu preferencia */
+  color: black !important; /* Cambia el color del texto a tu preferencia */
+  border-radius: 10px; /* Agrega bordes redondeados si es necesario */
+}
+/* Border */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: white !important;
+  background-color: #f3f3f3 !important;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Font color */
+input.mat-input-element {
+  color: black !important;
+}
+
+/* Color de la barra de parpadeo (cursor) */
+input.mat-input-element {
+  caret-color: black !important;
+}
+.mat-select-value {
+  color: black !important;
+}
+
+/* Para el ícono de flecha en mat-select */
+.mat-select-arrow {
+  color: white !important;
 }

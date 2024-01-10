@@ -26,17 +26,23 @@
   display: flex;
   align-content: center;
   align-items: center;
+  width: 100%;
   height: 40px;
-  color: #d5d5d5;
+  color: white;
   font-size: 13px;
+
+}
+.profile-item span{
+  margin-left: 5px;
 }
 .profile-item :hover{
-  color: white;
+  cursor: pointer;
 }
 .profile-menu-container {
   position: relative;
   display: inline-block;
   float: end;
+  margin-right: 20px;
 }
 
 .profile-menu-container:hover .dropdown-menu {
@@ -50,11 +56,11 @@
 .dropdown-menu {
   display: none;
   position: absolute;
-  background-color: #282828;
+  background-color: #9b192d;
   padding: 10px;
   min-width: 158px;
   z-index: 1000;
-  top: 50px; /* Ajusta este valor según sea necesario */
+  top: 70px; /* Ajusta este valor según sea necesario */
   border-radius: 8px; /* Ajusta este valor según sea necesario */
 }
 
@@ -65,9 +71,9 @@
 }
 
 .profile-avatar{
-  height: 100%;
+  height: 45px;
   width: 100%;
-  padding: 10px;
+  padding: 18px 0 10px 0;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -121,18 +127,17 @@ width: 280px;
   height: 20px;
   display: flex;
   cursor: pointer;
-  color: white;
+  color: #9b192d;
   padding: 5px 10px;
-  background: #222222;
+  background: white;
   border-radius: 30px;
   align-items: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 .box:hover input{
   width: 200px;
 }
 .box input {
-  color: white;
+  color: black;
   width: 0;
   outline: none;
   border: none;
@@ -141,7 +146,7 @@ width: 280px;
   background: transparent;
 }
 .box button{
-  color: white;
+  color: black;
   font-size: 18px;
 }
 .top-menu-shortcut{
@@ -162,7 +167,7 @@ width: 280px;
 }
 .mat-toolbar{
   height: 64px;
-  background-color: #0f0f0f;
+  background-color: #9b192d;
   color: white;
   display: flex;
   flex-direction: row;
@@ -173,16 +178,17 @@ width: 280px;
   z-index: 1000;    /* Ajustar la superposición con otros elementos */
 }
 .mat-sidenav{
-  background-color: #0f0f0f;
+  background-color: #9b192d;
 }
 .top-menu-items{
   display: flex;
   flex-direction: row;
   color: white;
-  margin: 15px 0 15px 15px;
+  margin: 10px 0 10px 15px;
+  border-bottom: 3px solid rgba(155, 25, 45, 0) !important;
 }
 .top-menu-items :hover{
-  border-bottom: 4px solid #da0101 !important;
+  border-bottom: 3px solid white !important;
 }
 
 .side-profile-items{
@@ -191,7 +197,10 @@ width: 280px;
 
 }
 .premium{
-  margin-left: 0
+  padding-bottom: 5px;
+}
+.premium a{
+  padding: 20px;
 }
 .side-profile-item{
   cursor: pointer;
@@ -217,9 +226,6 @@ width: 280px;
   align-items: center;
 }
 
-.side-profile-avatar:hover {
-  background-color: #272727;
-}
 
 .side-hello{
   padding-top: 15px;
@@ -260,18 +266,65 @@ width: 280px;
 }
 
 .side-menu-items :hover{
-  background-color: #272727 !important;
-  border-right: 5px solid #272727 !important;
+  background-color: white !important;
+  border-right: 5px solid white !important;
+  color: black;
 }
 .side-active{
-  border-right: 5px solid #da0101 !important;
-  background-color: #0f0f0f !important;
+  border-right: 5px solid white !important;
+  background-color: white !important;
+  color: black;
 }
 .top-active{
-  border-bottom: 4px solid #da0101 !important;
+  border-bottom: 3px solid white !important;
 }
 
-@media (min-width: 990px) {
+
+.side-authentication-container{
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  color: white;
+}
+.side-login{
+  border-radius: 3rem;
+  border: 2px solid white;
+  margin-bottom: 1rem;
+}
+.side-register{
+  border-radius: 3rem;
+}
+.top-login{
+  color: white;
+  border-radius: 3rem;
+  margin: 0 10px 3px 5px;
+}
+.top-register{
+  border-radius: 3rem;
+}
+.my-courses {
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+.my-courses a{
+  display: flex;
+  justify-content: space-around;
+  justify-items: center;
+  margin: 15px 0 0 15px;
+  cursor: pointer;
+}
+.my-courses a span{
+  color: white;
+  font-size: 15px;
+  margin-left: 5px;
+}
+.my-courses a mat-icon{
+  color: white;
+  font-size: 25px;
+
+}
+@media (min-width: 1150px) {
   #menuIcon{
     display: none;
   }
@@ -280,11 +333,14 @@ width: 280px;
   }
 
 }
-@media (max-width: 990px) {
+@media (max-width: 1150px) {
   .top-menu-items{
     display: none;
   }
   .profile-menu-container{
+    display: none !important;
+  }
+  .authentication-container{
     display: none !important;
   }
   .my-courses{
@@ -294,3 +350,4 @@ width: 280px;
     display: none;
   }
 }
+
