@@ -1,6 +1,6 @@
 .card{
   width: 704px;
-  height: 600px;
+  height: 100%;
   background-color: #9b192d;
   border-radius: 1rem;
   margin-top: 2rem;
@@ -9,6 +9,7 @@
 }
 .content{
   padding: 20px 0;
+  height: 100%;
 }
 .mat-form-field{
   margin: 0 !important;
@@ -20,7 +21,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 0rem;
+}
+.edit-description-form{
+  width: 570px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-content: start;
 }
 .edit-form-field{
   width: 420px;
@@ -31,9 +38,16 @@
 
 
 
+.actions{
+  margin: 30px 0 0 0;
+  display: flex;
+  justify-content: right;
+}
 
-
-
+.save-button{
+  width: 150px;
+  border-radius: 1rem;
+}
 
 
 
@@ -198,5 +212,11 @@ input.search-box {
 
 textarea.mat-input-element {
   color: black;
-  height: 100%;
+  padding: 5px 10px;
+}
+textarea{
+  background-color: #f3f3f3;
+  width: 400px;
+  border-radius: 5px;
+  caret-color: black !important;
 }

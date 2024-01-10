@@ -128,4 +128,7 @@ export class EditProfileComponent implements OnInit {
     this.selectedPhoneMask=country.phoneMask;
     this.isSelectBoxActive = false; // Close the dropdown after selection
   }
+  saveEditProfile(){
+
+  }
 }
