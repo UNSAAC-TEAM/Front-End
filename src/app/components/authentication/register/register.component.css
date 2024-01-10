@@ -1,3 +1,4 @@
+
 .pass{
   height: 20px;
   width: 100%;
@@ -101,7 +102,7 @@ input.mat-input-element {
 
 /* Para el ícono de flecha en mat-select */
 .mat-select-arrow {
-  color: white !important;
+  color: black !important;
 }
 
 /********************************/

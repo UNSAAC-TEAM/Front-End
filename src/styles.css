@@ -23,11 +23,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-radius: 10px; /* Agrega bordes redondeados si es necesario */
 }
 /* Border */
+
 .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: white !important;
+  color: #f3f3f3 !important;
   background-color: #f3f3f3 !important;
   border-radius: 5px;
   cursor: pointer;
+  height: 40px;
+  margin-top: 7px;
+}
+.mat-form-field-subscript-wrapper {
+  margin-top: 1px;
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+}
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 1em 0 1em 0;
 }
 /* Font color */
 input.mat-input-element {
@@ -44,5 +57,8 @@ input.mat-input-element {
 
 /* Para el ícono de flecha en mat-select */
 .mat-select-arrow {
-  color: white !important;
+  color: black !important;
+}
+.mat-option-text{
+  color: black;
 }

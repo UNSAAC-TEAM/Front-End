@@ -1,4 +1,93 @@
 <div class="card">
+  <div class="content">
+    <form [formGroup]="userFormGroup"  >
+      <div class="edit-form">
+        <h3>Nombres:</h3>
+        <mat-form-field class="edit-form-field" appearance="outline">
+          <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="name" pattern="[a-zA-Z]*">
+          <mat-error *ngIf="userFormGroup.get('name')?.hasError('required')">
+            Nombre <strong>requerido</strong>
+          </mat-error>
+          <mat-error *ngIf="userFormGroup.get('name')?.hasError('pattern')">
+            Solo se permiten letras en el nombre
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="edit-form">
+        <h3>Apellidos:</h3>
+        <mat-form-field  class="edit-form-field" appearance="outline">
+          <input matInput class="edit-form-input" autocomplete="off"  type="name" formControlName="lastname">
+          <mat-error *ngIf="userFormGroup.get('lastname')?.hasError('required')">
+            Apellidos <strong>requeridos</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="edit-form">
+        <h3>Pais:</h3>
+        <mat-form-field class= "edit-form-field" appearance="outline">
+          <mat-select  formControlName="country" (selectionChange)="onCountrySelectionChange($event)">
+            <mat-option *ngFor="let country of country" [value]="country">
+              <span class="fi fi-{{country.alpha2.toLowerCase()}}" style="margin-right: 5px"></span>
+              {{country.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="userFormGroup.get('country')?.hasError('required')">
+            Pais <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="edit-form">
+      <h3>Numero:</h3>
+      <div class="select-box">
+        <div class="selected-option" >
+          <div (click)="toggleSelectBox()" style="display: flex;">
+            <span class="fi fi-{{selectedCountryAlpha2}}" style="margin-right: 5px"></span>
+            <strong style="color: black">+{{ selectedCountryPhone }}</strong>
+          </div>
+          <input matInput style="background-color: #f3f3f3 !important;color: black" type="tel" name="tel" placeholder="{{this.selectedPhoneMask}}" (input)="onInputChangePhoneNumber($event)" [(ngModel)]="this.number">
+        </div>
+        <mat-error *ngIf="this.isNumberErrorActive">
+          Numero celular <strong>invalido</strong>
+        </mat-error>
+        <div class="options" *ngIf="isSelectBoxActive">
+          <ol>
+            <li class="option" *ngFor="let country of filteredCountries" (click)="selectOption(country)">
+              <div>
+                <span class="fi fi-{{country.alpha2.toLowerCase()}}" style="margin-right: 5px;color: black"></span>
+                <span class="country-name">{{ country.viewValue }}</span>
+              </div>
+              <strong style="color: black">+{{ country.phone }}</strong>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="userFormGroup"  >
+      <div class="edit-form">
+        <h3>Ciudad:</h3>
+        <mat-form-field class="edit-form-field" appearance="outline">
+          <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="city" pattern="[a-zA-Z]*">
+        </mat-form-field>
+      </div>
+      <div class="edit-form">
+        <h3>Genero:</h3>
+        <mat-form-field class= "edit-form-field" appearance="outline">
+          <mat-select  formControlName="gender">
+            <mat-option *ngFor="let gender of gender" [value]="gender">
+              {{gender.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="edit-form">
+        <h3>Bibliografia:</h3>
+        <mat-form-field class="edit-form-field" appearance="outline">
+          <textarea matInput class="edit-form-input" autocomplete="off" type="text" formControlName="description" pattern="[a-zA-Z]*"></textarea>
+        </mat-form-field>
+      </div>
+    </form>
 
+  </div>
 </div>
 

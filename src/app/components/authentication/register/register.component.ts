@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
   isNumberErrorActive=false
 
   isSelectBoxActive = false;
-  selectedCountryPhone = '54'; // Replace with your default country phone
+  selectedCountryPhone = '51'; // Replace with your default country phone
   selectedCountryAlpha2 = 'pe'; // Replace with your default country phone
   selectedPhoneMask="000 000 000";
   searchQuery = '';
@@ -88,7 +88,6 @@ export class RegisterComponent implements OnInit {
     { name: 'Uruguay', alpha2: 'UY', phone: 598, phoneMask: '00 000 0000' },
     { name: 'Venezuela', alpha2: 'VE', phone: 58, phoneMask: '0000-0000000' },
   ];
-
 
   constructor(private toast: NgToastService,private dialog: MatDialog,public dialogRef: MatDialogRef<RegisterComponent>) { }
 
