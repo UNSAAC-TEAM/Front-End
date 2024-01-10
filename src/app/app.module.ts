@@ -14,6 +14,17 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {NavbarModule} from "./shared/components/navbar/navbar.module";
+import {MyCoursesComponent} from "./components/my-courses/my-courses.component";
+import {PaymentsComponent} from "./components/payments/payments.component";
+import {ProfileComponent} from "./components/profile/profile.component";
+import {CredentialsComponent} from "./components/credentials/credentials.component";
+import {SupportComponent} from "./components/support/support.component";
+import {SubscriptionComponent} from "./components/subscription/subscription.component";
+import {EditProfileComponent} from "./components/edit-profile/edit-profile.component";
+import {AccountComponent} from "./components/account/account.component";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatIconModule} from "@angular/material/icon";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -22,6 +33,14 @@ import {NavbarModule} from "./shared/components/navbar/navbar.module";
     TeachersComponent,
     BlogsComponent,
     CreateBlogComponent,
+    AccountComponent,
+    ProfileComponent,
+    EditProfileComponent,
+    PaymentsComponent,
+    MyCoursesComponent,
+    SubscriptionComponent,
+    CredentialsComponent,
+    SupportComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +48,9 @@ import {NavbarModule} from "./shared/components/navbar/navbar.module";
     NavbarModule,
     BrowserAnimationsModule,
     EditorModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatListModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
