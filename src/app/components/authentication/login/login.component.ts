@@ -67,13 +67,14 @@ export class LoginComponent implements OnInit {
       let password: string = <string>this.userFormGroup.get('password')?.value;
       new UserServices().login(email,password).then(response=>{
 
-        //const decoded = jwtDecode(response.data.token);
+        const decoded = jwtDecode(response.data.token);
+        console.log(decoded)
 
         let userLogged: UserSession= {
           sessionToken:response.data.token,
-          name: "Alonso",
-          lastName: email,
-          imageUrl: null,
+          name: response.data.firstName,
+          lastName: response.data.lastName,
+          imageUrl: response.data.imageUrl,
           alias: null,
           isLogged: true
         }
@@ -84,7 +85,7 @@ export class LoginComponent implements OnInit {
 
         this.sessionStorageService.store('userSession', userLogged);
 
-        this.toast.success({detail:"Inicio de sesion exitoso",summary:'Cuenta iniciada correctamente',duration:5000});
+        this.toast.success({detail:"Inicio de sesion exitoso",summary:'Cuenta iniciada correctamente',duration:1000});
         this.dialogRef.close(); // Cierra el dialog actual
       }).catch(error=>{
         this.toast.error({detail:"ERROR",summary:'Error al iniciar sesion',sticky:true});

@@ -10,6 +10,8 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {SubscriptionComponent} from "./components/subscription/subscription.component";
 import {SupportComponent} from "./components/support/support.component";
 import {SharedModule} from "../../shared/shared.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
 
 
 
@@ -18,7 +20,10 @@ import {SharedModule} from "../../shared/shared.module";
   imports: [
     CommonModule,
     AccountRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule
   ]
 })
 export class AccountModule { }
