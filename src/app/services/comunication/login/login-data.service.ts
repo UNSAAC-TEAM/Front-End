@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {UserSession} from "../../../Models/UserSession";
+import {UserSession} from "../../../core/models/UserSession";
 @Injectable({
   providedIn: 'root'
 })

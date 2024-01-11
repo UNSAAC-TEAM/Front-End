@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {
-  MatDialog,
-  MatDialogRef,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogTitle,
-  MatDialogContent,
-} from '@angular/material/dialog';
-import {LoginComponent} from "../authentication/login/login.component";
-import {RegisterComponent} from "../authentication/register/register.component";
-import {LoginDataService} from "../../services/comunication/login/login-data.service";
+import {MatDialog,} from '@angular/material/dialog';
+import {LoginComponent} from "../../../components/authentication/login/login.component";
+import {RegisterComponent} from "../../../components/authentication/register/register.component";
+import {LoginDataService} from "../../../services/comunication/login/login-data.service";
 import {SessionStorageService } from 'ngx-webstorage';
 @Component({
   selector: 'app-navbar',

@@ -20,7 +20,7 @@ import {
 import {LoginComponent} from "../login/login.component";
 import { NgToastService } from 'ng-angular-popup';
 import {UserServices} from "../../../services/user.api-service";
-import {RegisterModel} from "../../../Models/RegisterModel";
+import {RegisterModel} from "../../../core/models/RegisterModel";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

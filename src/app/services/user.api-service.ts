@@ -1,5 +1,5 @@
 import http from "src/app/services/http-common";
-import {RegisterModel} from "../Models/RegisterModel";
+import {RegisterModel} from "../core/models/RegisterModel";
 export class UserServices{
   register(user: RegisterModel){
     console.log(user)

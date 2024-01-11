@@ -7,7 +7,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {RegisterComponent} from "../register/register.component";
 import {ForgotPasswordComponent} from "../forgot-password/forgot-password.component";
 import {LoginDataService} from "../../../services/comunication/login/login-data.service";
-import {UserSession} from "../../../Models/UserSession";
+import {UserSession} from "../../../core/models/UserSession";
 import {NgToastService} from "ng-angular-popup";
 import {UserServices} from "../../../services/user.api-service";
 import { jwtDecode } from "jwt-decode";

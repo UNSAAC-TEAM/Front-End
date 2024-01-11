@@ -1,0 +1,28 @@
+<div class="courses-cont">
+    <div class="courses-header">
+      <div class="courses-title">
+        <h1>Cursos para <span>Ingenieros y constructores</span> </h1>
+        <em>56 cursos disponibles</em>
+      </div>
+      <div class="courses-filter-search">
+        <button mat-stroked-button>Basic</button>
+        <!-- Mat-Select para seleccionar la categoría -->
+        <button color="accent" mat-stroked-button [matMenuTriggerFor]="menu">
+          {{buttonText}}<mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <!-- #enddocregion mat-menu-trigger-for -->
+        <mat-menu #menu="matMenu">
+          <button (click)="onSelect(option)" *ngFor="let option of options" mat-menu-item>
+            {{option.viewValue}}
+          </button>
+        </mat-menu>
+
+        <button mat-button><i class="fa-solid fa-broom"></i>Limpiar</button>
+
+      </div>
+    </div>
+    <div class="courses-body">
+
+    </div>
+</div>
+
