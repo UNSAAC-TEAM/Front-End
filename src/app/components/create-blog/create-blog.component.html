@@ -17,3 +17,7 @@
   <button (click)="uploadVideo()">Subir Video</button>
 </div>
 
+<div>
+  <input type="file" accept="image/*" (change)="onPhotoFileSelected($event)">
+  <button (click)="uploadPhoto()">Subir Foto</button>
+</div>

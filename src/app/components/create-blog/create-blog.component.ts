@@ -10,6 +10,7 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 export class CreateBlogComponent implements OnInit {
   selectedFile: File | null = null; // Inicializa con un valor
+  selectedPhotoFile: File | null = null; // Inicializa con un valor
 
   constructor(private storage: AngularFireStorage) { }
   htmlContent='';
@@ -34,8 +35,29 @@ export class CreateBlogComponent implements OnInit {
       );
     });
   }
+  uploadPhotoService(file: File): Promise<string> {
+    const filePath = `photo/${file.name}`;
+    const storageRef = this.storage.ref(filePath);
+    const uploadTask = this.storage.upload(filePath, file);
+
+    return new Promise((resolve, reject) => {
+      uploadTask.snapshotChanges().pipe(
+        finalize(() => {
+          storageRef.getDownloadURL().subscribe((downloadURL) => {
+            resolve(downloadURL);
+          });
+        })
+      ).subscribe(
+        null,
+        (error) => reject(error)
+      );
+    });
+  }
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] as File;
+  }
+  onPhotoFileSelected(event: any) {
+    this.selectedPhotoFile = event.target.files[0] as File;
   }
 
   uploadVideo() {
@@ -52,4 +74,19 @@ export class CreateBlogComponent implements OnInit {
       console.warn('No se ha seleccionado ningún video.');
     }
   }
+  uploadPhoto() {
+    if (this.selectedPhotoFile) {
+      this.uploadPhotoService(this.selectedPhotoFile)
+        .then((downloadURL) => {
+          console.log('URL de la foto:', downloadURL);
+          // Puedes hacer algo con la URL de la foto, por ejemplo, guardarla en una base de datos.
+        })
+        .catch((error) => {
+          console.error('Error al subir la foto:', error);
+        });
+    } else {
+      console.warn('No se ha seleccionado ninguna foto.');
+    }
+  }
 }
+
