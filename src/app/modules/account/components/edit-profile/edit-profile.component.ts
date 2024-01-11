@@ -5,6 +5,11 @@ import {LoginDataService} from "../../../../services/comunication/login/login-da
 import { jwtDecode } from "jwt-decode";
 import {SessionStorageService} from "ngx-webstorage";
 
+interface Months {
+  viewValue: string;
+  month: number;
+}
+
 interface Country {
   viewValue: string;
   alpha2: string;
@@ -20,6 +25,20 @@ interface Gender {
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+  displayableMonths: Months[] = [
+    { viewValue: 'Enero', month: 1 },
+    { viewValue: 'Febrero', month: 2 },
+    { viewValue: 'Marzo', month: 3 },
+    { viewValue: 'Abril', month: 4 },
+    { viewValue: 'Mayo', month: 5 },
+    { viewValue: 'Junio', month: 6 },
+    { viewValue: 'Julio', month: 7 },
+    { viewValue: 'Agosto', month: 8 },
+    { viewValue: 'Septiembre', month: 9 },
+    { viewValue: 'Octubre', month: 10 },
+    { viewValue: 'Noviembre', month: 11 },
+    { viewValue: 'Diciembre', month: 12 }
+  ];
   country: Country[] = [
     { viewValue: 'Peru', alpha2: 'PE', phone: 51, phoneMask: '000 000 000' },
     { viewValue: 'Argentina', alpha2: 'AR', phone: 54, phoneMask: '000 000 0000' },
@@ -48,10 +67,11 @@ export class EditProfileComponent implements OnInit {
     { viewValue: 'Otro'},
     { viewValue: 'Sin especificar'},
   ]
+
   userFormGroup  = new FormGroup({
     name: new FormControl('',[Validators.required]),
     lastname: new FormControl('',[Validators.required]),
-    password: new FormControl('',[Validators.required]),
+    password: new FormControl('password',[Validators.required]),
     email : new FormControl('', [Validators.required, Validators.email]),
     country: new FormControl(this.country[0], [Validators.required]),
     gender: new FormControl(this.gender[3], [Validators.required]),
@@ -65,7 +85,17 @@ export class EditProfileComponent implements OnInit {
   selectedCountryAlpha2 = 'pe'; // Replace with your default country phone
   selectedPhoneMask="000 000 000";
   searchQuery = '';
+  days: number[];
+  months: number[];
+  years: number[];
+
+  selectedDay: number = 1;  // Inicializar con un valor predeterminado
+  selectedMonth: number = 1;
+  selectedYear: number = new Date().getFullYear();
   constructor(private sessionStorageService: SessionStorageService,private loginDataService: LoginDataService) {
+    this.days = Array.from({ length: 31 }, (_, i) => i + 1);
+    this.months = Array.from({ length: 12 }, (_, i) => i + 1);
+    this.years = Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i-18);
     let token=""
     token=this.sessionStorageService.retrieve('userSession').sessionToken
     this.userFormGroup.patchValue({
@@ -78,6 +108,12 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  }
+  updateDays() {
+    // Lógica para actualizar la lista de días según el mes seleccionado.
+    const daysInMonth = new Date(this.selectedYear, this.selectedMonth, 0).getDate();
+    this.days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
   }
   setCountryInitialCodeForNumber(completeNumber: string){
     const match = completeNumber.match(/^\+(\d+) (\d+)$/);

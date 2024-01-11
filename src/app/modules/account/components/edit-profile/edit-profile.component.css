@@ -15,6 +15,13 @@
   margin: 0 !important;
   padding: 0 !important;
 }
+.static-edit-form{
+  width: 570px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .edit-form{
   width: 570px;
   color: white;
@@ -32,11 +39,43 @@
 .edit-form-field{
   width: 420px;
 }
+.edit-date-form-field{
+  width: 420px;
+  display: flex;
+  flex-direction: row;
+}
+.edit-day-date-form-field{
+  width: 60px;
+}
+.edit-month-date-form-field{
+  width: 120px;
+  margin-right: 1rem;
+}
+.edit-year-date-form-field{
+  width: 80px;
+}
+.static-edit-form-field{
+  width: 270px;
+}
 .mat-error{
   color: gold;
 }
-
-
+.change-field-content{
+  width: 420px;
+  display: flex;
+  align-items: center;
+}
+.change-input{
+  width: 150px;
+  display: flex;
+  justify-content: right;
+  color: white;
+}
+.change-input p{
+  text-decoration: underline;
+  color: white;
+  cursor: pointer;
+}
 
 .actions{
   margin: 30px 0 0 0;
@@ -47,6 +86,12 @@
 .save-button{
   width: 150px;
   border-radius: 1rem;
+  background-color: white;
+  color: black;
+  border: white solid 2px;
+  height: 36px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 

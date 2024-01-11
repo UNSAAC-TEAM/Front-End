@@ -12,18 +12,20 @@ import {SupportComponent} from "./components/support/support.component";
 import {SharedModule} from "../../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 
 @NgModule({
   declarations: [AccountComponent,CredentialsComponent,EditProfileComponent,MyCoursesComponent,PaymentsComponent,ProfileComponent,SubscriptionComponent,SupportComponent],
-  imports: [
-    CommonModule,
-    AccountRoutingModule,
-    SharedModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule
-  ]
+    imports: [
+        CommonModule,
+        AccountRoutingModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatDatepickerModule
+    ]
 })
 export class AccountModule { }

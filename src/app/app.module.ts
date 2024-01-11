@@ -14,7 +14,8 @@ import { PaymentsComponent } from './modules/account/components/payments/payment
 import { MyCoursesComponent } from './modules/account/components/my-courses/my-courses.component';
 import { EditProfileComponent } from './modules/account/components/edit-profile/edit-profile.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { CreateBlogComponent } from './components/create-blog/create-blog.component';
@@ -80,6 +81,8 @@ import {AccountModule} from "./modules/account/account.module";
     EditorModule,
     NgxWebstorageModule.forRoot(),
 
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
