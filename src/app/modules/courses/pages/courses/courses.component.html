@@ -4,25 +4,106 @@
         <h1>Cursos para <span>Ingenieros y constructores</span> </h1>
         <em>56 cursos disponibles</em>
       </div>
-      <div class="courses-filter-search">
-        <button mat-stroked-button>Basic</button>
-        <!-- Mat-Select para seleccionar la categoría -->
-        <button color="accent" mat-stroked-button [matMenuTriggerFor]="menu">
-          {{buttonText}}<mat-icon>arrow_drop_down</mat-icon>
-        </button>
-        <!-- #enddocregion mat-menu-trigger-for -->
-        <mat-menu #menu="matMenu">
-          <button (click)="onSelect(option)" *ngFor="let option of options" mat-menu-item>
-            {{option.viewValue}}
+      <div class="block-filter">
+        <div class="courses-filter-search">
+          <button mat-stroked-button class="main-button"><i class="fa-solid fa-filter"></i>Filter</button>
+          <!-- Mat-Select para seleccionar la categoría -->
+          <button mat-stroked-button [matMenuTriggerFor]="menu" class="normal-button">
+            {{buttonText}}<mat-icon>arrow_drop_down</mat-icon>
           </button>
-        </mat-menu>
+          <!-- #enddocregion mat-menu-trigger-for -->
+          <mat-menu #menu="matMenu">
+            <button (click)="onSelect(option)" *ngFor="let option of options" mat-menu-item>
+              {{option.viewValue}}
+            </button>
+          </mat-menu>
 
-        <button mat-button><i class="fa-solid fa-broom"></i>Limpiar</button>
-
+          <button mat-button><i class="fa-solid fa-broom"></i>Limpiar</button>
+        </div>
+        <div class="courses-filter-tab">
+          <em>Categorias:</em>
+          <button mat-stroked-button class="main-button">Cursos</button>
+          <button mat-stroked-button class="normal-button">Especializaciones</button>
+          <button mat-stroked-button class="normal-button">Eventos</button>
+        </div>
       </div>
     </div>
+
+
     <div class="courses-body">
+      <div class="sidebar-filter">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Categoría
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="checkbox-container">
+            <mat-checkbox>Option 1</mat-checkbox>
+            <mat-checkbox>Option 2</mat-checkbox>
+            <mat-checkbox>Option 3</mat-checkbox>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Precio
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="checkbox-container">
+            <mat-checkbox>Option 1</mat-checkbox>
+            <mat-checkbox>Option 2</mat-checkbox>
+            <mat-checkbox>Option 3</mat-checkbox>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Nivel
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="checkbox-container">
+            <mat-checkbox>Option 1</mat-checkbox>
+            <mat-checkbox>Option 2</mat-checkbox>
+            <mat-checkbox>Option 3</mat-checkbox>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Disponibilidad
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="checkbox-container">
+            <mat-checkbox>Option 1</mat-checkbox>
+            <mat-checkbox>Option 2</mat-checkbox>
+            <mat-checkbox>Option 3</mat-checkbox>
+          </div>
+        </mat-expansion-panel>
+
+        <span>Accede a todos nuestros cursos:</span>
+        <button mat-stroked-button class="premium-button"><i class="fa-solid fa-crown"></i>Sube a Premium</button>
+
+      </div>
+
+      <div class="course-list">
+        <div class="card-grid">
+          <div  class="card" *ngFor="let _ of [1, 2, 3, 4, 5, 6, 7, 8]">
+              <mat-card>
+                <!-- Contenido de tu tarjeta -->
+                <mat-card-title>Título del Curso</mat-card-title>
+                <mat-card-subtitle>Subtítulo del Curso</mat-card-subtitle>
+                <mat-card-content>
+                  Descripción del curso.
+                </mat-card-content>
+              </mat-card>
+          </div>
+        </div>
+
+      </div>
 
     </div>
 </div>
-

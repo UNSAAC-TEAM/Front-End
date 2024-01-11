@@ -23,6 +23,7 @@ export class CoursesComponent implements OnInit {
   }
   buttonText = "Ordenar por";
   options = FILTER_OPTIONS;
+
   onSelect(option: Filter) {
     this.buttonText = option.viewValue;
   }

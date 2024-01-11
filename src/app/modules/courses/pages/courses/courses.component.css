@@ -5,12 +5,26 @@
   flex-direction: column;
   margin-top: 8em;
 
-  border: 2px solid #8e8e8e;
+  /* border: 1px solid #8e8e8e; */
   margin-left: auto;
   margin-right: auto;
+
+}
+.fa-solid{
+  padding-right: 5px;
 }
 
 /* HEADER*/
+
+.block-filter{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  width: 100%;
+}
+
 .courses-title{
   display: flex;
   flex-direction: row;
@@ -38,6 +52,28 @@
   flex-direction: row;
 }
 
+.mat-stroked-button.main-button{
+  background: linear-gradient(45deg,#0261c1,#2a94fd);
+  color: white;
+  border: 0px;
+  margin-right: 1em;
+}
+
+.mat-stroked-button.normal-button{
+  background: transparent;
+  color: black;
+  border: 1px solid black;
+  margin-right: 0.5em;
+}
+
+.courses-filter-tab>em{
+  font-style: normal;
+  margin-right: 1.3em;
+}
+.courses-filter-tab button.mat-stroked-button {
+  margin-right: 0.6em;
+}
+
 @media screen and (max-width: 750px) {
   .courses-title {
     flex-direction: column; /* Cambiar a una disposición de columna en pantallas más pequeñas */
@@ -47,3 +83,67 @@
 
 
 /* BODY */
+.courses-body{
+  display: flex;
+  flex-direction: row;
+}
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-filter{
+  display: flex;
+  flex-direction: column;
+  margin-right: 2em;
+}
+
+.mat-expansion-panel{
+  box-shadow: none;
+  border-bottom: 1px solid black;
+  background: transparent;
+  border-radius: 0px;
+}
+
+.sidebar-filter mat-panel-title {
+  font-weight: 700;
+  font-size: 18px;
+}
+.sidebar-filter mat-expansion-panel-header{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  padding-right: 15px;
+}
+
+.sidebar-filter>span{
+  margin-top: 2em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-size: 16px;
+}
+.mat-stroked-button.premium-button{
+  font-size: 18px;
+  font-weight: 500;
+  background: linear-gradient(45deg, #d99508,#eac918);
+  color: black;
+  border: 0px;
+  border-radius: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+.course-list{
+  width: 95%;
+}
+.card-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2em;
+}
+
+.mat-card{
+  height: 320px;
+  width: 88%;
+}
