@@ -4,21 +4,24 @@
       <div class="edit-form">
         <h3>Nombres:</h3>
         <mat-form-field class="edit-form-field" appearance="outline">
-          <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="name" pattern="[a-zA-Z]*">
+          <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="name" pattern="[a-zA-Z ]*">
           <mat-error *ngIf="userFormGroup.get('name')?.hasError('required')">
             Nombre <strong>requerido</strong>
           </mat-error>
           <mat-error *ngIf="userFormGroup.get('name')?.hasError('pattern')">
-            Solo se permiten letras en el nombre
+            No se permiten caracteres especiales
           </mat-error>
         </mat-form-field>
       </div>
       <div class="edit-form">
         <h3>Apellidos:</h3>
         <mat-form-field  class="edit-form-field" appearance="outline">
-          <input matInput class="edit-form-input" autocomplete="off"  type="name" formControlName="lastname">
+          <input matInput class="edit-form-input" autocomplete="off"  type="text" formControlName="lastname" pattern="[a-zA-Z ]*">
           <mat-error *ngIf="userFormGroup.get('lastname')?.hasError('required')">
             Apellidos <strong>requeridos</strong>
+          </mat-error>
+          <mat-error *ngIf="userFormGroup.get('lastname')?.hasError('pattern')">
+            No se permiten caracteres especiales
           </mat-error>
         </mat-form-field>
       </div>
@@ -33,6 +36,18 @@
           </mat-select>
           <mat-error *ngIf="userFormGroup.get('country')?.hasError('required')">
             Pais <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="edit-form">
+        <h3>Correo:</h3>
+        <mat-form-field class="edit-form-field" appearance="outline">
+          <input matInput autocomplete="off"  formControlName="email">
+          <mat-error *ngIf="userFormGroup.get('email')?.hasError('required')">
+            Email <strong>requerido</strong>
+          </mat-error>
+          <mat-error *ngIf="userFormGroup.get('email')?.hasError('email')">
+            Email <strong>invalido</strong>
           </mat-error>
         </mat-form-field>
       </div>

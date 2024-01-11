@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { ValidatorFn, AbstractControl } from '@angular/forms';
 import {LoginDataService} from "../../../../services/comunication/login/login-data.service";
+import { jwtDecode } from "jwt-decode";
+import {SessionStorageService} from "ngx-webstorage";
 
 interface Country {
   viewValue: string;
@@ -63,11 +65,14 @@ export class EditProfileComponent implements OnInit {
   selectedCountryAlpha2 = 'pe'; // Replace with your default country phone
   selectedPhoneMask="000 000 000";
   searchQuery = '';
-  constructor(private loginDataService: LoginDataService) {
+  constructor(private sessionStorageService: SessionStorageService,private loginDataService: LoginDataService) {
+    let token=""
+    token=this.sessionStorageService.retrieve('userSession').sessionToken
     this.userFormGroup.patchValue({
       name: this.loginDataService.userAccount.name,
       lastname: this.loginDataService.userAccount.lastName,
       country: this.country[this.findIndexByCountryName('Peru')],
+      email: jwtDecode(token).sub
     });
     this.setCountryInitialCodeForNumber("+51 924052944")
   }
@@ -114,13 +119,23 @@ export class EditProfileComponent implements OnInit {
     return this.number.replace(/[\s-]/g, '').length;
 
   }
-  onInputChangePhoneNumber(number: any){
-    if(this.getPhoneNumberLength()==0 || this.getPhoneNumberLength()>this.getPhoneMaskLength()){
-      this.isNumberErrorActive=true
+  onInputChangePhoneNumber(numberParameter: any): void{
+    const nonNumberOrSpacePattern = /[^0-9 ]/;
+    if(this.number.length>=1){
+      let lastNumber=(this.number[this.number.length-1])
+      if (nonNumberOrSpacePattern.test(lastNumber)) {
+        this.isNumberErrorActive = true;
+      } else {
+        if (this.getPhoneNumberLength() === 0 || this.getPhoneNumberLength() > this.getPhoneMaskLength()
+        ) {
+          this.isNumberErrorActive = true;
+        } else {
+          this.isNumberErrorActive = false;
+        }
+      }
     }
-    else {
-      this.isNumberErrorActive=false
-    }
+
+
 
   }
   selectOption(country: any) {
