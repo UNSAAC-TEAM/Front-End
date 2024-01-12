@@ -142,8 +142,3 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 1.2em;
 }
-
-.mat-card{
-  height: 320px;
-  width: 88%;
-}

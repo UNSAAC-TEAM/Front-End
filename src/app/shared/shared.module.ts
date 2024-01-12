@@ -12,9 +12,11 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { FooterComponent } from "./components/footer/footer.component";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSelectModule} from "@angular/material/select";
+import { CourseCardComponent } from './components/course-card/course-card.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
-  declarations: [FooterComponent],
+  declarations: [FooterComponent, CourseCardComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -28,10 +30,12 @@ import {MatSelectModule} from "@angular/material/select";
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatSelectModule,
+    MatCardModule,
   ],
   exports:[
     RouterModule,
     FooterComponent,
+    CourseCardComponent,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,

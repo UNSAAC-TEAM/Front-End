@@ -91,16 +91,7 @@
 
       <div class="course-list">
         <div class="card-grid">
-          <div  class="card" *ngFor="let _ of [1, 2, 3, 4, 5, 6, 7, 8]">
-              <mat-card>
-                <!-- Contenido de tu tarjeta -->
-                <mat-card-title>Título del Curso</mat-card-title>
-                <mat-card-subtitle>Subtítulo del Curso</mat-card-subtitle>
-                <mat-card-content>
-                  Descripción del curso.
-                </mat-card-content>
-              </mat-card>
-          </div>
+          <app-course-card *ngFor="let _ of [1, 2, 3, 4, 5, 6, 7, 8]"></app-course-card>
         </div>
 
       </div>
