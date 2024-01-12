@@ -11,7 +11,7 @@
     <source [src]="firebaseVideoUrl" type="video/mp4">
     Tu navegador no soporta el elemento de video.
   </video>
-</div-->
+</div>
 <div>
   <input type="file" (change)="onFileSelected($event)">
   <button (click)="uploadVideo()">Subir Video</button>
@@ -20,4 +20,20 @@
 <div>
   <input type="file" accept="image/*" (change)="onPhotoFileSelected($event)">
   <button (click)="uploadPhoto()">Subir Foto</button>
-</div>
+</div-->
+
+<input type="file" (change)="fileChangeEvent($event)" />
+
+<image-cropper style="height: 200px;width: 200px"
+  [imageChangedEvent]="imageChangedEvent"
+  [maintainAspectRatio]="true"
+  [aspectRatio]="1 / 1"
+  format="png"
+  (imageCropped)="imageCropped($event)"
+  (imageLoaded)="imageLoaded($event)"
+  (cropperReady)="cropperReady()"
+  (loadImageFailed)="loadImageFailed()"
+></image-cropper>
+
+<img style="height: 200px;width: 200px" [src]="croppedImage" />
+<button (click)="uploadCroppedPhoto()">Subir Foto</button>

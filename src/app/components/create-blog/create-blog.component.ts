@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import {finalize} from "rxjs/operators";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create-blog',
@@ -9,10 +11,12 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 })
 
 export class CreateBlogComponent implements OnInit {
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
   selectedFile: File | null = null; // Inicializa con un valor
   selectedPhotoFile: File | null = null; // Inicializa con un valor
 
-  constructor(private storage: AngularFireStorage) { }
+  constructor(private sanitizer: DomSanitizer,private storage: AngularFireStorage) { }
   htmlContent='';
   firebaseVideoUrl = 'https://firebasestorage.googleapis.com/v0/b/agripure-678b4.appspot.com/o/Comp%202.mp4?alt=media&token=5d0a2c99-fdad-4d69-b3d0-59d297d5dee3';
   ngOnInit(): void {
@@ -53,6 +57,7 @@ export class CreateBlogComponent implements OnInit {
       );
     });
   }
+
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] as File;
   }
@@ -87,6 +92,39 @@ export class CreateBlogComponent implements OnInit {
     } else {
       console.warn('No se ha seleccionado ninguna foto.');
     }
+  }
+  uploadCroppedPhoto() {
+    if (this.croppedImage) {
+      this.uploadPhotoService(this.croppedImage)
+        .then((downloadURL) => {
+          console.log('URL de la foto:', downloadURL);
+          // Puedes hacer algo con la URL de la foto, por ejemplo, guardarla en una base de datos.
+        })
+        .catch((error) => {
+          console.error('Error al subir la foto:', error);
+        });
+    } else {
+      console.warn('No se ha seleccionado ninguna foto.');
+    }
+  }
+
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    if (event.objectUrl != null) {
+      this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
+    }
+    // event.blob can be used to upload the cropped image
+  }
+  imageLoaded(image: LoadedImage) {
+    // show cropper
+  }
+  cropperReady() {
+    // cropper ready
+  }
+  loadImageFailed() {
+    // show message
   }
 }
 

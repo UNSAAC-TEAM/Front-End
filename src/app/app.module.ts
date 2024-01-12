@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpecializationsComponent } from './components/specializations/specializations.component';
-
+import { ImageCropperModule } from 'ngx-image-cropper';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
@@ -81,6 +81,7 @@ import {AccountModule} from "./modules/account/account.module";
     EditorModule,
     NgxWebstorageModule.forRoot(),
 
+    ImageCropperModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatToolbarModule,
