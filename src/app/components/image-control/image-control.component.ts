@@ -5,14 +5,14 @@ import { MatButtonModule } from '@angular/material/button';
 import {CropperDialogComponent, CropperDialogResult,} from '../cropper-dialog/cropper-dialog.component';
 import { filter } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
-import {Storage, getDownloadURL, ref, uploadBytes} from '@angular/fire/storage';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Subscription } from 'rxjs';
-import firebase from "firebase/compat";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {LoginDataService} from "../../services/comunication/login/login-data.service";
 import { jwtDecode } from "jwt-decode";
 import {SessionStorageService} from "ngx-webstorage";
+import {NgToastService} from "ng-angular-popup";
+import {UserServices} from "../../services/user.api-service";
 
 @Component({
   selector: 'app-image-control',
@@ -116,7 +116,7 @@ export class ImageControlComponent {
 
   @Output() imageReady = new EventEmitter<string>();
 
-  constructor(private sessionStorageService: SessionStorageService,private storage: AngularFireStorage,public loginDataService: LoginDataService) {
+  constructor(private toast: NgToastService,private sessionStorageService: SessionStorageService,private storage: AngularFireStorage,public loginDataService: LoginDataService) {
     this.subscription = this.croppedImageURL.subscribe(value => {
       if (value) {
         this.imageReady.emit(value);
@@ -132,6 +132,7 @@ export class ImageControlComponent {
   async uploadImage(blob: Blob) {
     if (this.loginDataService.userAccount.sessionToken != null) {
       const decoded = jwtDecode(this.loginDataService.userAccount.sessionToken);
+      console.log(decoded)
       let email=decoded.sub
       this.uploading.next(true);
       const filePath = "profilePicture/"+email+".png";
@@ -145,10 +146,14 @@ export class ImageControlComponent {
       const downloadUrl = await storageRef.getDownloadURL().toPromise();
 
       this.croppedImageURL.next(downloadUrl);
-      console.log(downloadUrl)
-      this.loginDataService.userAccount.imageUrl=downloadUrl
-      this.sessionStorageService.store('userSession', this.loginDataService.userAccount);
-      this.uploading.next(false);
+
+      new UserServices().updateProfilePicture(this.loginDataService.getUserId(this.loginDataService.userAccount.sessionToken),downloadUrl).then(response=>{
+        this.loginDataService.userAccount.imageUrl=downloadUrl
+        this.sessionStorageService.store('userSession', this.loginDataService.userAccount);
+        this.toast.success({detail:"Foto actualizada",summary:'Foto de perfil actualizada correctamente',duration:3000});
+        this.uploading.next(false);
+      })
+
     }
 
   }

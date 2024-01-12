@@ -168,7 +168,7 @@ export class RegisterComponent implements OnInit {
         }
         new UserServices().register(registerModel).then(response=>{
           console.log(response.data)
-          this.toast.success({detail:"Registro exitoso",summary:'Cuenta registrada',duration:5000});
+          this.toast.success({detail:"Registro exitoso",summary:'Cuenta registrada',duration:1000});
           this.loginRedirect(); // Cierra el dialog actual
         }).catch(error=>{
           this.toast.error({detail:"ERROR",summary:'Error al registrarse',sticky:true});

@@ -5,6 +5,7 @@ import {LoginComponent} from "../../../components/authentication/login/login.com
 import {RegisterComponent} from "../../../components/authentication/register/register.component";
 import {LoginDataService} from "../../../services/comunication/login/login-data.service";
 import {SessionStorageService } from 'ngx-webstorage';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -22,7 +23,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     const userSession = this.sessionStorageService.retrieve('userSession');
     if(userSession!=null){
-      console.log(userSession)
       this.loginDataService.userAccount=userSession;
     }
   }
