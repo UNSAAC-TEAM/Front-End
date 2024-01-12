@@ -21,7 +21,7 @@
           </button>
         </mat-menu>
 
-        <button mat-button><i class="fa-solid fa-broom"></i>Limpiar</button>
+        <button mat-button *ngIf="showClearFilter"><i class="fa-solid fa-broom"></i>Limpiar</button>
       </div>
       <div class="courses-filter-tab">
         <em *ngIf="showCategories">Categorias:</em>

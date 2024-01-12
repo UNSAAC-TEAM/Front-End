@@ -25,6 +25,7 @@ export class CoursesComponent implements OnInit {
   options = FILTER_OPTIONS;
   showSidebarFilter: boolean = true;
   showCategories: boolean = true;
+  showClearFilter: boolean=true;
 
   onSelect(option: Filter) {
     this.buttonText = option.viewValue;
@@ -37,6 +38,7 @@ export class CoursesComponent implements OnInit {
   showItems(bool: boolean): void{
     this.showSidebarFilter=bool;
     this.showCategories = bool;
+    this.showClearFilter = bool
   }
 
   @HostListener('window:resize', ['$event'])

@@ -51,6 +51,7 @@
 .courses-filter-search{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .mat-stroked-button.main-button{
@@ -158,11 +159,12 @@
   .courses-filter-search{
     margin-bottom: 1em;
   }
-
+  .mat-stroked-button{
+    margin-bottom: 0.5em;
+  }
 }
 @media (max-width: 730px) {
   .card-grid {
     grid-template-columns: 1fr;
   }
-
 }
