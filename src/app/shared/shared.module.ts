@@ -23,6 +23,8 @@ import {MatCardModule} from "@angular/material/card";
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
+    MatCardModule,
+
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
@@ -30,14 +32,13 @@ import {MatCardModule} from "@angular/material/card";
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatSelectModule,
-    MatCardModule,
+
   ],
   exports:[
     RouterModule,
     FooterComponent,
     CourseCardComponent,
     MatIconModule,
-    MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatListModule,

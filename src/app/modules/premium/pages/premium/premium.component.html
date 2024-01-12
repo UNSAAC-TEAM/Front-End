@@ -100,35 +100,8 @@
       <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
     <div class="keen-slider" #sliderRef>
-      <div class="keen-slider__slide number-slide1" *ngFor="let course of courses">
-        <div class="item-header">
-          <img class="fit-image"
-               src="{{course.imgUrl}}" alt="curso_imagen">
-        </div>
-        <div class="item-body">
-          <h3 class="item-teacher-title">
-            <a href="#">{{ course!.title }}s</a>
-          </h3>
-          <span class="item-teacher">Por: <a href="#">{{ course.teacher }}</a> </span>
-
-          <div class="item-rating">
-            <div class="item-stars" *ngFor="let i of getRange(course.rating); let index = index">
-              <i class="fa-solid fa-star"></i>
-            </div>
-            <span>{{ course.rating }}</span>
-          </div>
-
-          <div class="body-details">
-            <span><i class="far fa-clock"></i>{{ course.hours }} Hrs</span>
-            <span><i class="fas fa-book"></i>{{ course.difficulty }}</span>
-          </div>
-        </div>
-        <div class="item-footer">
-          <div class="footer-price">
-            <span class="item-price">{{ course.price }}</span>
-            <a href="#" class="item-btn">Acceder</a>
-          </div>
-        </div>
+      <div class="keen-slider__slide" *ngFor="let course of courses">
+        <app-course-card [course]="course"></app-course-card>
       </div>
 
     </div>

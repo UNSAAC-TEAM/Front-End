@@ -212,6 +212,7 @@ li {
   font-weight: lighter;
 }
 
+
 .keen-slider:not([data-keen-slider-disabled]) {
   align-content: flex-start;
   display: flex;
@@ -228,10 +229,12 @@ li {
   width: 57%;
   margin-left: 1em;
   margin-right: 1em;
+
 }
 .keen-slider:not([data-keen-slider-disabled]) .keen-slider__slide {
   position: relative;
-  overflow: hidden;
+  margin-top: 1em;
+  margin-bottom: 1em;
   min-height: 100%;
 }
 .keen-slider:not([data-keen-slider-disabled])[data-keen-slider-reverse] {

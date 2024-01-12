@@ -23,8 +23,13 @@ export class CoursesComponent implements OnInit {
   }
   buttonText = "Ordenar por";
   options = FILTER_OPTIONS;
+  showSidebarFilter: boolean = true;
 
   onSelect(option: Filter) {
     this.buttonText = option.viewValue;
+  }
+
+  toggleSidebarFilter(): void {
+    this.showSidebarFilter = !this.showSidebarFilter;
   }
 }

@@ -6,7 +6,7 @@
       </div>
       <div class="block-filter">
         <div class="courses-filter-search">
-          <button mat-stroked-button class="main-button"><i class="fa-solid fa-filter"></i>Filter</button>
+          <button mat-stroked-button class="main-button" (click)="toggleSidebarFilter()"><i class="fa-solid fa-filter"></i>Filter</button>
           <!-- Mat-Select para seleccionar la categoría -->
           <button mat-stroked-button [matMenuTriggerFor]="menu" class="normal-button">
             {{buttonText}}<mat-icon>arrow_drop_down</mat-icon>
@@ -24,14 +24,14 @@
           <em>Categorias:</em>
           <button mat-stroked-button class="main-button">Cursos</button>
           <button mat-stroked-button class="normal-button">Especializaciones</button>
-          <button mat-stroked-button class="normal-button">Eventos</button>
+          <button mat-stroked-button class="normal-button" routerLink="/events">Eventos</button>
         </div>
       </div>
     </div>
 
 
     <div class="courses-body">
-      <div class="sidebar-filter">
+      <div class="sidebar-filter" *ngIf="showSidebarFilter">
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
@@ -85,7 +85,7 @@
         </mat-expansion-panel>
 
         <span>Accede a todos nuestros cursos:</span>
-        <button mat-stroked-button class="premium-button"><i class="fa-solid fa-crown"></i>Sube a Premium</button>
+        <button mat-stroked-button class="premium-button" routerLink="/premium"><i class="fa-solid fa-crown"></i>Sube a Premium</button>
 
       </div>
 
