@@ -12,6 +12,7 @@ import firebase from "firebase/compat";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {LoginDataService} from "../../services/comunication/login/login-data.service";
 import { jwtDecode } from "jwt-decode";
+import {SessionStorageService} from "ngx-webstorage";
 
 @Component({
   selector: 'app-image-control',
@@ -81,6 +82,9 @@ export class ImageControlComponent {
   croppedImageURL = new BehaviorSubject<string | undefined>(undefined);
 
   get imageSource() {
+    if(this.loginDataService.userAccount.imageUrl!=null){
+      return this.loginDataService.userAccount.imageUrl
+    }
     return this.croppedImageURL.value ?? this.placeholder;
   }
 
@@ -112,7 +116,7 @@ export class ImageControlComponent {
 
   @Output() imageReady = new EventEmitter<string>();
 
-  constructor(private storage: AngularFireStorage,public loginDataService: LoginDataService) {
+  constructor(private sessionStorageService: SessionStorageService,private storage: AngularFireStorage,public loginDataService: LoginDataService) {
     this.subscription = this.croppedImageURL.subscribe(value => {
       if (value) {
         this.imageReady.emit(value);
@@ -142,6 +146,8 @@ export class ImageControlComponent {
 
       this.croppedImageURL.next(downloadUrl);
       console.log(downloadUrl)
+      this.loginDataService.userAccount.imageUrl=downloadUrl
+      this.sessionStorageService.store('userSession', this.loginDataService.userAccount);
       this.uploading.next(false);
     }
 
