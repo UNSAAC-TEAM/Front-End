@@ -4,6 +4,7 @@ import { ValidatorFn, AbstractControl } from '@angular/forms';
 import {LoginDataService} from "../../../../services/comunication/login/login-data.service";
 import { jwtDecode } from "jwt-decode";
 import {SessionStorageService} from "ngx-webstorage";
+import {ImageControlComponent} from "../../../../components/image-control/image-control.component";
 
 interface Months {
   viewValue: string;
@@ -109,6 +110,9 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+  imageReady(imageUrl: string) {
+    console.log('Firebase Uploaded Image: ', imageUrl);
   }
   updateDays() {
     // Lógica para actualizar la lista de días según el mes seleccionado.

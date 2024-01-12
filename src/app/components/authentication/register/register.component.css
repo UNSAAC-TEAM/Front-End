@@ -14,9 +14,12 @@
   border-bottom-right-radius: 1rem;
 }
 .container{
+  width: 500px;
   background-color: #9b192d;
-  color: black;
+  color: white;
+  padding: 15px 20px;
   border-radius: 1rem;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.34);
 }
 .header{
   width: 100%;

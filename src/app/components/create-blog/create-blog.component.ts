@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core'
+import {Component, inject, OnInit} from '@angular/core'
 import {finalize} from "rxjs/operators";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
-import { DomSanitizer } from '@angular/platform-browser';
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
+import {getDownloadURL, ref, uploadBytes} from "@angular/fire/storage";
+import firebase from "firebase/compat";
+import storage = firebase.storage;
+
+
 
 @Component({
   selector: 'app-create-blog',
@@ -95,16 +100,43 @@ export class CreateBlogComponent implements OnInit {
   }
   uploadCroppedPhoto() {
     if (this.croppedImage) {
-      this.uploadPhotoService(this.croppedImage)
-        .then((downloadURL) => {
-          console.log('URL de la foto:', downloadURL);
-          // Puedes hacer algo con la URL de la foto, por ejemplo, guardarla en una base de datos.
-        })
-        .catch((error) => {
-          console.error('Error al subir la foto:', error);
-        });
+      let safeUrl=this.croppedImage
+      // Convierte SafeUrl a Blob
+      this.convertSafeUrlToBlob(safeUrl)
     } else {
-      console.warn('No se ha seleccionado ninguna foto.');
+      //console.warn('No se ha seleccionado ninguna foto.');
+    }
+  }
+  convertSafeUrlToBlob(safeUrl: SafeUrl): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      const url: string = this.sanitizer.sanitize(1, safeUrl) as string;
+
+      fetch(url)
+        .then(response => response.blob())
+        .then(blob => resolve(blob))
+        .catch(error => reject(error));
+    });
+  }
+  saveBlobAsFile(blob: Blob, fileName: string): void {
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.style.display = 'none';
+
+    const url = window.URL.createObjectURL(blob);
+    a.href = url;
+    a.download = fileName;
+
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+  }
+
+  async convertSafeUrlToPngAndSave(safeUrl: SafeUrl, fileName: string): Promise<void> {
+    try {
+      const blob = await this.convertSafeUrlToBlob(safeUrl);
+      this.saveBlobAsFile(blob, fileName + '.png');
+    } catch (error) {
+      console.error('Error al convertir SafeUrl a PNG:', error);
     }
   }
 
@@ -126,5 +158,6 @@ export class CreateBlogComponent implements OnInit {
   loadImageFailed() {
     // show message
   }
+
 }
 

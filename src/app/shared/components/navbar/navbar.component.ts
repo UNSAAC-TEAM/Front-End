@@ -47,7 +47,7 @@ export class NavbarComponent implements OnInit {
   }
   showLoginDialog(enterAnimationDuration: string, exitAnimationDuration: string){
     this.dialog.open(LoginComponent, {
-      width: '500px',
+      width: '570px',
       enterAnimationDuration,
       exitAnimationDuration,
 
@@ -55,7 +55,7 @@ export class NavbarComponent implements OnInit {
   }
   showRegisterDialog(enterAnimationDuration: string, exitAnimationDuration: string){
     this.dialog.open(RegisterComponent, {
-      width: '500px',
+      width: '540px',
       enterAnimationDuration,
       exitAnimationDuration,
     });

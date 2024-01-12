@@ -13,6 +13,7 @@ import {SharedModule} from "../../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {ImageControlComponent} from "../../components/image-control/image-control.component";
 
 
 
@@ -25,7 +26,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
         FormsModule,
         ReactiveFormsModule,
         MatInputModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        ImageControlComponent
     ]
 })
 export class AccountModule { }
