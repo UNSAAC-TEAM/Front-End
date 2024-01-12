@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 
 interface Filter {
   value: string;
@@ -24,6 +24,7 @@ export class CoursesComponent implements OnInit {
   buttonText = "Ordenar por";
   options = FILTER_OPTIONS;
   showSidebarFilter: boolean = true;
+  showCategories: boolean = true;
 
   onSelect(option: Filter) {
     this.buttonText = option.viewValue;
@@ -32,4 +33,20 @@ export class CoursesComponent implements OnInit {
   toggleSidebarFilter(): void {
     this.showSidebarFilter = !this.showSidebarFilter;
   }
+
+  showItems(bool: boolean): void{
+    this.showSidebarFilter=bool;
+    this.showCategories = bool;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    const currentWidth = window.innerWidth;
+    if (currentWidth < 890) {
+      this.showItems(false)
+    } else if (currentWidth > 890) {
+      this.showItems(true)
+    }
+  }
+
 }

@@ -24,7 +24,7 @@
         <button mat-button><i class="fa-solid fa-broom"></i>Limpiar</button>
       </div>
       <div class="courses-filter-tab">
-        <em>Categorias:</em>
+        <em *ngIf="showCategories">Categorias:</em>
         <button mat-stroked-button class="main-button">Cursos</button>
         <button mat-stroked-button class="normal-button">Especializaciones</button>
         <button mat-stroked-button class="normal-button" routerLink="/events">Eventos</button>
