@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import { ValidatorFn, AbstractControl } from '@angular/forms';
 import {LoginDataService} from "../../../../services/comunication/login/login-data.service";
 import { jwtDecode } from "jwt-decode";
 import {SessionStorageService} from "ngx-webstorage";
-import {ImageControlComponent} from "../../../../components/image-control/image-control.component";
 import {UserServices} from "../../../../services/user.api-service";
-import {RegisterModel} from "../../../../core/models/RegisterModel";
 import {NgToastService} from "ng-angular-popup";
 
 interface Months {
@@ -71,7 +68,6 @@ export class EditProfileComponent implements OnInit {
     { viewValue: 'Feminino',storableValue: 'FEMALE'},
     { viewValue: 'Otro',storableValue: 'OTHER'},
   ]
-
   userFormGroup  = new FormGroup({
     name: new FormControl('',[Validators.required]),
     lastname: new FormControl('',[Validators.required]),
@@ -113,7 +109,9 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    new UserServices().getUserById(this.loginDataService.getUserId(this.token)).then(result=>{
+      
+    })
   }
   imageReady(imageUrl: string) {
     console.log('Firebase Uploaded Image: ', imageUrl);
@@ -211,6 +209,9 @@ export class EditProfileComponent implements OnInit {
           "description": description
         }
         new UserServices().updateProfileData(this.token,this.loginDataService.getUserId(this.token),editProfileBody).then(response=>{
+          this.loginDataService.userAccount.name=name
+          this.loginDataService.userAccount.lastName=lastname
+          this.sessionStorageService.store('userSession', this.loginDataService.userAccount);
           this.toast.success({detail:"Perfil actualizado",summary:'Perfil actualizado exitosamente',duration:1000});
 
         }).catch(error=>{

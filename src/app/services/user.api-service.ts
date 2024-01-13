@@ -25,6 +25,9 @@ export class UserServices{
       "password": password,
     })
   }
+  getUserById(userId: number){
+    return http.get("profile/"+userId)
+  }
   updateProfilePicture(token: string,userId: number,imageUrl: string){
     return http.put("profile/"+userId+"/changeImageProfile",{
       "imageUrl": imageUrl
