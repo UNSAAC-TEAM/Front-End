@@ -105,15 +105,23 @@ export class EditProfileComponent implements OnInit {
       name: this.loginDataService.userAccount.name,
       lastname: this.loginDataService.userAccount.lastName,
       country: this.country[this.findIndexByCountryName('Peru')],
-
       email: jwtDecode(this.token).sub
     });
-    this.setCountryInitialCodeForNumber("+51 924052944")
   }
 
   ngOnInit(): void {
-    new UserServices().getUserById(this.loginDataService.getUserId(this.token)).then(result=>{
-
+    new UserServices().getUserById(this.loginDataService.getUserId(this.token)).then(response=>{
+      this.userFormGroup.patchValue({
+        description: response.data.description,
+        country: this.country[this.findIndexByCountryName(response.data.country)],
+        city:   response.data.city,
+        gender: this.gender[this.findIndexByGenderDisplayableValue(response.data.gender)]
+      });
+      let birthDate = new Date(response.data.birthDay);
+      this.selectedDay= birthDate.getDate();
+      this.selectedMonth = birthDate.getMonth() + 1;
+      this.selectedYear = birthDate.getFullYear();
+      this.setCountryInitialCodeForNumber(response.data.phoneNumber)
     })
   }
 
@@ -144,6 +152,10 @@ export class EditProfileComponent implements OnInit {
 
   findIndexByCountryName(countryName: string): number {
     return this.country.findIndex(country => country.viewValue === countryName);
+  }
+  findIndexByGenderDisplayableValue(value: string): number {
+    return this.gender.findIndex(gender => gender.storableValue === value);
+
   }
   findIndexByCountryCode(countryCode: string): number {
     return this.country.findIndex(country => country.phone.toString() === countryCode);
@@ -215,7 +227,7 @@ export class EditProfileComponent implements OnInit {
         new UserServices().updateProfileData(this.token,this.loginDataService.getUserId(this.token),editProfileBody).then(response=>{
           this.loginDataService.userAccount.name=name
           this.loginDataService.userAccount.lastName=lastname
-          this.sessionStorageService.store('userSession', this.loginDataService.userAccount);
+          this.crypto.EncryptAndSetObjectToStorage(this.loginDataService.userAccount)
           this.toast.success({detail:"Perfil actualizado",summary:'Perfil actualizado exitosamente',duration:1000});
 
         }).catch(error=>{
