@@ -146,8 +146,7 @@ export class ImageControlComponent {
       const downloadUrl = await storageRef.getDownloadURL().toPromise();
 
       this.croppedImageURL.next(downloadUrl);
-
-      new UserServices().updateProfilePicture(this.loginDataService.getUserId(this.loginDataService.userAccount.sessionToken),downloadUrl).then(response=>{
+      new UserServices().updateProfilePicture(this.loginDataService.userAccount.sessionToken,this.loginDataService.getUserId(this.loginDataService.userAccount.sessionToken),downloadUrl).then(response=>{
         this.loginDataService.userAccount.imageUrl=downloadUrl
         this.sessionStorageService.store('userSession', this.loginDataService.userAccount);
         this.toast.success({detail:"Foto actualizada",summary:'Foto de perfil actualizada correctamente',duration:3000});

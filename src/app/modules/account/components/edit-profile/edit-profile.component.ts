@@ -5,6 +5,7 @@ import {LoginDataService} from "../../../../services/comunication/login/login-da
 import { jwtDecode } from "jwt-decode";
 import {SessionStorageService} from "ngx-webstorage";
 import {ImageControlComponent} from "../../../../components/image-control/image-control.component";
+import {UserServices} from "../../../../services/user.api-service";
 
 interface Months {
   viewValue: string;
@@ -185,6 +186,5 @@ export class EditProfileComponent implements OnInit {
     this.isSelectBoxActive = false; // Close the dropdown after selection
   }
   saveEditProfile(){
-
   }
 }

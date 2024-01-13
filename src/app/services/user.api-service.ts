@@ -1,5 +1,6 @@
 import http from "src/app/services/http-common";
 import {RegisterModel} from "../core/models/RegisterModel";
+import axios, { AxiosRequestConfig } from 'axios';
 export class UserServices{
   register(user: RegisterModel){
     console.log(user)
@@ -21,8 +22,8 @@ export class UserServices{
       "password": password,
     })
   }
-  updateProfilePicture(userId: number,imageUrl: string){
-    return http.put("profile/"+userId+"/changeImageProfile",{
+  updateProfilePicture(token: string,userId: number,imageUrl: string){
+    return http.put("http://localhost:8080/api/v1/profile/"+userId+"/changeImageProfile",{
       "imageUrl": imageUrl
     })
   }
