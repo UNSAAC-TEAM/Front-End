@@ -1,5 +1,8 @@
 import http from "src/app/services/http-common";
 import {RegisterModel} from "../core/models/RegisterModel";
+import {Injectable} from "@angular/core";
+import {HttpClient,HttpHeaders} from "@angular/common/http";
+
 import axios, { AxiosRequestConfig } from 'axios';
 export class UserServices{
   register(user: RegisterModel){
@@ -29,6 +32,6 @@ export class UserServices{
   }
   updateProfileData(token: string,userId: number,editProfileBody: any){
     console.log(editProfileBody)
-    return http.put("profile/"+userId+"/edit",editProfileBody)
+    return http.put("profile/"+userId+"/edit",editProfileBody,{ headers: {"Authorization" : `Bearer ${token}`} })
   }
 }
