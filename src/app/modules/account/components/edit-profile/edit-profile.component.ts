@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import {SessionStorageService} from "ngx-webstorage";
 import {UserServices} from "../../../../services/user.api-service";
 import {NgToastService} from "ng-angular-popup";
+import {CryptoData} from "../../../../services/CryptoJs/crypto-data";
 
 interface Months {
   viewValue: string;
@@ -27,6 +28,8 @@ interface Gender {
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+
+
   displayableMonths: Months[] = [
     { viewValue: 'Enero', month: 1 },
     { viewValue: 'Febrero', month: 2 },
@@ -93,11 +96,11 @@ export class EditProfileComponent implements OnInit {
   selectedMonth: number = 1;
   selectedYear: number = (new Date().getFullYear())-18;
   token=""
-  constructor(private toast: NgToastService,private sessionStorageService: SessionStorageService,private loginDataService: LoginDataService) {
+  constructor(private crypto: CryptoData,private toast: NgToastService,private sessionStorageService: SessionStorageService,private loginDataService: LoginDataService) {
     this.days = Array.from({ length: 31 }, (_, i) => i + 1);
     this.months = Array.from({ length: 12 }, (_, i) => i + 1);
     this.years = Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i-18);
-    this.token=this.sessionStorageService.retrieve('userSession').sessionToken
+    this.token=this.crypto.getDecryptObjectFromStorage().sessionToken
     this.userFormGroup.patchValue({
       name: this.loginDataService.userAccount.name,
       lastname: this.loginDataService.userAccount.lastName,
@@ -110,9 +113,10 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit(): void {
     new UserServices().getUserById(this.loginDataService.getUserId(this.token)).then(result=>{
-      
+
     })
   }
+
   imageReady(imageUrl: string) {
     console.log('Firebase Uploaded Image: ', imageUrl);
   }

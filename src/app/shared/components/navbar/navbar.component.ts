@@ -5,6 +5,7 @@ import {LoginComponent} from "../../../components/authentication/login/login.com
 import {RegisterComponent} from "../../../components/authentication/register/register.component";
 import {LoginDataService} from "../../../services/comunication/login/login-data.service";
 import {SessionStorageService } from 'ngx-webstorage';
+import {CryptoData} from "../../../services/CryptoJs/crypto-data";
 
 @Component({
   selector: 'app-navbar',
@@ -16,14 +17,15 @@ export class NavbarComponent implements OnInit {
   searchText: string = '';
   isSideMenuOptionsActive: Boolean =false;
 
-  constructor(private sessionStorageService: SessionStorageService, public loginDataService: LoginDataService,public dialog: MatDialog,private route: Router) {
+  constructor(private cryptoService: CryptoData,private sessionStorageService: SessionStorageService, public loginDataService: LoginDataService,public dialog: MatDialog,private route: Router) {
     this.isLogged=loginDataService.userAccount.isLogged
   }
 
   ngOnInit(): void {
-    const userSession = this.sessionStorageService.retrieve('userSession');
-    if(userSession!=null){
-      this.loginDataService.userAccount=userSession;
+    let sessionStorageObject=this.cryptoService.getDecryptObjectFromStorage()
+
+    if(sessionStorageObject!=null){
+      this.loginDataService.userAccount=sessionStorageObject;
     }
   }
   ngAfterViewInit(): void {
