@@ -6,6 +6,8 @@ import { jwtDecode } from "jwt-decode";
 import {SessionStorageService} from "ngx-webstorage";
 import {ImageControlComponent} from "../../../../components/image-control/image-control.component";
 import {UserServices} from "../../../../services/user.api-service";
+import {RegisterModel} from "../../../../core/models/RegisterModel";
+import {NgToastService} from "ng-angular-popup";
 
 interface Months {
   viewValue: string;
@@ -20,6 +22,7 @@ interface Country {
 }
 interface Gender {
   viewValue: string;
+  storableValue: string;
 }
 @Component({
   selector: 'app-edit-profile',
@@ -64,20 +67,19 @@ export class EditProfileComponent implements OnInit {
     { viewValue: 'Venezuela', alpha2: 'VE', phone: 58, phoneMask: '0000-0000000' },
   ];
   gender: Gender[]=[
-    { viewValue: 'Masculino'},
-    { viewValue: 'Feminino'},
-    { viewValue: 'Otro'},
-    { viewValue: 'Sin especificar'},
+    { viewValue: 'Masculino',storableValue: 'MALE'},
+    { viewValue: 'Feminino',storableValue: 'FEMALE'},
+    { viewValue: 'Otro',storableValue: 'OTHER'},
   ]
 
   userFormGroup  = new FormGroup({
     name: new FormControl('',[Validators.required]),
     lastname: new FormControl('',[Validators.required]),
-    password: new FormControl('password',[Validators.required]),
-    email : new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('password',),
+    email : new FormControl('', ),
     country: new FormControl(this.country[0], [Validators.required]),
-    gender: new FormControl(this.gender[3], [Validators.required]),
-    city: new FormControl('',),
+    gender: new FormControl(this.gender[2], [Validators.required]),
+    city: new FormControl('',[Validators.pattern(/^[a-zA-Z\s]*$/)]),
     description: new FormControl(''),
   });
   number=""
@@ -93,18 +95,19 @@ export class EditProfileComponent implements OnInit {
 
   selectedDay: number = 1;  // Inicializar con un valor predeterminado
   selectedMonth: number = 1;
-  selectedYear: number = new Date().getFullYear();
-  constructor(private sessionStorageService: SessionStorageService,private loginDataService: LoginDataService) {
+  selectedYear: number = (new Date().getFullYear())-18;
+  token=""
+  constructor(private toast: NgToastService,private sessionStorageService: SessionStorageService,private loginDataService: LoginDataService) {
     this.days = Array.from({ length: 31 }, (_, i) => i + 1);
     this.months = Array.from({ length: 12 }, (_, i) => i + 1);
     this.years = Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i-18);
-    let token=""
-    token=this.sessionStorageService.retrieve('userSession').sessionToken
+    this.token=this.sessionStorageService.retrieve('userSession').sessionToken
     this.userFormGroup.patchValue({
       name: this.loginDataService.userAccount.name,
       lastname: this.loginDataService.userAccount.lastName,
       country: this.country[this.findIndexByCountryName('Peru')],
-      email: jwtDecode(token).sub
+
+      email: jwtDecode(this.token).sub
     });
     this.setCountryInitialCodeForNumber("+51 924052944")
   }
@@ -116,7 +119,6 @@ export class EditProfileComponent implements OnInit {
     console.log('Firebase Uploaded Image: ', imageUrl);
   }
   updateDays() {
-    // Lógica para actualizar la lista de días según el mes seleccionado.
     const daysInMonth = new Date(this.selectedYear, this.selectedMonth, 0).getDate();
     this.days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
   }
@@ -186,5 +188,36 @@ export class EditProfileComponent implements OnInit {
     this.isSelectBoxActive = false; // Close the dropdown after selection
   }
   saveEditProfile(){
+    if (this.userFormGroup.valid) {
+      if(this.getPhoneMaskLength()!=this.getPhoneNumberLength() || this.isNumberErrorActive){
+        this.isNumberErrorActive=true
+      }else{
+        let name: string = <string>this.userFormGroup.get('name')?.value;
+        let lastname: string = <string>this.userFormGroup.get('lastname')?.value;
+        let gender: Gender = <Gender>this.userFormGroup.get('gender')?.value;
+        let country: Country = <Country>this.userFormGroup.get('country')?.value;
+        let city: string = <string>this.userFormGroup.get('city')?.value;
+        let phoneNumber: string = "+"+country.phone+" "+this.number
+        let birthdate = (new Date(this.selectedYear, this.selectedMonth - 1, this.selectedDay)).toISOString() ;
+        let description: string = <string>this.userFormGroup.get('description')?.value;
+        let editProfileBody={
+          "firstName": name,
+          "lastName": lastname,
+          "birthDay": birthdate,
+          "country": country.viewValue,
+          "city": city,
+          "gender": gender.storableValue,
+          "phoneNumber": phoneNumber,
+          "description": description
+        }
+        new UserServices().updateProfileData(this.token,this.loginDataService.getUserId(this.token),editProfileBody).then(response=>{
+          this.toast.success({detail:"Perfil actualizado",summary:'Perfil actualizado exitosamente',duration:1000});
+
+        }).catch(error=>{
+          this.toast.error({detail:"ERROR",summary:'Error al actualizar perfil',sticky:true});
+        })
+      }
+
+    }
   }
 }

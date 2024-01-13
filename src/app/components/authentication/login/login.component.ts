@@ -75,11 +75,8 @@ export class LoginComponent implements OnInit {
           name: response.data.firstName,
           lastName: response.data.lastName,
           imageUrl: response.data.imageUrl,
-          alias: null,
+          alias: this.getAlias(response.data.firstName,response.data.lastName),
           isLogged: true
-        }
-        if(userLogged.imageUrl==null){
-          userLogged.alias=this.getAlias(userLogged.name,userLogged.lastName)
         }
         this.loginDataService.userAccount=userLogged;
 

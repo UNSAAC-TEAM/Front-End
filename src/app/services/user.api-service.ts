@@ -23,8 +23,12 @@ export class UserServices{
     })
   }
   updateProfilePicture(token: string,userId: number,imageUrl: string){
-    return http.put("http://localhost:8080/api/v1/profile/"+userId+"/changeImageProfile",{
+    return http.put("profile/"+userId+"/changeImageProfile",{
       "imageUrl": imageUrl
     })
+  }
+  updateProfileData(token: string,userId: number,editProfileBody: any){
+    console.log(editProfileBody)
+    return http.put("profile/"+userId+"/edit",editProfileBody)
   }
 }
