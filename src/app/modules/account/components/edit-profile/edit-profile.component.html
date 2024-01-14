@@ -78,32 +78,13 @@
         </mat-form-field>
       </div>
       <div class="static-edit-form">
-        <h3>Correo:</h3>
-        <div class="change-field-content">
-          <mat-form-field class="static-edit-form-field" appearance="outline">
-            <input matInput autocomplete="off"  formControlName="email" readonly>
-            <mat-error *ngIf="userFormGroup.get('email')?.hasError('required')">
-              Email <strong>requerido</strong>
-            </mat-error>
-            <mat-error *ngIf="userFormGroup.get('email')?.hasError('email')">
-              Email <strong>invalido</strong>
-            </mat-error>
-          </mat-form-field>
-          <div class="change-input">
-            <p>Cambiar Correo</p>
-          </div>
-        </div>
-
-
-      </div>
-      <div class="static-edit-form">
         <h3>Contraseña:</h3>
         <div class="change-field-content">
           <mat-form-field class="static-edit-form-field" appearance="outline">
             <input matInput autocomplete="off" type="password" formControlName="password" readonly>
           </mat-form-field>
           <div class="change-input">
-            <p>Cambiar Contraseña</p>
+            <p (click)="openChangePasswordDialog()">Cambiar Contraseña</p>
           </div>
         </div>
       </div>

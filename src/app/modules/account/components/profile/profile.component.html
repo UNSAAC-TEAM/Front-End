@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="edit">
-      <button mat-mini-fab aria-label="Example icon button with a home icon" >
+      <button (click)="redirectToEditProfile()" mat-mini-fab aria-label="Example icon button with a home icon" >
         <mat-icon>edit</mat-icon>
       </button>
     </div>
@@ -110,8 +110,7 @@
   <div class="information">
     <h2>Sobre mi</h2>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In nulla posuere sollicitudin aliquam ultrices. Neque volutpat ac tincidunt vitae semper. Nibh tellus molestie nunc non blandit.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In nulla posuere sollicitudin aliquam ultrices. Neque volutpat ac tincidunt vitae semper. Nibh tellus molestie nunc non blandit.
+      {{this.description}}
     </p>
   </div>
 </div>

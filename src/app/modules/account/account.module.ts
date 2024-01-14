@@ -14,11 +14,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {ImageControlComponent} from "../../components/image-control/image-control.component";
+import { EditEmailDialogComponent } from './components/edit-email-dialog/edit-email-dialog.component';
+import { EditPasswordDialogComponent } from './components/edit-password-dialog/edit-password-dialog.component';
 
 
 
 @NgModule({
-  declarations: [AccountComponent,CredentialsComponent,EditProfileComponent,MyCoursesComponent,PaymentsComponent,ProfileComponent,SubscriptionComponent,SupportComponent],
+  declarations: [AccountComponent,CredentialsComponent,EditProfileComponent,MyCoursesComponent,PaymentsComponent,ProfileComponent,SubscriptionComponent,SupportComponent, EditEmailDialogComponent, EditPasswordDialogComponent],
     imports: [
         CommonModule,
         AccountRoutingModule,

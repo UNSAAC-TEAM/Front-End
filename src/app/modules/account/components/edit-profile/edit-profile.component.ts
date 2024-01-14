@@ -6,6 +6,10 @@ import {SessionStorageService} from "ngx-webstorage";
 import {UserServices} from "../../../../services/user.api-service";
 import {NgToastService} from "ng-angular-popup";
 import {CryptoData} from "../../../../services/CryptoJs/crypto-data";
+import {LoginComponent} from "../../../../components/authentication/login/login.component";
+import {EditPasswordDialogComponent} from "../edit-password-dialog/edit-password-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {EditEmailDialogComponent} from "../edit-email-dialog/edit-email-dialog.component";
 
 interface Months {
   viewValue: string;
@@ -28,8 +32,6 @@ interface Gender {
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-
-
   displayableMonths: Months[] = [
     { viewValue: 'Enero', month: 1 },
     { viewValue: 'Febrero', month: 2 },
@@ -96,7 +98,8 @@ export class EditProfileComponent implements OnInit {
   selectedMonth: number = 1;
   selectedYear: number = (new Date().getFullYear())-18;
   token=""
-  constructor(private crypto: CryptoData,private toast: NgToastService,private sessionStorageService: SessionStorageService,private loginDataService: LoginDataService) {
+  constructor(private crypto: CryptoData,private toast: NgToastService,private sessionStorageService: SessionStorageService,private loginDataService: LoginDataService,
+              private dialog: MatDialog) {
     this.days = Array.from({ length: 31 }, (_, i) => i + 1);
     this.months = Array.from({ length: 12 }, (_, i) => i + 1);
     this.years = Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i-18);
@@ -124,7 +127,6 @@ export class EditProfileComponent implements OnInit {
       this.setCountryInitialCodeForNumber(response.data.phoneNumber)
     })
   }
-
   imageReady(imageUrl: string) {
     console.log('Firebase Uploaded Image: ', imageUrl);
   }
@@ -149,7 +151,6 @@ export class EditProfileComponent implements OnInit {
     this.selectedCountryPhone = selectedCountry.phone.toString();
     this.selectedPhoneMask=selectedCountry.phoneMask.toString();
   }
-
   findIndexByCountryName(countryName: string): number {
     return this.country.findIndex(country => country.viewValue === countryName);
   }
@@ -236,5 +237,18 @@ export class EditProfileComponent implements OnInit {
       }
 
     }
+  }
+  openChangeEmailDialog() {
+    const dialogRef = this.dialog.open(EditEmailDialogComponent, {
+      width: '600px',
+      // Otras configuraciones
+    });
+  }
+
+  openChangePasswordDialog() {
+    const dialogRef = this.dialog.open(EditPasswordDialogComponent, {
+      width: '600px',
+      // Otras configuraciones
+    });
   }
 }

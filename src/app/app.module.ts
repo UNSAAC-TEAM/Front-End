@@ -27,9 +27,6 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 
 import {NavbarModule} from "./shared/components/navbar/navbar.module";
 
-import {CredentialsComponent} from "./modules/account/components/credentials/credentials.component";
-import {SubscriptionComponent} from "./modules/account/components/subscription/subscription.component";
-import {AccountComponent} from "./modules/account/pages/account/account.component";
 import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 
@@ -46,7 +43,6 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSidenavModule} from "@angular/material/sidenav";
-import {AccountModule} from "./modules/account/account.module";
 
 
 @NgModule({

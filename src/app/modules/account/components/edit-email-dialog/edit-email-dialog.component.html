@@ -1,0 +1,50 @@
+<div style="display: flex;justify-content: center">
+  <div class="container">
+    <div style="display: flex;justify-content: right;">
+      <button mat-icon-button mat-dialog-close aria-label="Example icon button with a home icon" (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="header">
+      <h1>Cambiar de Correo</h1>
+      <div class="pass">
+      </div>
+    </div>
+    <div class="form">
+      <form [formGroup]="userFormGroup"  >
+        <p>Ingresa el nuevo Correo</p>
+        <mat-form-field class="save-form-field" appearance="outline">
+          <mat-label style="color: black">Nueva contraseña</mat-label>
+          <input matInput autocomplete="off"  type="password" formControlName="password" >
+          <mat-error *ngIf="userFormGroup.get('password')?.hasError('required')">
+            Contraseña <strong>requerida</strong>
+          </mat-error>
+        </mat-form-field>
+        <p>Repite la nueva Correo</p>
+        <mat-form-field class="save-form-field" appearance="outline">
+          <mat-label style="color: black">Nueva contraseña</mat-label>
+          <input matInput autocomplete="off"  type="password" formControlName="repeatedPassword" >
+          <mat-error *ngIf="userFormGroup.get('repeatedPassword')?.hasError('required')">
+            Contraseña <strong>requerida</strong>
+          </mat-error>
+        </mat-form-field>
+        <p>Confirma tu contraseña</p>
+        <mat-form-field class="save-form-field" appearance="outline">
+          <mat-label style="color: black">Nueva contraseña</mat-label>
+          <input matInput autocomplete="off"  type="password" formControlName="password" >
+          <mat-error *ngIf="userFormGroup.get('password')?.hasError('required')">
+            Contraseña <strong>requerida</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="end">
+    </div>
+    <div class="actions" mat-dialog-actions>
+      <div class="save-button-container">
+        <button mat-flat-button  class="save-button" (click)="saveNewPassword()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

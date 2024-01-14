@@ -34,7 +34,12 @@ export class UserServices{
     })
   }
   updateProfileData(token: string,userId: number,editProfileBody: any){
-    console.log(editProfileBody)
     return http.put("profile/"+userId+"/edit",editProfileBody,{ headers: {"Authorization" : `Bearer ${token}`} })
+  }
+  updateUserPassword(token: string,userId: number,newPassword: string){
+    return http.put("user/"+userId+"/changePassword",{
+      "newPassword": newPassword
+    },{ headers: {"Authorization" : `Bearer ${token}`} })
+
   }
 }
