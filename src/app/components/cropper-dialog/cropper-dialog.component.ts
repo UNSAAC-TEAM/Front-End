@@ -25,27 +25,30 @@ export type CropperDialogResult = {
   standalone: true,
   imports: [CommonModule, ImageCropperModule, MatButtonModule, MatDialogModule],
   template: `
-    <div class="container">
-      <h1 mat-dialog-title>Recorta tu imagen</h1>
-      <div mat-dialog-content>
-        <image-cropper
-          [maintainAspectRatio]="true"
-          [aspectRatio]="data.width / data.height"
-          [resizeToHeight]="data.height"
-          [resizeToWidth]="data.width"
-          [onlyScaleDown]="true"
-          [imageFile]="data.image"
-          (imageCropped)="imageCropped($event)"
-        ></image-cropper>
-      </div>
+    <div style="display: flex;justify-content: center">
+      <div class="container">
+        <h1 mat-dialog-title>Recorta tu imagen</h1>
+        <div mat-dialog-content>
+          <image-cropper
+            [maintainAspectRatio]="true"
+            [aspectRatio]="data.width / data.height"
+            [resizeToHeight]="data.height"
+            [resizeToWidth]="data.width"
+            [onlyScaleDown]="true"
+            [imageFile]="data.image"
+            (imageCropped)="imageCropped($event)"
+          ></image-cropper>
+        </div>
 
-      <div mat-dialog-actions>
-        <button mat-button [mat-dialog-close]="false" style="color: white">Cancelar</button>
-        <button mat-button [mat-dialog-close]="result.getValue()" style="color: white" cdkFocusInitial>
-          Subir
-        </button>
+        <div mat-dialog-actions>
+          <button mat-button [mat-dialog-close]="false" style="color: white">Cancelar</button>
+          <button mat-button [mat-dialog-close]="result.getValue()" style="color: white" cdkFocusInitial>
+            Subir
+          </button>
+        </div>
       </div>
     </div>
+
 
   `,
   styles: [
@@ -57,6 +60,16 @@ export type CropperDialogResult = {
         padding: 15px 20px;
         border-radius: 1rem;
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.34);
+      }
+      @media (max-width: 650px) {
+        .container{
+          width: 350px;
+          background-color: #9b192d;
+          color: white;
+          padding: 15px 20px;
+          border-radius: 1rem;
+          box-shadow: 0 10px 10px rgba(0, 0, 0, 0.34);
+        }
       }
     `
   ],
