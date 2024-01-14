@@ -1,9 +1,9 @@
 .card{
-  width: 704px;
+  width: 764px;
   height: 100%;
   background-color: #9b192d;
   border-radius: 1rem;
-  margin-top: 2rem;
+  margin-top: 0.6rem;
   display: flex;
   justify-content: center;
 }
@@ -264,4 +264,97 @@ textarea{
   width: 400px;
   border-radius: 5px;
   caret-color: black !important;
+}
+@media (max-width: 800px) {
+  .card{
+    width: 600px;
+  }
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .edit-form{
+    width: 470px;
+  }
+  .edit-description-form{
+    width: 470px;
+  }
+  .static-edit-form{
+    width: 470px;
+  }
+  .edit-form-field{
+    width: 320px;
+  }
+  .edit-form-input{
+    width: 310px;
+  }
+  .select-box {
+    width:320px ;
+  }
+  .edit-date-form-field{
+    width:320px ;
+  }
+  .static-edit-form-field{
+    width: 170px;
+  }
+  .change-field-content{
+    width: 320px;
+    display: flex;
+    align-items: center;
+  }
+}
+@media (max-width: 650px) {
+  .card{
+    width: 350px;
+  }
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .edit-form{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+  }
+  .edit-form h3{
+    width: 100%;
+    text-align: left;
+  }
+  .edit-description-form{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  .static-edit-form{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  .edit-form-field{
+    width: 280px;
+  }
+  .edit-form-input{
+    width: 270px;
+  }
+  .select-box {
+    width:280px ;
+  }
+  .edit-date-form-field{
+    width:280px ;
+  }
+  .static-edit-form-field{
+    width: 150px;
+    margin-right: 50px;
+  }
+  .change-input{
+    width: 100px;
+  }
+  .change-field-content{
+    width: 280px;
+    display: flex;
+    justify-content: space-around;
+  }
 }

@@ -1,151 +1,152 @@
-<div class="card">
-  <div class="content">
-    <div class="edit-form">
-      <h3>Foto de perfil:</h3>
-      <div class="edit-form-field">
-        <app-image-control></app-image-control>
-      </div>
-
-    </div>
-    <form [formGroup]="userFormGroup"  >
+<div style="display: flex;justify-content: center">
+  <div class="card">
+    <div class="content">
       <div class="edit-form">
-        <h3>Nombres:</h3>
-        <mat-form-field class="edit-form-field" appearance="outline">
-          <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="name" pattern="[a-zA-Z ]*">
-          <mat-error *ngIf="userFormGroup.get('name')?.hasError('required')">
-            Nombre <strong>requerido</strong>
-          </mat-error>
-          <mat-error *ngIf="userFormGroup.get('name')?.hasError('pattern')">
-            No se permiten caracteres especiales
-          </mat-error>
-        </mat-form-field>
+        <h3>Foto de perfil:</h3>
+        <div class="edit-form-field">
+          <app-image-control></app-image-control>
+        </div>
       </div>
-      <div class="edit-form">
-        <h3>Apellidos:</h3>
-        <mat-form-field  class="edit-form-field" appearance="outline">
-          <input matInput class="edit-form-input" autocomplete="off"  type="text" formControlName="lastname" pattern="[a-zA-Z ]*">
-          <mat-error *ngIf="userFormGroup.get('lastname')?.hasError('required')">
-            Apellidos <strong>requeridos</strong>
-          </mat-error>
-          <mat-error *ngIf="userFormGroup.get('lastname')?.hasError('pattern')">
-            No se permiten caracteres especiales
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </form>
-    <div class="edit-form">
-      <h3>Nacimiento:</h3>
-      <div class="edit-date-form-field">
-        <mat-form-field class= "edit-day-date-form-field" appearance="outline">
-          <mat-select [(ngModel)]="selectedDay" name="food" >
-            <mat-option *ngFor="let day of days" [value]="day">
-              {{day}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div style="width: 10px"></div>
-        <mat-form-field class="edit-month-date-form-field" appearance="outline">
-          <mat-select [(ngModel)]="selectedMonth" name="food" (selectionChange)="updateDays()">
-            <mat-option *ngFor="let month of displayableMonths" [value]="month.month">
-              {{ month.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div style="width: 10px"></div>
-        <mat-form-field class= "edit-year-date-form-field" appearance="outline">
-          <mat-select [(ngModel)]="selectedYear" name="food" >
-            <mat-option *ngFor="let year of years" [value]="year">
-              {{year}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-    </div>
-    <form [formGroup]="userFormGroup"  >
-      <div class="edit-form">
-        <h3>Pais:</h3>
-        <mat-form-field class= "edit-form-field" appearance="outline">
-          <mat-select  formControlName="country" (selectionChange)="onCountrySelectionChange($event)">
-            <mat-option *ngFor="let country of country" [value]="country">
-              <span class="fi fi-{{country.alpha2.toLowerCase()}}" style="margin-right: 5px"></span>
-              {{country.viewValue}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="userFormGroup.get('country')?.hasError('required')">
-            Pais <strong>requerido</strong>
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="static-edit-form">
-        <h3>Contraseña:</h3>
-        <div class="change-field-content">
-          <mat-form-field class="static-edit-form-field" appearance="outline">
-            <input matInput autocomplete="off" type="password" formControlName="password" readonly>
+      <form [formGroup]="userFormGroup"  >
+        <div class="edit-form">
+          <h3>Nombres:</h3>
+          <mat-form-field class="edit-form-field" appearance="outline">
+            <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="name" pattern="[a-zA-Z ]*">
+            <mat-error *ngIf="userFormGroup.get('name')?.hasError('required')">
+              Nombre <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="userFormGroup.get('name')?.hasError('pattern')">
+              No se permiten caracteres especiales
+            </mat-error>
           </mat-form-field>
-          <div class="change-input">
-            <p (click)="openChangePasswordDialog()">Cambiar Contraseña</p>
-          </div>
+        </div>
+        <div class="edit-form">
+          <h3>Apellidos:</h3>
+          <mat-form-field  class="edit-form-field" appearance="outline">
+            <input matInput class="edit-form-input" autocomplete="off"  type="text" formControlName="lastname" pattern="[a-zA-Z ]*">
+            <mat-error *ngIf="userFormGroup.get('lastname')?.hasError('required')">
+              Apellidos <strong>requeridos</strong>
+            </mat-error>
+            <mat-error *ngIf="userFormGroup.get('lastname')?.hasError('pattern')">
+              No se permiten caracteres especiales
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="edit-form">
+          <h3>Pais:</h3>
+          <mat-form-field class= "edit-form-field" appearance="outline">
+            <mat-select  formControlName="country" (selectionChange)="onCountrySelectionChange($event)">
+              <mat-option *ngFor="let country of country" [value]="country">
+                <span class="fi fi-{{country.alpha2.toLowerCase()}}" style="margin-right: 5px"></span>
+                {{country.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="userFormGroup.get('country')?.hasError('required')">
+              Pais <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+      <div class="edit-form">
+        <h3>Nacimiento:</h3>
+        <div class="edit-date-form-field">
+          <mat-form-field class= "edit-day-date-form-field" appearance="outline">
+            <mat-select [(ngModel)]="selectedDay" name="food" >
+              <mat-option *ngFor="let day of days" [value]="day">
+                {{day}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div style="width: 10px"></div>
+          <mat-form-field class="edit-month-date-form-field" appearance="outline">
+            <mat-select [(ngModel)]="selectedMonth" name="food" (selectionChange)="updateDays()">
+              <mat-option *ngFor="let month of displayableMonths" [value]="month.month">
+                {{ month.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div style="width: 10px"></div>
+          <mat-form-field class= "edit-year-date-form-field" appearance="outline">
+            <mat-select [(ngModel)]="selectedYear" name="food" >
+              <mat-option *ngFor="let year of years" [value]="year">
+                {{year}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
+      <form [formGroup]="userFormGroup">
+        <div class="static-edit-form">
+          <h3>Contraseña:</h3>
+          <div class="change-field-content">
+            <mat-form-field class="static-edit-form-field" appearance="outline">
+              <input matInput autocomplete="off" type="password" formControlName="password" readonly>
+            </mat-form-field>
+            <div class="change-input">
+              <p (click)="openChangePasswordDialog()">Cambiar Contraseña</p>
+            </div>
+          </div>
+        </div>
+        <div class="edit-form">
+          <h3>Ciudad:</h3>
+          <mat-form-field class="edit-form-field" appearance="outline">
+            <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="city">
+            <mat-error *ngIf="userFormGroup.get('city')?.hasError('pattern')">
+              Caracteres <strong>invalidos</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="edit-form">
+          <h3>Genero:</h3>
+          <mat-form-field class= "edit-form-field" appearance="outline">
+            <mat-select  formControlName="gender">
+              <mat-option *ngFor="let gender of gender" [value]="gender">
+                {{gender.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </form>
       <div class="edit-form">
-        <h3>Ciudad:</h3>
-        <mat-form-field class="edit-form-field" appearance="outline">
-          <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="city">
-          <mat-error *ngIf="userFormGroup.get('city')?.hasError('pattern')">
-            Caracteres <strong>invalidos</strong>
+        <h3>Numero:</h3>
+        <div class="select-box">
+          <div class="selected-option" >
+            <div (click)="toggleSelectBox()" style="display: flex;">
+              <span class="fi fi-{{selectedCountryAlpha2}}" style="margin-right: 5px"></span>
+              <strong style="color: black">+{{ selectedCountryPhone }}</strong>
+            </div>
+            <input matInput style="background-color: #f3f3f3 !important;color: black" type="tel" name="tel" placeholder="{{this.selectedPhoneMask}}" (input)="onInputChangePhoneNumber($event)" [(ngModel)]="this.number">
+          </div>
+          <mat-error *ngIf="this.isNumberErrorActive" style="font-size: 12px">
+            Numero celular <strong>invalido</strong>
           </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="edit-form">
-        <h3>Genero:</h3>
-        <mat-form-field class= "edit-form-field" appearance="outline">
-          <mat-select  formControlName="gender">
-            <mat-option *ngFor="let gender of gender" [value]="gender">
-              {{gender.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </form>
-    <div class="edit-form">
-      <h3>Numero:</h3>
-      <div class="select-box">
-        <div class="selected-option" >
-          <div (click)="toggleSelectBox()" style="display: flex;">
-            <span class="fi fi-{{selectedCountryAlpha2}}" style="margin-right: 5px"></span>
-            <strong style="color: black">+{{ selectedCountryPhone }}</strong>
+          <div class="options" *ngIf="isSelectBoxActive">
+            <ol>
+              <li class="option" *ngFor="let country of filteredCountries" (click)="selectOption(country)">
+                <div>
+                  <span class="fi fi-{{country.alpha2.toLowerCase()}}" style="margin-right: 5px;color: black"></span>
+                  <span class="country-name">{{ country.viewValue }}</span>
+                </div>
+                <strong style="color: black">+{{ country.phone }}</strong>
+              </li>
+            </ol>
           </div>
-          <input matInput style="background-color: #f3f3f3 !important;color: black" type="tel" name="tel" placeholder="{{this.selectedPhoneMask}}" (input)="onInputChangePhoneNumber($event)" [(ngModel)]="this.number">
-        </div>
-        <mat-error *ngIf="this.isNumberErrorActive" style="font-size: 12px">
-          Numero celular <strong>invalido</strong>
-        </mat-error>
-        <div class="options" *ngIf="isSelectBoxActive">
-          <ol>
-            <li class="option" *ngFor="let country of filteredCountries" (click)="selectOption(country)">
-              <div>
-                <span class="fi fi-{{country.alpha2.toLowerCase()}}" style="margin-right: 5px;color: black"></span>
-                <span class="country-name">{{ country.viewValue }}</span>
-              </div>
-              <strong style="color: black">+{{ country.phone }}</strong>
-            </li>
-          </ol>
         </div>
       </div>
-    </div>
-    <form [formGroup]="userFormGroup"  >
-      <div class="edit-description-form">
-        <h3>Bibliografia:</h3>
-        <textarea matInput class="edit-form-input" autocomplete="off" type="text" formControlName="description" maxLength="504"></textarea>
+      <form [formGroup]="userFormGroup"  >
+        <div class="edit-description-form">
+          <h3>Bibliografia:</h3>
+          <textarea matInput class="edit-form-input" autocomplete="off" type="text" formControlName="description" maxLength="504"></textarea>
+        </div>
+      </form>
+      <div class="actions">
+        <button (click)="saveEditProfile()" class="save-button">Guardar Cambios</button>
       </div>
-    </form>
-    <div class="actions">
-      <button (click)="saveEditProfile()" class="save-button">Guardar Cambios</button>
     </div>
-  </div>
-  <div>
+    <div>
 
+    </div>
   </div>
 </div>
+
 

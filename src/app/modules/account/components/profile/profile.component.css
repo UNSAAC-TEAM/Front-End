@@ -3,7 +3,7 @@
   background-color: #9b192d;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
   border-radius: 0.5rem;
-  margin-top: 2rem;
+  margin-top: 0.6rem;
 }
 .profile{
   display: flex;
@@ -223,39 +223,50 @@ img {
     align-items: center;
   }
   .progress{
-    width: 590px;
+    width: 568px;
   }
+
   .statistics{
     display: flex;
     justify-content: space-around;
   }
   .information{
-    width: 85%;
+    width: 568px;
+    margin: 16px 0 0 0  ;
   }
 }
 @media (max-width: 700px) {
   .banner{
-    width: 500px;
+    width: 480px;
     background-color: #9b192d;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
     border-radius: 0.5rem;
     margin-top: 2rem;
   }
   .progress{
-    width: 500px;
+    width: 448px;
+  }
+  .information{
+    width: 448px;
+    margin: 16px 0 0 0  ;
   }
 }
 @media (max-width: 600px) {
   .banner{
-    width: 430px;
+    width: 420px;
     background-color: #9b192d;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
     border-radius: 0.5rem;
     margin-top: 2rem;
   }
   .progress{
-    width: 400px;
+    width: 388px;
   }
+  .information{
+    width: 388px;
+    margin: 16px 0 0 0  ;
+  }
+
 }
 @media (max-width: 440px) {
   .banner{
@@ -273,7 +284,12 @@ img {
 
   }
   .progress{
-    width: 280px;
+    width: 268px;
     height: 550px;
   }
+  .information{
+    width: 268px;
+    margin: 16px 0 0 0  ;
+  }
+
 }
