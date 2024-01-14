@@ -12,18 +12,24 @@ import {SupportComponent} from "./components/support/support.component";
 import {SharedModule} from "../../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {ImageControlComponent} from "../../components/image-control/image-control.component";
+import { EditEmailDialogComponent } from './components/edit-email-dialog/edit-email-dialog.component';
+import { EditPasswordDialogComponent } from './components/edit-password-dialog/edit-password-dialog.component';
 
 
 
 @NgModule({
-  declarations: [AccountComponent,CredentialsComponent,EditProfileComponent,MyCoursesComponent,PaymentsComponent,ProfileComponent,SubscriptionComponent,SupportComponent],
-  imports: [
-    CommonModule,
-    AccountRoutingModule,
-    SharedModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule
-  ]
+  declarations: [AccountComponent,CredentialsComponent,EditProfileComponent,MyCoursesComponent,PaymentsComponent,ProfileComponent,SubscriptionComponent,SupportComponent, EditEmailDialogComponent, EditPasswordDialogComponent],
+    imports: [
+        CommonModule,
+        AccountRoutingModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatDatepickerModule,
+        ImageControlComponent
+    ]
 })
 export class AccountModule { }

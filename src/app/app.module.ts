@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpecializationsComponent } from './components/specializations/specializations.component';
-
+import { ImageCropperModule } from 'ngx-image-cropper';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
@@ -14,7 +14,8 @@ import { PaymentsComponent } from './modules/account/components/payments/payment
 import { MyCoursesComponent } from './modules/account/components/my-courses/my-courses.component';
 import { EditProfileComponent } from './modules/account/components/edit-profile/edit-profile.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { CreateBlogComponent } from './components/create-blog/create-blog.component';
@@ -26,9 +27,6 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 
 import {NavbarModule} from "./shared/components/navbar/navbar.module";
 
-import {CredentialsComponent} from "./modules/account/components/credentials/credentials.component";
-import {SubscriptionComponent} from "./modules/account/components/subscription/subscription.component";
-import {AccountComponent} from "./modules/account/pages/account/account.component";
 import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 
@@ -45,7 +43,6 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSidenavModule} from "@angular/material/sidenav";
-import {AccountModule} from "./modules/account/account.module";
 
 
 @NgModule({
@@ -80,6 +77,9 @@ import {AccountModule} from "./modules/account/account.module";
     EditorModule,
     NgxWebstorageModule.forRoot(),
 
+    ImageCropperModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,

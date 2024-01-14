@@ -12,6 +12,7 @@ import {NgToastService} from "ng-angular-popup";
 import {UserServices} from "../../../services/user.api-service";
 import { jwtDecode } from "jwt-decode";
 import {SessionStorageService } from 'ngx-webstorage';
+import {CryptoData} from "../../../services/CryptoJs/crypto-data";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
     email : new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('',[Validators.required]),
   });
-  constructor(private sessionStorageService: SessionStorageService,private loginDataService: LoginDataService,private toast: NgToastService,private dialog: MatDialog,public dialogRef: MatDialogRef<LoginComponent>) { }
+  constructor(private crypto: CryptoData,private sessionStorageService: SessionStorageService,private loginDataService: LoginDataService,private toast: NgToastService,private dialog: MatDialog,public dialogRef: MatDialogRef<LoginComponent>) { }
 
   ngOnInit(): void {
   }
@@ -67,23 +68,17 @@ export class LoginComponent implements OnInit {
       let password: string = <string>this.userFormGroup.get('password')?.value;
       new UserServices().login(email,password).then(response=>{
 
-        const decoded = jwtDecode(response.data.token);
-        console.log(decoded)
-
         let userLogged: UserSession= {
           sessionToken:response.data.token,
           name: response.data.firstName,
           lastName: response.data.lastName,
           imageUrl: response.data.imageUrl,
-          alias: null,
+          alias: this.getAlias(response.data.firstName,response.data.lastName),
           isLogged: true
         }
-        if(userLogged.imageUrl==null){
-          userLogged.alias=this.getAlias(userLogged.name,userLogged.lastName)
-        }
         this.loginDataService.userAccount=userLogged;
+        this.crypto.EncryptAndSetObjectToStorage(this.loginDataService.userAccount)
 
-        this.sessionStorageService.store('userSession', userLogged);
 
         this.toast.success({detail:"Inicio de sesion exitoso",summary:'Cuenta iniciada correctamente',duration:1000});
         this.dialogRef.close(); // Cierra el dialog actual

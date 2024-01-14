@@ -14,9 +14,12 @@
   border-bottom-right-radius: 1rem;
 }
 .container{
+  width: 500px;
   background-color: #9b192d;
-  color: black;
+  color: white;
+  padding: 15px 20px;
   border-radius: 1rem;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.34);
 }
 .header{
   width: 100%;
@@ -253,4 +256,33 @@ input.search-box {
 
 .select-box ol li .country-name {
   margin-left: .4rem;
+}
+@media (min-width: 720px) {
+  .container{
+    width: 500px;
+    background-color: #9b192d;
+    color: white;
+    padding: 20px 20px;
+    border-radius: 1rem;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.34);
+  }
+
+}
+@media (max-width: 720px) {
+  .container{
+    width: 300px;
+    background-color: #9b192d;
+    color: white;
+    padding: 20px 20px;
+    border-radius: 1rem;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.34);
+  }
+  .phrase{
+    display: none;
+  }
+  .form-field{
+    width: 100%;
+    color: black !important;
+    height: 60px;
+  }
 }

@@ -1,7 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import { ValidatorFn, AbstractControl } from '@angular/forms';
 import {LoginDataService} from "../../../../services/comunication/login/login-data.service";
+import { jwtDecode } from "jwt-decode";
+import {SessionStorageService} from "ngx-webstorage";
+import {UserServices} from "../../../../services/user.api-service";
+import {NgToastService} from "ng-angular-popup";
+import {CryptoData} from "../../../../services/CryptoJs/crypto-data";
+import {LoginComponent} from "../../../../components/authentication/login/login.component";
+import {EditPasswordDialogComponent} from "../edit-password-dialog/edit-password-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {EditEmailDialogComponent} from "../edit-email-dialog/edit-email-dialog.component";
+
+interface Months {
+  viewValue: string;
+  month: number;
+}
 
 interface Country {
   viewValue: string;
@@ -11,6 +24,7 @@ interface Country {
 }
 interface Gender {
   viewValue: string;
+  storableValue: string;
 }
 @Component({
   selector: 'app-edit-profile',
@@ -18,6 +32,20 @@ interface Gender {
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+  displayableMonths: Months[] = [
+    { viewValue: 'Enero', month: 1 },
+    { viewValue: 'Febrero', month: 2 },
+    { viewValue: 'Marzo', month: 3 },
+    { viewValue: 'Abril', month: 4 },
+    { viewValue: 'Mayo', month: 5 },
+    { viewValue: 'Junio', month: 6 },
+    { viewValue: 'Julio', month: 7 },
+    { viewValue: 'Agosto', month: 8 },
+    { viewValue: 'Septiembre', month: 9 },
+    { viewValue: 'Octubre', month: 10 },
+    { viewValue: 'Noviembre', month: 11 },
+    { viewValue: 'Diciembre', month: 12 }
+  ];
   country: Country[] = [
     { viewValue: 'Peru', alpha2: 'PE', phone: 51, phoneMask: '000 000 000' },
     { viewValue: 'Argentina', alpha2: 'AR', phone: 54, phoneMask: '000 000 0000' },
@@ -41,19 +69,18 @@ export class EditProfileComponent implements OnInit {
     { viewValue: 'Venezuela', alpha2: 'VE', phone: 58, phoneMask: '0000-0000000' },
   ];
   gender: Gender[]=[
-    { viewValue: 'Masculino'},
-    { viewValue: 'Feminino'},
-    { viewValue: 'Otro'},
-    { viewValue: 'Sin especificar'},
+    { viewValue: 'Masculino',storableValue: 'MALE'},
+    { viewValue: 'Feminino',storableValue: 'FEMALE'},
+    { viewValue: 'Otro',storableValue: 'OTHER'},
   ]
   userFormGroup  = new FormGroup({
     name: new FormControl('',[Validators.required]),
     lastname: new FormControl('',[Validators.required]),
-    password: new FormControl('',[Validators.required]),
-    email : new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('password',),
+    email : new FormControl('', ),
     country: new FormControl(this.country[0], [Validators.required]),
-    gender: new FormControl(this.gender[3], [Validators.required]),
-    city: new FormControl('',),
+    gender: new FormControl(this.gender[2], [Validators.required]),
+    city: new FormControl('',[Validators.pattern(/^[a-zA-Z\s]*$/)]),
     description: new FormControl(''),
   });
   number=""
@@ -63,16 +90,49 @@ export class EditProfileComponent implements OnInit {
   selectedCountryAlpha2 = 'pe'; // Replace with your default country phone
   selectedPhoneMask="000 000 000";
   searchQuery = '';
-  constructor(private loginDataService: LoginDataService) {
+  days: number[];
+  months: number[];
+  years: number[];
+
+  selectedDay: number = 1;  // Inicializar con un valor predeterminado
+  selectedMonth: number = 1;
+  selectedYear: number = (new Date().getFullYear())-18;
+  token=""
+  constructor(private crypto: CryptoData,private toast: NgToastService,private sessionStorageService: SessionStorageService,private loginDataService: LoginDataService,
+              private dialog: MatDialog) {
+    this.days = Array.from({ length: 31 }, (_, i) => i + 1);
+    this.months = Array.from({ length: 12 }, (_, i) => i + 1);
+    this.years = Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i-18);
+    this.token=this.crypto.getDecryptObjectFromStorage().sessionToken
     this.userFormGroup.patchValue({
       name: this.loginDataService.userAccount.name,
       lastname: this.loginDataService.userAccount.lastName,
       country: this.country[this.findIndexByCountryName('Peru')],
+      email: jwtDecode(this.token).sub
     });
-    this.setCountryInitialCodeForNumber("+51 924052944")
   }
 
   ngOnInit(): void {
+    new UserServices().getUserById(this.loginDataService.getUserId(this.token)).then(response=>{
+      this.userFormGroup.patchValue({
+        description: response.data.description,
+        country: this.country[this.findIndexByCountryName(response.data.country)],
+        city:   response.data.city,
+        gender: this.gender[this.findIndexByGenderDisplayableValue(response.data.gender)]
+      });
+      let birthDate = new Date(response.data.birthDay);
+      this.selectedDay= birthDate.getDate();
+      this.selectedMonth = birthDate.getMonth() + 1;
+      this.selectedYear = birthDate.getFullYear();
+      this.setCountryInitialCodeForNumber(response.data.phoneNumber)
+    })
+  }
+  imageReady(imageUrl: string) {
+    console.log('Firebase Uploaded Image: ', imageUrl);
+  }
+  updateDays() {
+    const daysInMonth = new Date(this.selectedYear, this.selectedMonth, 0).getDate();
+    this.days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
   }
   setCountryInitialCodeForNumber(completeNumber: string){
     const match = completeNumber.match(/^\+(\d+) (\d+)$/);
@@ -91,9 +151,12 @@ export class EditProfileComponent implements OnInit {
     this.selectedCountryPhone = selectedCountry.phone.toString();
     this.selectedPhoneMask=selectedCountry.phoneMask.toString();
   }
-
   findIndexByCountryName(countryName: string): number {
     return this.country.findIndex(country => country.viewValue === countryName);
+  }
+  findIndexByGenderDisplayableValue(value: string): number {
+    return this.gender.findIndex(gender => gender.storableValue === value);
+
   }
   findIndexByCountryCode(countryCode: string): number {
     return this.country.findIndex(country => country.phone.toString() === countryCode);
@@ -114,13 +177,23 @@ export class EditProfileComponent implements OnInit {
     return this.number.replace(/[\s-]/g, '').length;
 
   }
-  onInputChangePhoneNumber(number: any){
-    if(this.getPhoneNumberLength()==0 || this.getPhoneNumberLength()>this.getPhoneMaskLength()){
-      this.isNumberErrorActive=true
+  onInputChangePhoneNumber(numberParameter: any): void{
+    const nonNumberOrSpacePattern = /[^0-9 ]/;
+    if(this.number.length>=1){
+      let lastNumber=(this.number[this.number.length-1])
+      if (nonNumberOrSpacePattern.test(lastNumber)) {
+        this.isNumberErrorActive = true;
+      } else {
+        if (this.getPhoneNumberLength() === 0 || this.getPhoneNumberLength() > this.getPhoneMaskLength()
+        ) {
+          this.isNumberErrorActive = true;
+        } else {
+          this.isNumberErrorActive = false;
+        }
+      }
     }
-    else {
-      this.isNumberErrorActive=false
-    }
+
+
 
   }
   selectOption(country: any) {
@@ -130,6 +203,52 @@ export class EditProfileComponent implements OnInit {
     this.isSelectBoxActive = false; // Close the dropdown after selection
   }
   saveEditProfile(){
+    if (this.userFormGroup.valid) {
+      if(this.getPhoneMaskLength()!=this.getPhoneNumberLength() || this.isNumberErrorActive){
+        this.isNumberErrorActive=true
+      }else{
+        let name: string = <string>this.userFormGroup.get('name')?.value;
+        let lastname: string = <string>this.userFormGroup.get('lastname')?.value;
+        let gender: Gender = <Gender>this.userFormGroup.get('gender')?.value;
+        let country: Country = <Country>this.userFormGroup.get('country')?.value;
+        let city: string = <string>this.userFormGroup.get('city')?.value;
+        let phoneNumber: string = "+"+country.phone+" "+this.number
+        let birthdate = (new Date(this.selectedYear, this.selectedMonth - 1, this.selectedDay)).toISOString() ;
+        let description: string = <string>this.userFormGroup.get('description')?.value;
+        let editProfileBody={
+          "firstName": name,
+          "lastName": lastname,
+          "birthDay": birthdate,
+          "country": country.viewValue,
+          "city": city,
+          "gender": gender.storableValue,
+          "phoneNumber": phoneNumber,
+          "description": description
+        }
+        new UserServices().updateProfileData(this.token,this.loginDataService.getUserId(this.token),editProfileBody).then(response=>{
+          this.loginDataService.userAccount.name=name
+          this.loginDataService.userAccount.lastName=lastname
+          this.crypto.EncryptAndSetObjectToStorage(this.loginDataService.userAccount)
+          this.toast.success({detail:"Perfil actualizado",summary:'Perfil actualizado exitosamente',duration:1000});
 
+        }).catch(error=>{
+          this.toast.error({detail:"ERROR",summary:'Error al actualizar perfil',sticky:true});
+        })
+      }
+
+    }
+  }
+  openChangeEmailDialog() {
+    const dialogRef = this.dialog.open(EditEmailDialogComponent, {
+      width: '600px',
+      // Otras configuraciones
+    });
+  }
+
+  openChangePasswordDialog() {
+    const dialogRef = this.dialog.open(EditPasswordDialogComponent, {
+      width: '600px',
+      // Otras configuraciones
+    });
   }
 }
