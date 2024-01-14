@@ -1,5 +1,5 @@
 .banner{
-  min-width: 704px;
+  width: 100%;
   background-color: #9b192d;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
   border-radius: 0.5rem;
@@ -63,7 +63,7 @@ img {
   background-color: #f6f6f6;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
   color: black;
-  max-width: 405px;
+  width: 405px;
   height: 215px;
   border-radius: 1rem;
   padding: 1rem;
@@ -200,4 +200,80 @@ img {
 }
 .edit mat-icon{
   color: white;
+}
+.responsive{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 800px) {
+  .banner{
+    width: 600px;
+    background-color: #9b192d;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+  }
+  .user-data{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .progress{
+    width: 590px;
+  }
+  .statistics{
+    display: flex;
+    justify-content: space-around;
+  }
+  .information{
+    width: 85%;
+  }
+}
+@media (max-width: 700px) {
+  .banner{
+    width: 500px;
+    background-color: #9b192d;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+  }
+  .progress{
+    width: 500px;
+  }
+}
+@media (max-width: 600px) {
+  .banner{
+    width: 430px;
+    background-color: #9b192d;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+  }
+  .progress{
+    width: 400px;
+  }
+}
+@media (max-width: 440px) {
+  .banner{
+    width: 300px;
+    background-color: #9b192d;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+  }
+  .statistics{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .progress{
+    width: 280px;
+    height: 550px;
+  }
 }
