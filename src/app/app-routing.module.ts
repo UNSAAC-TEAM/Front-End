@@ -21,7 +21,8 @@ const routes: Routes = [
     loadChildren: () => import('./modules/account/account.module').then((m) => m.AccountModule)
   },
   {path: 'routes', component: RoutesComponent},
-  {path: 'blogs', component: BlogsComponent},
+  { path: 'blogs/page/:pageNumber', component: BlogsComponent },
+  { path: 'blogs', redirectTo: 'blogs/page/1', pathMatch: 'full' },
   {path: 'teachers', component: TeachersComponent},
   {path: 'create-blog', component: CreateBlogComponent},
   {

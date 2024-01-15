@@ -8,14 +8,21 @@
     <div *ngFor="let blog of blogArrayResponse">
       <div class="blog-card">
         <img [src]="blog.imageUrl" class="blog-image-card" alt="">
-        <div class="blog-tag">
-          <p>{{blog.label}}</p>
+        <div class="blog-content">
+          <div class="blog-tag">
+            <p>{{blog.label}}</p>
+          </div>
+          <p class="blog-title">{{blog.title}}</p>
+          <div class="blog-description-container">
+            <div class="blog-description" [innerHTML]="addEllipsis(blog.description)"></div>
+            <a href="">Leer mas</a>
+          </div>
         </div>
-        <p class="blog-title">{{blog.title}}</p>
-        <div class="blog-description-container">
-          <div class="blog-description" [innerHTML]="addEllipsis(blog.description)"></div>
-          <a href="">Leer mas</a>
+        <div class="blog-footer">
+          <p>Por: {{blog.author}}</p>
+          <p>{{this.getDisplayableDate(blog.publishDate)}}</p>
         </div>
+
 
       </div>
     </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {BlogApiService} from "../../services/blog.api-service";
 import {BlogModel} from "../../core/models/BlogModel";
+import {ActivatedRoute} from "@angular/router";
+import {LoginComponent} from "../authentication/login/login.component";
 
 @Component({
   selector: 'app-blogs',
@@ -8,18 +10,24 @@ import {BlogModel} from "../../core/models/BlogModel";
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
-  currentPage=1
+  pageNumber: number=1;
   blogArrayResponse: Array<BlogModel>=[]
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    new BlogApiService().getAllBlogs(this.currentPage).then(response=>{
+
+    this.route.params.subscribe(params => {
+      this.pageNumber = +params['pageNumber'] || 1;
+      // Lógica adicional con this.pageNumber
+      console.log(this.pageNumber)
+    });
+    new BlogApiService().getAllBlogs(this.pageNumber).then(response=>{
       this.blogArrayResponse=response.data
     })
   }
   addEllipsis(text: string): string {
     const lineHeight = 1; // Ajusta según sea necesario
-    const maxLines = 130; // Ajusta según sea necesario
+    const maxLines = 150; // Ajusta según sea necesario
     const maxHeight = lineHeight * maxLines;
 
     const container = document.createElement('div');
@@ -41,6 +49,15 @@ export class BlogsComponent implements OnInit {
     }
 
     return text;
+  }
+  getDisplayableDate(date: number): string {
+    const publishDate = new Date(date);
+
+    const day = String(publishDate.getDate()).padStart(2, '0');
+    const month = String(publishDate.getMonth() + 1).padStart(2, '0');
+    const year = publishDate.getFullYear();
+
+    return `${day}-${month}-${year}`;
   }
 
 }

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog,} from '@angular/material/dialog';
 import {LoginComponent} from "../../../components/authentication/login/login.component";
 import {RegisterComponent} from "../../../components/authentication/register/register.component";
 import {LoginDataService} from "../../../services/comunication/login/login-data.service";
 import {SessionStorageService } from 'ngx-webstorage';
 import {CryptoData} from "../../../services/CryptoJs/crypto-data";
+import { NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,7 @@ export class NavbarComponent implements OnInit {
   isLogged: Boolean = false;
   searchText: string = '';
   isSideMenuOptionsActive: Boolean =false;
+  isBlogsActive: boolean = false;
 
   constructor(private cryptoService: CryptoData,private sessionStorageService: SessionStorageService, public loginDataService: LoginDataService,public dialog: MatDialog,private route: Router) {
     this.isLogged=loginDataService.userAccount.isLogged
