@@ -43,7 +43,7 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSidenavModule} from "@angular/material/sidenav";
-
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -76,7 +76,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 
     EditorModule,
     NgxWebstorageModule.forRoot(),
-
+    MatGridListModule,
     ImageCropperModule,
     MatNativeDateModule,
     MatDatepickerModule,

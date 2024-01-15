@@ -1,1 +1,23 @@
-<p>blogs works!</p>
+<div class="blog-cont">
+  <div class="blog-header">
+    <div class="blog-title">
+      <h1>Blog de la comunidad</h1>
+    </div>
+  </div>
+  <div class="blog-body">
+    <div *ngFor="let blog of blogArrayResponse">
+      <div class="blog-card">
+        <img [src]="blog.imageUrl" class="blog-image-card" alt="">
+        <div class="blog-tag">
+          <p>{{blog.label}}</p>
+        </div>
+        <p class="blog-title">{{blog.title}}</p>
+        <div class="blog-description-container">
+          <div class="blog-description" [innerHTML]="addEllipsis(blog.description)"></div>
+          <a href="">Leer mas</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
