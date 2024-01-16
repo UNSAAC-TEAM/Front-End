@@ -1,0 +1,19 @@
+
+.mat-card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 12px;
+  width: 375px;
+
+}
+
+.mat-card-image{
+  border-radius: 12px;
+  padding: 7px 7px 0;
+  border-bottom: 0;
+  overflow: hidden;
+  width: 100%;
+}

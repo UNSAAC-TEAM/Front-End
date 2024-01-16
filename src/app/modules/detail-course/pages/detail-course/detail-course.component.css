@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: row;
   width: 60%;
-  border: 2px solid black;
   margin: 8em auto;
 
 }
@@ -21,7 +20,9 @@
   margin-bottom: 1.2em;
 
 }
-
+a{
+  text-decoration: none;
+}
 
 
 .t-course{
@@ -119,4 +120,6 @@ i{
   font-size: 23px;
   vertical-align: middle;
 }
+
+
 
