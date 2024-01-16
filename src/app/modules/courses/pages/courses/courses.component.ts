@@ -1,4 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
+import {TestService} from "../../../../services/test.service";
 
 interface Filter {
   value: string;
@@ -17,7 +18,15 @@ const FILTER_OPTIONS: Filter[] = [
 })
 export class CoursesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: TestService) { }
+   cambiarEmailEnOtroComponente() {
+    const newEmail = 'anderson.1234@email.com'; // Nuevo correo electrónico
+    const password = '123'; // Contraseña del usuario
+     const dataToSend = { newEMail: newEmail, password: password };
+     this.dataService.changeEmail(dataToSend).subscribe(response => {
+       console.log(response);
+     });
+  }
 
   ngOnInit(): void {
   }

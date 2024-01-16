@@ -9,10 +9,6 @@ import { SpecializationsComponent } from './components/specializations/specializ
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
-import { ProfileComponent } from './modules/account/components/profile/profile.component';
-import { PaymentsComponent } from './modules/account/components/payments/payments.component';
-import { MyCoursesComponent } from './modules/account/components/my-courses/my-courses.component';
-import { EditProfileComponent } from './modules/account/components/edit-profile/edit-profile.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 import { TeachersComponent } from './components/teachers/teachers.component';
@@ -26,9 +22,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 
 import {NavbarModule} from "./shared/components/navbar/navbar.module";
 
-import {CredentialsComponent} from "./modules/account/components/credentials/credentials.component";
-import {SubscriptionComponent} from "./modules/account/components/subscription/subscription.component";
-import {AccountComponent} from "./modules/account/pages/account/account.component";
+
 import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 
@@ -45,8 +39,6 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSidenavModule} from "@angular/material/sidenav";
-import {AccountModule} from "./modules/account/account.module";
-
 
 @NgModule({
   declarations: [

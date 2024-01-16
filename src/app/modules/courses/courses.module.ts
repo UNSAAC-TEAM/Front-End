@@ -4,6 +4,8 @@ import {CoursesRoutingModule} from "./courses-routing.module";
 import {SharedModule} from "../../shared/shared.module";
 import {CoursesComponent} from "./pages/courses/courses.component";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {TestService} from "../../services/test.service";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -12,7 +14,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     CommonModule,
     CoursesRoutingModule,
     MatCheckboxModule,
-    SharedModule
-  ]
+    SharedModule,
+    HttpClientModule
+  ],
+  providers: [TestService],
 })
 export class CoursesModule { }

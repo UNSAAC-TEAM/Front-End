@@ -36,6 +36,10 @@ const routes: Routes = [
     path: 'premium',
     loadChildren: () => import('./modules/premium/premium.module').then((m) => m.PremiumModule)
   },
+  {
+    path: 'course',
+    loadChildren: () => import('./modules/detail-course/detail-course.module').then((m) => m.DetailCourseModule)
+  },
 
 ];
 
