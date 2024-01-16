@@ -7,13 +7,13 @@
   <div class="blog-body">
     <div *ngFor="let blog of blogArrayResponse | paginate: { itemsPerPage: 1, currentPage: pageNumber,totalItems: totalPageBlogsQuantity }">
       <div class="blog-card">
-        <img [src]="blog.imageUrl" class="blog-image-card" alt="">
+        <img [src]="blog.imageUrl" class="blog-image-card" alt="" (click)="blogRedirect(blog.id)">
         <div class="blog-content">
           <div class="blog-tag">
             <p>{{blog.label}}</p>
           </div>
-          <p class="blog-title">{{blog.title}}</p>
-          <div class="blog-description-container">
+          <p class="blog-title" (click)="blogRedirect(blog.id)">{{blog.title}}</p>
+          <div class="blog-description-container" (click)="blogRedirect(blog.id)">
             <div class="blog-description" [innerHTML]="addEllipsis(blog.description)"></div>
             <a href="">Leer mas</a>
           </div>

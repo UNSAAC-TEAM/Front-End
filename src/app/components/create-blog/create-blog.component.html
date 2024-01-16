@@ -1,17 +1,20 @@
-<!--div >
+<div >
   <h1>TinyMCE 6 Angular Demo</h1>
   <editor apiKey="1fim4fyjmf781d18xyj35334v9bhtk8s6j25sy0y4cis2tw2"
           [init]="{ plugins: 'lists link image table code help wordcount' }" [(ngModel)]="htmlContent"
   ></editor>
   <h1>HTML:</h1>
   {{htmlContent}}
-  <h1>Render Blog:</h1>
-  <div [innerHTML]="htmlContent"></div>
-  <video width="640" height="360" controls >
-    <source [src]="firebaseVideoUrl" type="video/mp4">
-    Tu navegador no soporta el elemento de video.
-  </video>
+  <!--h1>Render Blog:</h1>
+  <div [innerHTML]="htmlContent"></div-->
 </div>
+<button (click)="safeHTML()">Publicar</button>
+<button (click)="getHTML()">Cargar Blog JSON</button>
+<div [innerHTML]="newHtmlContent"></div>
+<!--video width="640" height="360" controls >
+  <source [src]="firebaseVideoUrl" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
 <div>
   <input type="file" (change)="onFileSelected($event)">
   <button (click)="uploadVideo()">Subir Video</button>
@@ -21,19 +24,3 @@
   <input type="file" accept="image/*" (change)="onPhotoFileSelected($event)">
   <button (click)="uploadPhoto()">Subir Foto</button>
 </div-->
-
-<input type="file" (change)="fileChangeEvent($event)" />
-
-<image-cropper style="height: 200px;width: 200px"
-  [imageChangedEvent]="imageChangedEvent"
-  [maintainAspectRatio]="true"
-  [aspectRatio]="1 / 1"
-  format="png"
-  (imageCropped)="imageCropped($event)"
-  (imageLoaded)="imageLoaded($event)"
-  (cropperReady)="cropperReady()"
-  (loadImageFailed)="loadImageFailed()"
-></image-cropper>
-
-<img style="height: 200px;width: 200px" [src]="croppedImage" />
-<button (click)="uploadCroppedPhoto()">Subir Foto</button>

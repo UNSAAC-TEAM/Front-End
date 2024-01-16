@@ -13,6 +13,7 @@ import {MyCoursesComponent} from "./modules/account/components/my-courses/my-cou
 import {SubscriptionComponent} from "./modules/account/components/subscription/subscription.component";
 import {CredentialsComponent} from "./modules/account/components/credentials/credentials.component";
 import {SupportComponent} from "./modules/account/components/support/support.component";
+import {BlogComponent} from "./components/blog/blog.component";
 
 const routes: Routes = [
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'routes', component: RoutesComponent},
   { path: 'blogs/page/:pageNumber', component: BlogsComponent },
   { path: 'blogs', redirectTo: 'blogs/page/1', pathMatch: 'full' },
+  {path: 'blog/:encryptedID', component: BlogComponent},
   {path: 'teachers', component: TeachersComponent},
   {path: 'create-blog', component: CreateBlogComponent},
   {

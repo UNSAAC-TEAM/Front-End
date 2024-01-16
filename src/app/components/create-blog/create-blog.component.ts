@@ -7,7 +7,16 @@ import {getDownloadURL, ref, uploadBytes} from "@angular/fire/storage";
 import firebase from "firebase/compat";
 import storage = firebase.storage;
 
-
+interface BlogContent {
+  id: number;
+  author: string;
+  label: string;
+  imageUrl: string;
+  title: string;
+  description: string;
+  content: string; // Usaremos SafeHtml para contenido HTML seguro
+  publishDate: number;
+}
 
 @Component({
   selector: 'app-create-blog',
@@ -20,9 +29,10 @@ export class CreateBlogComponent implements OnInit {
   croppedImage: any = '';
   selectedFile: File | null = null; // Inicializa con un valor
   selectedPhotoFile: File | null = null; // Inicializa con un valor
-
+  blogContent?: BlogContent
   constructor(private sanitizer: DomSanitizer,private storage: AngularFireStorage) { }
   htmlContent='';
+  newHtmlContent=''
   firebaseVideoUrl = 'https://firebasestorage.googleapis.com/v0/b/agripure-678b4.appspot.com/o/Comp%202.mp4?alt=media&token=5d0a2c99-fdad-4d69-b3d0-59d297d5dee3';
   ngOnInit(): void {
   }
@@ -62,14 +72,12 @@ export class CreateBlogComponent implements OnInit {
       );
     });
   }
-
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] as File;
   }
   onPhotoFileSelected(event: any) {
     this.selectedPhotoFile = event.target.files[0] as File;
   }
-
   uploadVideo() {
     if (this.selectedFile) {
       this.uploadVideoService(this.selectedFile)
@@ -98,66 +106,26 @@ export class CreateBlogComponent implements OnInit {
       console.warn('No se ha seleccionado ninguna foto.');
     }
   }
-  uploadCroppedPhoto() {
-    if (this.croppedImage) {
-      let safeUrl=this.croppedImage
-      // Convierte SafeUrl a Blob
-      this.convertSafeUrlToBlob(safeUrl)
-    } else {
-      //console.warn('No se ha seleccionado ninguna foto.');
+  safeHTML() {
+    const editorHtml: string = this.htmlContent;
+    const structuredContent: BlogContent = {
+      id:1,
+      author: "Diego Talledo",
+      label: "BIM",
+      imageUrl: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/agenda-biminfraestructura-jun2021.jpg?itok=Lz1BhcAY",
+      title: "Avances de implementación BIM en el Sector Público 2023",
+      description: "En la última década, la adopción de la metodología BIM ha experimentado un crecimiento significativo en América Latina marcando una transformación clave en el sector de la construcción. Se exploran los avances notables y los esfuerzos estratégicos realizados por diversos países de la región para integrar BIM en proyectos del sector público. A través de casos específicos, se examinará el impacto de la implementación de BIM en diferentes contextos latinoamericanos, así como las proyecciones y desafíos que definen la actual travesía de la región hacia la modernización y la digitalización en el ámbito de la construcción.",
+      content: editorHtml,
+      publishDate: 1053234000000
+    };
+    const jsonStructuredContent = JSON.stringify(structuredContent);
+    this.blogContent= JSON.parse(jsonStructuredContent);
+    console.log(this.blogContent)
+  }
+  getHTML() {
+    if(this.blogContent!=null){
+      this.newHtmlContent = this.blogContent.content;
     }
   }
-  convertSafeUrlToBlob(safeUrl: SafeUrl): Promise<Blob> {
-    return new Promise((resolve, reject) => {
-      const url: string = this.sanitizer.sanitize(1, safeUrl) as string;
-
-      fetch(url)
-        .then(response => response.blob())
-        .then(blob => resolve(blob))
-        .catch(error => reject(error));
-    });
-  }
-  saveBlobAsFile(blob: Blob, fileName: string): void {
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.style.display = 'none';
-
-    const url = window.URL.createObjectURL(blob);
-    a.href = url;
-    a.download = fileName;
-
-    a.click();
-
-    window.URL.revokeObjectURL(url);
-  }
-
-  async convertSafeUrlToPngAndSave(safeUrl: SafeUrl, fileName: string): Promise<void> {
-    try {
-      const blob = await this.convertSafeUrlToBlob(safeUrl);
-      this.saveBlobAsFile(blob, fileName + '.png');
-    } catch (error) {
-      console.error('Error al convertir SafeUrl a PNG:', error);
-    }
-  }
-
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-  }
-  imageCropped(event: ImageCroppedEvent) {
-    if (event.objectUrl != null) {
-      this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
-    }
-    // event.blob can be used to upload the cropped image
-  }
-  imageLoaded(image: LoadedImage) {
-    // show cropper
-  }
-  cropperReady() {
-    // cropper ready
-  }
-  loadImageFailed() {
-    // show message
-  }
-
 }
 

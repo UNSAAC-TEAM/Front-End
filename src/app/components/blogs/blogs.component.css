@@ -2,6 +2,7 @@
 .blog-cont{
   display: flex;
   width: 1110px;
+
   flex-direction: column;
   margin-top: 8em;
   margin-left: auto;
@@ -43,6 +44,8 @@
   flex-direction: row;
 }
 .blog-body{
+  width: 1110px;
+  height: 1240px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: auto;
