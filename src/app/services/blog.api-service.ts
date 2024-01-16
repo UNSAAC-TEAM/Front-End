@@ -5,7 +5,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 export class BlogApiService{
 
   getAllBlogs(page: number){
-    return axios.get("https://my-json-server.typicode.com/UNSAAC-TEAM/Json/blogs/")
+    return axios.get("https://my-json-server.typicode.com/UNSAAC-TEAM/Json/currentPageBlogs")
   }
 
 }

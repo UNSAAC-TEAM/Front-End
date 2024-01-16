@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BlogApiService} from "../../services/blog.api-service";
 import {BlogModel} from "../../core/models/BlogModel";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {LoginComponent} from "../authentication/login/login.component";
 
 @Component({
@@ -10,19 +10,24 @@ import {LoginComponent} from "../authentication/login/login.component";
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
+  elementsPerPage: number=2;
   pageNumber: number=1;
   blogArrayResponse: Array<BlogModel>=[]
-  constructor(private route: ActivatedRoute) { }
+  totalPageBlogsQuantity?:number
+  constructor(private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
     this.route.params.subscribe(params => {
       this.pageNumber = +params['pageNumber'] || 1;
-      // Lógica adicional con this.pageNumber
-      console.log(this.pageNumber)
     });
+    if(this.pageNumber==1){
+
+    }
     new BlogApiService().getAllBlogs(this.pageNumber).then(response=>{
+      console.log(response.data)
       this.blogArrayResponse=response.data
+      const totalElements = response.data.length;
+      this.totalPageBlogsQuantity = Math.ceil(totalElements / this.elementsPerPage);
     })
   }
   addEllipsis(text: string): string {
@@ -59,5 +64,8 @@ export class BlogsComponent implements OnInit {
 
     return `${day}-${month}-${year}`;
   }
-
+  globalPageChange(pageNumber: number){
+    this.pageNumber=pageNumber
+    this.router.navigate(['/blogs/page/'+pageNumber]);
+  }
 }

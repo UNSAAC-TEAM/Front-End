@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="blog-body">
-    <div *ngFor="let blog of blogArrayResponse">
+    <div *ngFor="let blog of blogArrayResponse | paginate: { itemsPerPage: 1, currentPage: pageNumber,totalItems: totalPageBlogsQuantity }">
       <div class="blog-card">
         <img [src]="blog.imageUrl" class="blog-image-card" alt="">
         <div class="blog-content">
@@ -27,4 +27,10 @@
       </div>
     </div>
   </div>
+  <div class="paginator-container">
+    <pagination-controls (pageChange)="this.globalPageChange($event)"
+                         previousLabel="Anterior"
+                         nextLabel="Siguiente"></pagination-controls>
+  </div>
+
 </div>
