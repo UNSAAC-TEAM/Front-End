@@ -37,6 +37,7 @@ import {MatCardModule} from "@angular/material/card";
   exports:[
     RouterModule,
     FooterComponent,
+    MatCardModule,
     CourseCardComponent,
     MatIconModule,
     MatButtonModule,
