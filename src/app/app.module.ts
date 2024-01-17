@@ -46,6 +46,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatGridListModule} from '@angular/material/grid-list';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BlogComponent } from './components/blog/blog.component';
+import {BlogImageControlComponent} from "./components/blog-image-control/blog-image-control.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +96,8 @@ import { BlogComponent } from './components/blog/blog.component';
     NgToastModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BlogImageControlComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

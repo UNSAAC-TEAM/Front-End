@@ -27,7 +27,7 @@ interface BlogContent {
 
 export class CreateBlogComponent implements OnInit {
   blogFormGroup  = new FormGroup({
-    title: new FormControl('',[Validators.required,Validators.pattern(/^[a-zA-Z\s]*$/)]),
+    title: new FormControl('',[Validators.required]),
     description: new FormControl('',[Validators.required]),
   });
   imageChangedEvent: any = '';
