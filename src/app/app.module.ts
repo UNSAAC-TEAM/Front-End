@@ -47,6 +47,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BlogComponent } from './components/blog/blog.component';
 import {BlogImageControlComponent} from "./components/blog-image-control/blog-image-control.component";
+import { CreateCourseComponent } from './components/create-course/create-course.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +62,7 @@ import {BlogImageControlComponent} from "./components/blog-image-control/blog-im
     RegisterComponent,
     ForgotPasswordComponent,
     BlogComponent,
+    CreateCourseComponent,
   ],
   imports: [
     BrowserModule,

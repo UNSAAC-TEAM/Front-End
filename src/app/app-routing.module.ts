@@ -14,6 +14,7 @@ import {SubscriptionComponent} from "./modules/account/components/subscription/s
 import {CredentialsComponent} from "./modules/account/components/credentials/credentials.component";
 import {SupportComponent} from "./modules/account/components/support/support.component";
 import {BlogComponent} from "./components/blog/blog.component";
+import {CreateCourseComponent} from "./components/create-course/create-course.component";
 
 const routes: Routes = [
 
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'blog/:encryptedID', component: BlogComponent},
   {path: 'teachers', component: TeachersComponent},
   {path: 'create-blog', component: CreateBlogComponent},
+  {path: 'create-course', component: CreateCourseComponent},
   {
     path: 'courses',
     loadChildren: () => import('./modules/courses/courses.module').then((m) => m.CoursesModule)

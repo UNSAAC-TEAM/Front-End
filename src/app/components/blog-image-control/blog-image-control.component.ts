@@ -42,7 +42,7 @@ import {BlogCropperDialogComponent} from "../blog-cropper-dialog/blog-cropper-di
             (click)="inputField.value = ''"
           />
           <button mat-raised-button [disabled]="uploading.getValue()" (click)="inputField.click()">
-            Actualizar foto
+            Elegir
           </button>
         </div>
     </div>
@@ -83,7 +83,6 @@ export class BlogImageControlComponent{
   get imageSource() {
     return this.croppedImageURL.value ?? this.placeholder;
   }
-
 
   uploading = new BehaviorSubject(false);
 
