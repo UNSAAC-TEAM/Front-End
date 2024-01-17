@@ -25,7 +25,7 @@
           <mat-form-field class="edit-form-field" appearance="outline">
             <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="title" placeholder="Introduce un titulo" pattern="[a-zA-Z ]*" maxLength="80">
             <mat-error *ngIf="blogFormGroup.get('title')?.hasError('required')">
-              Nombre <strong>requerido</strong>
+              El titulo es <strong>requerido</strong>
             </mat-error>
             <mat-error *ngIf="blogFormGroup.get('title')?.hasError('pattern')">
               No se permiten caracteres especiales
@@ -36,7 +36,7 @@
           <h3>Descripcion:</h3>
           <textarea matInput class="edit-form-input" (input)="descriptionOnType()" autocomplete="off" type="text" formControlName="description" placeholder="Introduce una descripcion" maxLength="504"></textarea>
           <mat-error *ngIf="isBlogEmpty">
-             Descripcion <strong>requerida</strong>
+             La descripcion es <strong>requerida</strong>
           </mat-error>
         </div>
       </form>

@@ -73,8 +73,22 @@
   justify-content: left;
   margin-top: 0.5rem;
 }
-.edit-description-form mat-error{
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.edit-description-form mat-error {
   font-size: 11px;
+  margin-left: 7px;
+  margin-top: 5px;
+  animation: slideIn 0.3s ease-out; /* Ajusta la duración y el efecto según tus preferencias */
 }
 textarea.mat-input-element {
   color: black;
