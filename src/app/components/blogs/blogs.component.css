@@ -69,6 +69,7 @@
   display: inline-block;
   padding: 3px 10px; /* Ajusta esto según sea necesario para agregar espacio alrededor del texto */
   margin-bottom: 0.5rem;
+  border-radius: 3px;
 }
 .blog-tag p{
   margin: 0;

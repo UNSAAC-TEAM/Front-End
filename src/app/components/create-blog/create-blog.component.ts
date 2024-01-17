@@ -178,7 +178,16 @@ export class CreateBlogComponent implements OnInit {
     this.isPreviewActive=!this.isPreviewActive
     if(this.blogContent!=null){
       this.newHtmlContent = this.blogContent.content;
+      console.log(this.newHtmlContent)
     }
+  }
+  getPreviewTag(tag: string){
+    if(tag==null){
+      return 'Undefined'
+    }else {
+
+    }
+    return tag
   }
 }
 

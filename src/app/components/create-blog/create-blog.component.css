@@ -142,10 +142,35 @@ img {
   justify-content: left ;
   width: 600px;
 }
+.preview-content{
+  display: flex;
+  justify-content: center;
+}
 .blog-tag {
   background-color: #e8a134;
   color: white;
   display: inline-block;
   padding: 3px 10px; /* Ajusta esto según sea necesario para agregar espacio alrededor del texto */
   margin-bottom: 0.5rem;
+  border-radius: 3px;
+}
+.blog-tag p{
+  margin: 0;
+}
+.preview-main-content{
+  background-color: white;
+  border-radius: 1rem;
+  width: 715px;
+  padding: 30px 30px;
+}
+.preview-title{
+  font-size: 36px;
+  font-weight: bold;
+}
+.preview-author{
+  display: flex;
+  align-items: center;
+}
+.preview-description{
+  margin-top: 2rem;
 }

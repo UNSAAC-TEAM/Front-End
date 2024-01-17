@@ -6,9 +6,12 @@
         <button mat-button>
           <mat-icon>delete</mat-icon>
           DESCARTAR</button>
-        <button mat-button (click)="preview()">
+        <button mat-button (click)="preview()" *ngIf="!isPreviewActive">
           <mat-icon>remove_red_eye</mat-icon>
           PREVISUALIZAR</button>
+        <button mat-button (click)="preview()" *ngIf="isPreviewActive">
+          <mat-icon>edit</mat-icon>
+          EDITAR</button>
         <button mat-button class="publish-button" (click)="uploadBlog()">
           <mat-icon>publish</mat-icon>
           PUBLICAR
@@ -86,25 +89,28 @@
     </div>
   </div>
   <div *ngIf="isPreviewActive" class="preview-content">
-    <div class="preview-header">
-      <p>{{this.blogFormGroup.get('title')?.value}}</p>
-      <div class="blog-tag">
-        <p>{{this.blogFormGroup.get('category')?.value}}</p>
+    <div class="preview-main-content">
+      <div class="preview-header">
+        <h1 class="preview-title">{{this.blogFormGroup.get('title')?.value|| 'Titulo Vacio'}}</h1>
+        <div class="blog-tag">
+          <p>{{this.blogFormGroup.get('category')?.value || 'Indefinido'}}</p>
+        </div>
+        <p class="preview-author">
+          <mat-icon>person</mat-icon> Por: Diego Talledo
+        </p>
+        <img
+          [src]="imageSource"
+          [width]="715"
+          [height]="402"
+          class="mat-elevation-z5"
+          [style.opacity]="uploading.getValue() ? 0.1 : 1" />
+        <p class="preview-description">
+          {{this.blogFormGroup.get('description')?.value}}
+        </p>
       </div>
-      <p>
-        Por: Diego Talledo
-      </p>
-      <img
-        [src]="imageSource"
-        [width]="555"
-        [height]="315"
-        class="mat-elevation-z5"
-        [style.opacity]="uploading.getValue() ? 0.1 : 1" />
-      <p>
-        {{this.blogFormGroup.get('description')?.value}}
-      </p>
+      <div [innerHTML]="htmlContent"></div>
     </div>
-    <div class="preview-body" [innerHTML]="newHtmlContent"></div>
+
   </div>
   <!--img [src]="croppedImage" /-->
 
