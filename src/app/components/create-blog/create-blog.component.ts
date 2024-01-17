@@ -6,6 +6,7 @@ import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import {getDownloadURL, ref, uploadBytes} from "@angular/fire/storage";
 import firebase from "firebase/compat";
 import storage = firebase.storage;
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 interface BlogContent {
   id: number;
@@ -25,6 +26,10 @@ interface BlogContent {
 })
 
 export class CreateBlogComponent implements OnInit {
+  blogFormGroup  = new FormGroup({
+    title: new FormControl('',[Validators.required,Validators.pattern(/^[a-zA-Z\s]*$/)]),
+    description: new FormControl('',[Validators.required]),
+  });
   imageChangedEvent: any = '';
   croppedImage: any = '';
   selectedFile: File | null = null; // Inicializa con un valor
@@ -34,6 +39,7 @@ export class CreateBlogComponent implements OnInit {
   htmlContent='';
   newHtmlContent=''
   firebaseVideoUrl = 'https://firebasestorage.googleapis.com/v0/b/agripure-678b4.appspot.com/o/Comp%202.mp4?alt=media&token=5d0a2c99-fdad-4d69-b3d0-59d297d5dee3';
+  isBlogEmpty=false
   ngOnInit(): void {
   }
   uploadVideoService(file: File): Promise<string> {
@@ -126,6 +132,16 @@ export class CreateBlogComponent implements OnInit {
     if(this.blogContent!=null){
       this.newHtmlContent = this.blogContent.content;
     }
+  }
+  descriptionOnType() {
+    let description: string = <string>this.blogFormGroup.get('description')?.value;
+    if(description.length==0){
+      this.isBlogEmpty=true
+    }else {
+      this.isBlogEmpty=false
+    }
+    // Tu lógica aquí...
+    console.log('Escribiendo en la descripción');
   }
 }
 

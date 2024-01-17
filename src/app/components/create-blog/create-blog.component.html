@@ -1,3 +1,55 @@
+<div class="header">
+  <div class="item-bar">
+    <p>REDACTA UN NUEVO BLOG !</p>
+    <div class="actions-buttons-container">
+      <button mat-button>
+        <mat-icon>delete</mat-icon>
+        DESCARTAR</button>
+      <button mat-button>
+        <mat-icon>remove_red_eye</mat-icon>
+        PREVISUALIZAR</button>
+      <button mat-button class="publish-button">
+        <mat-icon>publish</mat-icon>
+        PUBLICAR
+      </button>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <div class="main-information-container">
+    <div class="information">
+      <p class="information-title">Informacion principal</p>
+      <form [formGroup]="blogFormGroup"  >
+        <div class="edit-form">
+          <p>Titulo:</p>
+          <mat-form-field class="edit-form-field" appearance="outline">
+            <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="title" placeholder="Introduce un titulo" pattern="[a-zA-Z ]*" maxLength="80">
+            <mat-error *ngIf="blogFormGroup.get('title')?.hasError('required')">
+              Nombre <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="blogFormGroup.get('title')?.hasError('pattern')">
+              No se permiten caracteres especiales
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="edit-description-form">
+          <h3>Descripcion:</h3>
+          <textarea matInput class="edit-form-input" (input)="descriptionOnType()" autocomplete="off" type="text" formControlName="description" placeholder="Introduce una descripcion" maxLength="504"></textarea>
+          <mat-error *ngIf="isBlogEmpty">
+             Descripcion <strong>requerida</strong>
+          </mat-error>
+        </div>
+      </form>
+
+    </div>
+    <div class="photo-selection">
+
+    </div>
+  </div>
+  <div class="content">
+
+  </div>
+</div>
 <div >
   <h1>TinyMCE 6 Angular Demo</h1>
   <editor apiKey="1fim4fyjmf781d18xyj35334v9bhtk8s6j25sy0y4cis2tw2"

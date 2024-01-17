@@ -1,0 +1,89 @@
+.header{
+  padding: 15px 0;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.item-bar{
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1300px;
+}
+.item-bar p{
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 30px;
+  margin-top: 15px;
+}
+.content{
+  background-color: #f3f3f4;
+  height: 400px;
+  margin: 0;
+}
+.information{
+  background-color: white;
+  border-radius: 1rem;
+  padding: 30px;
+  margin: 30px;
+}
+.information-title{
+  font-size: 25px;
+  font-weight: bold;
+  margin: 15px 0 20px 0;
+}
+.actions-buttons-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-right: 30px;
+}
+.actions-buttons-container button{
+  margin-left: 10px;
+}
+.publish-button{
+  background-color: #e9a135;
+  color: white;
+  border-radius: 30px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.29);
+}
+.main-information-container{
+
+}
+.edit-form{
+  width: 700px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+.edit-form-field{
+  width: 700px;
+}
+.edit-form-input{
+  width: 700px;
+}
+.edit-description-form{
+  width: 685px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin-top: 0.5rem;
+}
+.edit-description-form mat-error{
+  font-size: 11px;
+}
+textarea.mat-input-element {
+  color: black;
+  padding: 5px 10px;
+}
+textarea{
+  background-color: #f3f3f3;
+  width: 400px;
+  border-radius: 5px;
+  caret-color: black !important;
+}
+
