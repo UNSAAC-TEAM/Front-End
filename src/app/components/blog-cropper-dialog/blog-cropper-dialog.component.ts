@@ -54,17 +54,21 @@ export type CropperDialogResult = {
     `
       .container{
         width: 450px;
-        background-color: #9b192d;
-        color: white;
+        background-color: white;
+        color: black;
         padding: 15px 20px;
         border-radius: 1rem;
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.34);
       }
+      button{
+        color: black;
+        background-color: #9b192d;
+      }
       @media (max-width: 650px) {
         .container{
           width: 350px;
-          background-color: #9b192d;
-          color: white;
+          background-color: white;
+          color: black;
           padding: 15px 20px;
           border-radius: 1rem;
           box-shadow: 0 10px 10px rgba(0, 0, 0, 0.34);

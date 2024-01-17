@@ -13,6 +13,7 @@ import { jwtDecode } from "jwt-decode";
 import {SessionStorageService} from "ngx-webstorage";
 import {NgToastService} from "ng-angular-popup";
 import {UserServices} from "../../services/user.api-service";
+import {BlogCropperDialogComponent} from "../blog-cropper-dialog/blog-cropper-dialog.component";
 @Component({
   selector: 'app-blog-image-control',
   standalone: true,
@@ -23,12 +24,12 @@ import {UserServices} from "../../services/user.api-service";
     MatProgressSpinnerModule,
   ],
   template: `
-    <div class="control-container" [style.width]="100 + 'px'">
+    <div class="control-container" [style.width]="555 + 'px'">
         <div class="image-container">
           <img
             [src]="imageSource"
-            [width]="100"
-            [height]="100"
+            [width]="555"
+            [height]="315"
             class="mat-elevation-z5"
             [style.opacity]="uploading.getValue() ? 0.1 : 1" />
         </div>
@@ -74,15 +75,12 @@ export class BlogImageControlComponent{
     this.imagePath.next(val);
   }
   get placeholder() {
-    return 'https://placehold.co/100X100';
+    return 'https://placehold.co/555X315';
   }
 
   croppedImageURL = new BehaviorSubject<string | undefined>(undefined);
 
   get imageSource() {
-    if(this.loginDataService.userAccount.imageUrl!=null){
-      return this.loginDataService.userAccount.imageUrl
-    }
     return this.croppedImageURL.value ?? this.placeholder;
   }
 
@@ -94,13 +92,13 @@ export class BlogImageControlComponent{
   fileSelected(event: any) {
     const file = event.target?.files[0];
     if (file) {
-      const dialogRef = this.dialog.open(CropperDialogComponent, {
+      const dialogRef = this.dialog.open(BlogCropperDialogComponent, {
         data: {
           image: file,
-          width: 100,
-          height: 100,
+          width: 555,
+          height: 315,
         },
-        width: '520px',
+        width: '555',
       });
 
       dialogRef
@@ -134,7 +132,7 @@ export class BlogImageControlComponent{
       console.log(decoded)
       let email=decoded.sub
       this.uploading.next(true);
-      const filePath = "profilePicture/"+email+".png";
+      const filePath = "blogPicture/"+email+".png";
       const storageRef = this.storage.ref(filePath);
       const uploadTask = this.storage.upload(filePath, blob);
 
@@ -145,12 +143,7 @@ export class BlogImageControlComponent{
       const downloadUrl = await storageRef.getDownloadURL().toPromise();
 
       this.croppedImageURL.next(downloadUrl);
-      new UserServices().updateProfilePicture(this.loginDataService.userAccount.sessionToken,this.loginDataService.getUserId(this.loginDataService.userAccount.sessionToken),downloadUrl).then(response=>{
-        this.loginDataService.userAccount.imageUrl=downloadUrl
-        this.sessionStorageService.store('userSession', this.loginDataService.userAccount);
-        this.toast.success({detail:"Foto actualizada",summary:'Foto de perfil actualizada correctamente',duration:3000});
-        this.uploading.next(false);
-      })
+      this.toast.success({detail:"Foto actualizada",summary:'Foto de perfil actualizada correctamente',duration:3000});
 
     }
 
