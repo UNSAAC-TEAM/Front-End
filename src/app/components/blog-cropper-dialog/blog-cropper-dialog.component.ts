@@ -64,7 +64,7 @@ export type CropperDialogResult = {
       }
       button{
         color: black;
-        background-color: #9b192d;
+        background-color: #737373;
       }
       @media (max-width: 650px) {
         .container{

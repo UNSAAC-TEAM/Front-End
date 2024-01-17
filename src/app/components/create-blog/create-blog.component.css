@@ -19,6 +19,9 @@
 .content{
 
 }
+.editor-content{
+  padding: 10px 0;
+}
 .information{
   background-color: white !important;
 }
@@ -44,12 +47,15 @@
 }
 .main-information-container{
   background-color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   border-radius: 1rem;
   padding: 30px;
   margin: 30px;
+}
+.main-information{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
 }
 .edit-form{
   width: 700px;

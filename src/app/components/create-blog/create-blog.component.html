@@ -18,61 +18,62 @@
   </div>
   <div class="content">
     <div class="main-information-container">
-      <div class="information">
-        <p class="information-title">Informacion principal</p>
-        <form [formGroup]="blogFormGroup"  >
-          <div class="edit-form">
-            <p>Titulo:</p>
-            <mat-form-field class="edit-form-field" appearance="outline">
-              <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="title" placeholder="Introduce un titulo" maxLength="80">
-              <mat-error *ngIf="blogFormGroup.get('title')?.hasError('required')">
-                El titulo es <strong>requerido</strong>
+      <div class="main-information">
+        <div class="information">
+          <p class="information-title">Informacion principal</p>
+          <form [formGroup]="blogFormGroup"  >
+            <div class="edit-form">
+              <p>Titulo:</p>
+              <mat-form-field class="edit-form-field" appearance="outline">
+                <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="title" placeholder="Introduce un titulo" maxLength="80">
+                <mat-error *ngIf="blogFormGroup.get('title')?.hasError('required')">
+                  El titulo es <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="edit-description-form">
+              <h3>Descripcion:</h3>
+              <textarea matInput class="edit-form-input" (input)="descriptionOnType()" autocomplete="off" type="text" formControlName="description" placeholder="Introduce una descripcion" maxLength="504"></textarea>
+              <mat-error *ngIf="isBlogEmpty">
+                La descripcion es <strong>requerida</strong>
               </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="edit-description-form">
-            <h3>Descripcion:</h3>
-            <textarea matInput class="edit-form-input" (input)="descriptionOnType()" autocomplete="off" type="text" formControlName="description" placeholder="Introduce una descripcion" maxLength="504"></textarea>
-            <mat-error *ngIf="isBlogEmpty">
-              La descripcion es <strong>requerida</strong>
-            </mat-error>
-          </div>
-        </form>
-      </div>
-      <div class="photo-selection">
-        <div class="control-container" [style.width]="555 + 'px'">
-          <div class="image-container">
-            <img
-              [src]="imageSource"
-              [width]="555"
-              [height]="315"
-              class="mat-elevation-z5"
-              [style.opacity]="uploading.getValue() ? 0.1 : 1" />
-          </div>
-          <div>
-            <input
-              #inputField
-              hidden
-              type="file"
-              (change)="fileSelected($event)"
-              (click)="inputField.value = ''"
-            />
-            <button mat-raised-button [disabled]="uploading.getValue()" (click)="inputField.click()" style="width: 500px">
-              Elegir
-            </button>
+            </div>
+          </form>
+        </div>
+        <div class="photo-selection">
+          <div class="control-container" [style.width]="555 + 'px'">
+            <div class="image-container">
+              <img
+                [src]="imageSource"
+                [width]="555"
+                [height]="315"
+                class="mat-elevation-z5"
+                [style.opacity]="uploading.getValue() ? 0.1 : 1" />
+            </div>
+            <div>
+              <input
+                #inputField
+                hidden
+                type="file"
+                (change)="fileSelected($event)"
+                (click)="inputField.value = ''"
+              />
+              <button mat-button [disabled]="uploading.getValue()" (click)="inputField.click()" style="width: 300px;background-color: #737373;color: white;border-radius: 10px">
+                Elegir portada
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="content">
-
+      <div class="editor-content">
+        <p class="information-title">Contenido</p>
+        <editor apiKey="1fim4fyjmf781d18xyj35334v9bhtk8s6j25sy0y4cis2tw2"
+                [init]="{ plugins: 'lists link image table code help wordcount' }" [(ngModel)]="htmlContent"
+        ></editor>
+      </div>
     </div>
   </div>
-  <div >
-    <h1>TinyMCE 6 Angular Demo</h1>
-    <editor apiKey="1fim4fyjmf781d18xyj35334v9bhtk8s6j25sy0y4cis2tw2"
-            [init]="{ plugins: 'lists link image table code help wordcount' }" [(ngModel)]="htmlContent"
-    ></editor>
+  <div>
     <h1>HTML:</h1>
     {{htmlContent}}
     <!--h1>Render Blog:</h1>
@@ -80,7 +81,7 @@
   </div>
   <button (click)="safeHTML()">Publicar</button>
   <button (click)="getHTML()">Cargar Blog JSON</button>
-  <img [src]="croppedImage" />
+  <!--img [src]="croppedImage" /-->
   <div [innerHTML]="newHtmlContent"></div>
 </div>
 

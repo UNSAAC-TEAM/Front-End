@@ -135,7 +135,7 @@ export class CreateBlogComponent implements OnInit {
       this.croppedImageURL.next(downloadUrl);
 
       console.log(downloadUrl)
-      this.toast.success({detail:"Foto actualizada",summary:'Foto de perfil actualizada correctamente',duration:3000});
+      this.toast.success({detail:"Blog publicado",summary:'Blog publicado correctamente',duration:3000});
     }
   }
   ngOnInit(): void {
