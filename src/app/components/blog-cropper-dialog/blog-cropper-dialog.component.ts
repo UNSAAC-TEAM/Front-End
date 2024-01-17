@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageCroppedEvent, ImageCropperModule } from 'ngx-image-cropper';
 import { BehaviorSubject } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -18,6 +19,7 @@ export type CropperDialogData = {
 export type CropperDialogResult = {
   blob: Blob;
   imageUrl: string;
+  safeUrl: any
 };
 @Component({
   selector: 'app-blog-cropper-dialog',
@@ -79,14 +81,18 @@ export type CropperDialogResult = {
 })
 export class BlogCropperDialogComponent{
   data: CropperDialogData = inject(MAT_DIALOG_DATA);
-
   result = new BehaviorSubject<CropperDialogResult | undefined>(undefined);
+
+  constructor(private sanitizer: DomSanitizer) {}
 
   imageCropped(event: ImageCroppedEvent) {
     const { blob, objectUrl } = event;
     if (blob && objectUrl) {
-      this.result.next({ blob, imageUrl: objectUrl });
+      if (event.objectUrl != null) {
+        this.result.next({ blob, imageUrl: objectUrl, safeUrl: this.sanitizer.bypassSecurityTrustUrl(event.objectUrl) });
+      }
+
+
     }
   }
-
 }

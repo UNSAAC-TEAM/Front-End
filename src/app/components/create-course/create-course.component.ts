@@ -4,6 +4,8 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {getDownloadURL, ref, uploadBytes} from "@angular/fire/storage";
 import firebase from "firebase/compat";
 import storage = firebase.storage;
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-create-course',
   templateUrl: './create-course.component.html',
@@ -13,8 +15,10 @@ export class CreateCourseComponent implements OnInit {
   selectedFile: File | null = null; // Inicializa con un valor
   selectedPhotoFile: File | null = null; // Inicializa con un valor
   firebaseVideoUrl = 'https://firebasestorage.googleapis.com/v0/b/agripure-678b4.appspot.com/o/Comp%202.mp4?alt=media&token=5d0a2c99-fdad-4d69-b3d0-59d297d5dee3';
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
 
-  constructor(private storage: AngularFireStorage) { }
+  constructor(private storage: AngularFireStorage,private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
   }
@@ -87,5 +91,24 @@ export class CreateCourseComponent implements OnInit {
     } else {
       console.warn('No se ha seleccionado ninguna foto.');
     }
+  }
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    if (event.objectUrl != null) {
+      this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
+      console.log(this.croppedImage)
+    }
+    // event.blob can be used to upload the cropped image
+  }
+  imageLoaded(image: LoadedImage) {
+    // show cropper
+  }
+  cropperReady() {
+    // cropper ready
+  }
+  loadImageFailed() {
+    // show message
   }
 }

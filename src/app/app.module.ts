@@ -46,7 +46,6 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatGridListModule} from '@angular/material/grid-list';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BlogComponent } from './components/blog/blog.component';
-import {BlogImageControlComponent} from "./components/blog-image-control/blog-image-control.component";
 import { CreateCourseComponent } from './components/create-course/create-course.component';
 @NgModule({
   declarations: [
@@ -99,7 +98,6 @@ import { CreateCourseComponent } from './components/create-course/create-course.
     ReactiveFormsModule,
     FontAwesomeModule,
     NgxPaginationModule,
-    BlogImageControlComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

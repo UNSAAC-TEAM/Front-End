@@ -17,13 +17,7 @@
   margin-top: 15px;
 }
 .content{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  background-color: white;
-  border-radius: 1rem;
-  padding: 30px;
-  margin: 30px;
+
 }
 .information{
   background-color: white !important;
@@ -50,6 +44,12 @@
 }
 .main-information-container{
   background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-radius: 1rem;
+  padding: 30px;
+  margin: 30px;
 }
 .edit-form{
   width: 700px;
@@ -99,5 +99,21 @@ textarea{
   width: 400px;
   border-radius: 5px;
   caret-color: black !important;
+}
+.control-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+
+.image-container {
+  border-radius: 5px;
+  position: relative;
+}
+
+img {
+  border-radius: inherit;
 }
 
