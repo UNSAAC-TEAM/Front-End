@@ -1,5 +1,5 @@
 .header{
-  padding: 15px 0 0 0;
+  padding: 15px 0 15px 0;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -8,19 +8,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 99%;
+  width: 1550px
 }
 .item-bar p{
   font-size: 25px;
   font-weight: bold;
-  margin-left: 30px;
   margin-top: 15px;
 }
 .content{
-
+  display: flex;
+  justify-content: center;
 }
 .editor-content{
   padding: 10px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.editor-content editor{
+  width: 1550px;
 }
 .information{
   background-color: white !important;
@@ -48,8 +55,8 @@
 .main-information-container{
   background-color: white;
   border-radius: 1rem;
-  padding: 30px;
-  margin: 30px;
+  width: 1550px;
+  padding: 30px 30px;
 }
 .main-information{
   display: flex;
@@ -64,8 +71,14 @@
   flex-direction: column;
   justify-content: left;
 }
+.edit-form p{
+  margin: 0
+}
 .edit-form-field{
   width: 700px;
+}
+.edit-description-form p{
+  margin: 0 0 14px 0;
 }
 .edit-form-input{
   width: 700px;
@@ -76,7 +89,7 @@
   display: flex;
   flex-direction: column;
   justify-content: left;
-  margin-top: 0.5rem;
+  margin: 0.5rem 0 2rem 0;
 }
 @keyframes slideIn {
   from {
@@ -122,4 +135,8 @@ textarea{
 img {
   border-radius: inherit;
 }
-
+.photo-selection{
+  display: flex;
+  flex-direction: column;
+  justify-content: left ;
+}

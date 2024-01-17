@@ -47,6 +47,7 @@ export class CreateBlogComponent implements OnInit {
   blogFormGroup  = new FormGroup({
     title: new FormControl('',[Validators.required]),
     description: new FormControl('',[Validators.required]),
+    category: new FormControl('',[Validators.required]),
   });
   blogContent?: BlogContent
   private subscription: Subscription
@@ -55,7 +56,7 @@ export class CreateBlogComponent implements OnInit {
     this.imagePath.next(val);
   }
   get placeholder() {
-    return 'https://placehold.co/555X315';
+    return 'https://github.com/UNSAAC-TEAM/img/blob/main/portada.jpg?raw=true';
   }
   blobResponse:Blob=new Blob()
   croppedImageURL = new BehaviorSubject<string | undefined>(undefined);
