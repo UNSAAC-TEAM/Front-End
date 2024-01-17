@@ -1,33 +1,35 @@
-<mat-card>
-  <img mat-card-image
-       src="https://leadgods-com.s3.amazonaws.com/imagenes/publications/12087/large/leadgods_fd515dd411bee01734cb019833d56a47_97638.png"
-       alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <div class="content-1">
-      <h5>Accede a este curso durante 12 meses con un pago único de:</h5>
-      <span>USD 69.00</span>
-      <button mat-stroked-button class="buy-button">Comprar ahora</button>
-      <p>15 días de garantía de devolución de dinero</p>
-    </div>
-    <div class="divider"> </div>
-    <div class="content-2">
-      <h5>Accede a este y a todos los cursos y especializaciones con un Plan PREMIUM</h5>
-      <button mat-stroked-button class="premium-button" routerLink="/premium"><i class="fa-solid fa-crown"></i>Sube a
-        Premium
-      </button>
-    </div>
-    <hr class="divider">
-    <div class="content-3">
-      <h4>Este Curso incluye:</h4>
-      <ul class="bullet-list">
-        <li><span>Acceso al curso 24/7</span></li>
-        <li><span>Acceso durante 12 meses</span></li>
-        <li><span>Certificación internacional respaldado por Autodesk (ACC)</span></li>
-        <li><span>Certificación internacional respaldado por Konstruedu.com</span></li>
-        <li><span>Sesiones de preguntas y respuestas en vivo</span></li>
-        <li><span>Tutoría diaria (Acompañamiento de tutores hasta la certificación)</span></li>
-      </ul>
-    </div>
-  </mat-card-content>
+<div class="block-sidebar-p-b">
+  <mat-card >
+    <img mat-card-image *ngIf="!hideImage"
+         src="https://leadgods-com.s3.amazonaws.com/imagenes/publications/12087/large/leadgods_fd515dd411bee01734cb019833d56a47_97638.png"
+         alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <div class="content-1">
+        <h5>Accede a este curso durante 12 meses con un pago único de:</h5>
+        <span>USD 69.00</span>
+        <button mat-stroked-button class="buy-button">Comprar ahora</button>
+        <p>15 días de garantía de devolución de dinero</p>
+      </div>
+      <div class="divider"></div>
+      <div class="content-2">
+        <h5>Accede a este y a todos los cursos y especializaciones con un Plan PREMIUM</h5>
+        <button mat-stroked-button class="premium-button" routerLink="/premium"><i class="fa-solid fa-crown"></i>Sube a
+          Premium
+        </button>
+      </div>
+      <hr class="divider">
+      <div class="content-3">
+        <h4>Este Curso incluye:</h4>
+        <ul class="bullet-list">
+          <li><span>Acceso al curso 24/7</span></li>
+          <li><span>Acceso durante 12 meses</span></li>
+          <li><span>Certificación internacional respaldado por Autodesk (ACC)</span></li>
+          <li><span>Certificación internacional respaldado por Konstruedu.com</span></li>
+          <li><span>Sesiones de preguntas y respuestas en vivo</span></li>
+          <li><span>Tutoría diaria (Acompañamiento de tutores hasta la certificación)</span></li>
+        </ul>
+      </div>
+    </mat-card-content>
 
-</mat-card>
+  </mat-card>
+</div>

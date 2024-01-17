@@ -1,7 +1,18 @@
 .fa-solid{
   margin-right: 6px;
 }
+.block-sidebar-p-b {
+  position: relative;
+  width: 375px;
+  height: 100%;
+  right: 0;
+}
+.scrolled {
+  position: relative !important;
+  top: 0 !important;
+}
 .mat-card{
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
