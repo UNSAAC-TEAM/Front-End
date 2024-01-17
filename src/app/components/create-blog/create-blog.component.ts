@@ -119,8 +119,8 @@ export class CreateBlogComponent implements OnInit {
   newHtmlContent=''
   isBlogEmpty=false
   zone = inject(NgZone);
-
-  async uploadImage() {
+  isPreviewActive=false
+  async uploadBlog() {
     if (this.blogFormGroup.valid && this.imageSelected && this.htmlContent.length>0) {
       try {
         if (this.imageSelected) {
@@ -164,11 +164,6 @@ export class CreateBlogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getHTML() {
-    if(this.blogContent!=null){
-      this.newHtmlContent = this.blogContent.content;
-    }
-  }
   descriptionOnType() {
     let description: string = <string>this.blogFormGroup.get('description')?.value;
     if(description.length==0){
@@ -177,6 +172,13 @@ export class CreateBlogComponent implements OnInit {
       this.isBlogEmpty=false
     }
     // Tu lógica aquí...
+  }
+
+  preview() {
+    this.isPreviewActive=!this.isPreviewActive
+    if(this.blogContent!=null){
+      this.newHtmlContent = this.blogContent.content;
+    }
   }
 }
 
