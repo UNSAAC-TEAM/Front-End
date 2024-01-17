@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  isVisible: boolean = false;
+
+  toggleVisibility(event: Event): void {
+    event.preventDefault();
+    this.isVisible = !this.isVisible;
+  }
   constructor() { }
 
   ngOnInit(): void {

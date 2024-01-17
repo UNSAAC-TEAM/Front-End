@@ -44,6 +44,15 @@
       <button class="subscribe-button" onclick="subscribe()">Suscribirme</button>
     </div>
   </div>
-
-
 </footer>
+<div id="block-whats" class="is-fixed">
+  <a href="#" class="cd-whats-trigger menu-is-open" style="" (click)="toggleVisibility($event)"></a>
+  <nav id="cd-main-whats">
+    <div class="block-nav-m is-visible"[ngClass]="{'is-visible': isVisible}">
+      <h3>¿En qué podemos ayudarte?</h3>
+      <a href="https://api.whatsapp.com/send?phone=51992925681&amp;text=Hola%20Konstruedu"><i class="fab fa-whatsapp"></i> Contactanos por whatsapp</a>
+      <span>Escríbenos dando clic en el botón</span>
+    </div>
+  </nav>
+</div>
+

@@ -1,4 +1,6 @@
-
+.fa-solid{
+  margin-right: 6px;
+}
 .mat-card{
   display: flex;
   justify-content: center;
@@ -7,13 +9,123 @@
   overflow: hidden;
   border-radius: 12px;
   width: 375px;
-
 }
-
+.divider{
+  width: 410px;
+}
 .mat-card-image{
   border-radius: 12px;
   padding: 7px 7px 0;
   border-bottom: 0;
   overflow: hidden;
   width: 100%;
+}
+
+.divider{
+  border: 0;
+  border-top: 2px solid #ccc; /* Puedes ajustar el color y el grosor según tus preferencias */
+  margin: 0;
+}
+.content-1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 30px;
+}
+
+.content-1 h5{
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.content-1 span{
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+.mat-stroked-button.buy-button{
+  height: 60px;
+  width: 300px;
+  line-height: 60px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  background: linear-gradient(45deg,#b93f21,#fd932a);
+  color: white;
+  border: 0px;
+  border-radius: 60px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.content-1 p{
+  margin-bottom: 0;
+  font-size: 13px;
+  line-height: 140%;
+
+}
+
+
+.content-2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 30px;
+}
+.content-2 h5{
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+.mat-stroked-button.premium-button{
+  height: 60px;
+  width: 300px;
+  line-height: 60px;
+  font-size: 18px;
+  font-weight: 500;
+  background: linear-gradient(45deg, #d99508,#eac918);
+  color: black;
+  border: 0px;
+  border-radius: 60px;
+}
+
+
+
+.content-3{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  padding: 25px 30px;
+}
+.content-3 h4{
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+ul{
+  padding: 0;
+  margin: 0;
+}
+
+.bullet-list li {
+  display: flex;
+  margin-bottom: 15px;
+}
+.bullet-list li::before {
+  content: "\E876";
+  font-family: 'Material Icons';
+  font-size: 18px;
+  color: var(--color-secondary);
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 5px;
 }
