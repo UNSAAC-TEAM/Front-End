@@ -26,14 +26,13 @@ import {NgToastService} from "ng-angular-popup";
 import {BlogCropperDialogComponent} from "../blog-cropper-dialog/blog-cropper-dialog.component";
 
 interface BlogContent {
-  id: number;
   author: string;
   label: string;
   imageUrl: string;
   title: string;
   description: string;
-  content: string; // Usaremos SafeHtml para contenido HTML seguro
-  publishDate: number;
+  content: string;
+  publishDate: string;
 }
 
 @Component({
@@ -122,41 +121,49 @@ export class CreateBlogComponent implements OnInit {
   zone = inject(NgZone);
 
   async uploadImage() {
-    if(this.imageSelected){
-      const filePath = "blogPicture/blog.png";
-      const storageRef = this.storage.ref(filePath);
-      const uploadTask = this.storage.upload(filePath, this.blobResponse);
+    if (this.blogFormGroup.valid && this.imageSelected && this.htmlContent.length>0) {
+      try {
+        if (this.imageSelected) {
+          const filePath = "blogPicture/blog.png";
+          const storageRef = this.storage.ref(filePath);
+          const uploadTask = this.storage.upload(filePath, this.blobResponse);
 
-      // Espera a que la tarea de carga se complete
-      await uploadTask;
+          // Espera a que la tarea de carga se complete
+          await uploadTask;
 
-      // Luego obtén la URL de descarga
-      const downloadUrl = await storageRef.getDownloadURL().toPromise();
+          // Luego obtén la URL de descarga
+          const downloadUrl = await storageRef.getDownloadURL().toPromise();
 
-      this.croppedImageURL.next(downloadUrl);
+          this.croppedImageURL.next(downloadUrl);
 
-      console.log(downloadUrl)
-      this.toast.success({detail:"Blog publicado",summary:'Blog publicado correctamente',duration:3000});
+          console.log(downloadUrl);
+          const editorHtml: string = this.htmlContent;
+
+          const structuredContent: BlogContent = {
+            author: "Diego Talledo",
+            label: <string>this.blogFormGroup.get('category')?.value,
+            imageUrl: downloadUrl,
+            title: <string>this.blogFormGroup.get('title')?.value,
+            description: <string>this.blogFormGroup.get('description')?.value,
+            content: editorHtml,
+            publishDate: (new Date()).toISOString()
+          };
+          const jsonStructuredContent = JSON.stringify(structuredContent);
+          this.blogContent= JSON.parse(jsonStructuredContent);
+
+          this.toast.success({ detail: "Blog publicado", summary: 'Blog publicado correctamente', duration: 3000 });
+        }
+      } catch (error) {
+        this.toast.error({ detail: "Error al cargar la imagen", summary: 'Error', duration: 3000 });
+      }
+
+    }else {
+      this.toast.error({ detail: "Error", summary: 'Se deben rellenar todos los campos', duration: 4000 });
     }
   }
   ngOnInit(): void {
   }
 
-  safeHTML() {
-    const editorHtml: string = this.htmlContent;
-    const structuredContent: BlogContent = {
-      id:1,
-      author: "Diego Talledo",
-      label: "BIM",
-      imageUrl: "https://www.ulima.edu.pe/sites/default/files/styles/600x300/public/news/img/agenda-biminfraestructura-jun2021.jpg?itok=Lz1BhcAY",
-      title: "Avances de implementación BIM en el Sector Público 2023",
-      description: "En la última década, la adopción de la metodología BIM ha experimentado un crecimiento significativo en América Latina marcando una transformación clave en el sector de la construcción. Se exploran los avances notables y los esfuerzos estratégicos realizados por diversos países de la región para integrar BIM en proyectos del sector público. A través de casos específicos, se examinará el impacto de la implementación de BIM en diferentes contextos latinoamericanos, así como las proyecciones y desafíos que definen la actual travesía de la región hacia la modernización y la digitalización en el ámbito de la construcción.",
-      content: editorHtml,
-      publishDate: 1053234000000
-    };
-    const jsonStructuredContent = JSON.stringify(structuredContent);
-    this.blogContent= JSON.parse(jsonStructuredContent);
-  }
   getHTML() {
     if(this.blogContent!=null){
       this.newHtmlContent = this.blogContent.content;
