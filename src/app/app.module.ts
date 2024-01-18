@@ -47,6 +47,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BlogComponent } from './components/blog/blog.component';
 import { CreateCourseComponent } from './components/create-course/create-course.component';
+import {SafeHtmlPipe} from "./components/create-blog/safe-html.pipe";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,8 +64,10 @@ import { CreateCourseComponent } from './components/create-course/create-course.
     ForgotPasswordComponent,
     BlogComponent,
     CreateCourseComponent,
+    SafeHtmlPipe
   ],
   imports: [
+
     BrowserModule,
     BrowserAnimationsModule,
     NavbarModule,

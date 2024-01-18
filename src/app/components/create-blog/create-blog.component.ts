@@ -1,16 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core'
-import {finalize} from "rxjs/operators";
-import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {getDownloadURL, ref, uploadBytes} from "@angular/fire/storage";
-import firebase from "firebase/compat";
-import storage = firebase.storage;
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {CommonModule} from "@angular/common";
-import {MatDialogModule} from "@angular/material/dialog";
-import {MatButtonModule} from "@angular/material/button";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-
+import {  SafeHtml } from '@angular/platform-browser';
 
 import { EventEmitter,  Input, NgZone,  Output} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -40,7 +31,6 @@ interface BlogContent {
   templateUrl: './create-blog.component.html',
   styleUrls: ['./create-blog.component.css']
 })
-
 export class CreateBlogComponent implements OnInit {
   imageSelected=false
   blogFormGroup  = new FormGroup({
@@ -115,6 +105,7 @@ export class CreateBlogComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
   htmlContent='';
   newHtmlContent=''
   isBlogEmpty=false
@@ -181,13 +172,38 @@ export class CreateBlogComponent implements OnInit {
       console.log(this.newHtmlContent)
     }
   }
-  getPreviewTag(tag: string){
-    if(tag==null){
-      return 'Undefined'
-    }else {
+  modificarImagenes(): void {
+    // Expresión regular para encontrar etiquetas img sin width y height
+    const regexSinDimensiones = /<img\s+src="([^"]+)"\s*\/?>/gi;
 
-    }
-    return tag
+    this.htmlContent = this.htmlContent.replace(regexSinDimensiones, (match, src) => {
+      // Agregar width="50%" por defecto si no tiene dimensiones
+      return `<img src="${src}" width="50%">`;
+    });
+
+    // Expresión regular para encontrar etiquetas img con width y height en píxeles
+    const regexConDimensionesEnPixeles = /<img\s+src="([^"]+)"\s+width="(\d+)"\s+height="(\d+)"\s*\/?>/gi;
+
+    this.htmlContent = this.htmlContent.replace(regexConDimensionesEnPixeles, (match, src, width, height) => {
+      // Calcular porcentaje si las dimensiones están en píxeles
+      let anchoPantalla = window.innerWidth;
+      console.log(anchoPantalla)
+      if(anchoPantalla>=1000){
+        anchoPantalla=1546
+      }
+      const porcentajeWidth = (parseInt(width) / anchoPantalla) * 100;
+      // Eliminar height
+      return `<img src="${src}" width="${porcentajeWidth}%">`;
+    });
+
+    // Expresión regular para encontrar etiquetas img con width y height en porcentaje
+    const regexConDimensionesEnPorcentaje = /<img\s+src="([^"]+)"\s+width="(\d+)%"\s+height="(\d+)%"\s*\/?>/gi;
+
+    this.htmlContent = this.htmlContent.replace(regexConDimensionesEnPorcentaje, (match, src, width, height) => {
+      // Mantener dimensiones si ya están en porcentaje
+      return match;
+    });
   }
+
 }
 

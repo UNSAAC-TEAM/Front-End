@@ -83,9 +83,16 @@
           <p class="information-title">Contenido</p>
         </div>
         <editor apiKey="1fim4fyjmf781d18xyj35334v9bhtk8s6j25sy0y4cis2tw2"
-                [init]="{ plugins: 'lists link image table code help wordcount' }" [(ngModel)]="htmlContent"
+                [init]="{ plugins: 'lists link image table code help wordcount' }"
+                [(ngModel)]="htmlContent"
         ></editor>
       </div>
+      <div>
+        {{htmlContent}}
+      </div>
+      <button mat-button (click)="modificarImagenes()">
+        <mat-icon>delete</mat-icon>
+        MODIFCIA</button>
     </div>
   </div>
   <div *ngIf="isPreviewActive" class="preview-content">
@@ -108,9 +115,8 @@
           {{this.blogFormGroup.get('description')?.value}}
         </p>
       </div>
-      <div [innerHTML]="htmlContent"></div>
+      <div [innerHTML]="htmlContent" class="inner"></div>
     </div>
-
   </div>
   <!--img [src]="croppedImage" /-->
 

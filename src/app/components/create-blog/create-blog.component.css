@@ -162,6 +162,7 @@ img {
   border-radius: 1rem;
   width: 715px;
   padding: 30px 30px;
+  margin-bottom: 5rem;
 }
 .preview-title{
   font-size: 36px;
@@ -173,4 +174,19 @@ img {
 }
 .preview-description{
   margin-top: 2rem;
+}
+.preview-body {
+  width: 715px;
+  overflow-x: hidden; /* O también puedes probar con overflow: hidden */
+}
+
+.inner {
+  width: 100%;
+  color: blue;
+  font-size: 20px;
+  word-wrap: break-word;
+}
+.hola{
+  width: 10px;
+  height: 10px;
 }
