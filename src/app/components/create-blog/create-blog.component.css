@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1550px
+  width: 1550px;
 }
 .item-bar p{
   font-size: 25px;
@@ -40,8 +40,6 @@
 .actions-buttons-container{
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-right: 30px;
 }
 .actions-buttons-container button{
   margin-left: 10px;
@@ -126,11 +124,18 @@ textarea{
   align-items: center;
   gap: 16px;
   position: relative;
+  width: 555px;
 }
-
+.image-container img{
+  width: 555px;
+  height:315px;
+}
 .image-container {
   border-radius: 5px;
   position: relative;
+}
+.image-container-button{
+  width: 300px;background-color: #737373;color: white;border-radius: 10px
 }
 
 img {
@@ -189,4 +194,250 @@ img {
 .hola{
   width: 10px;
   height: 10px;
+}
+.editor-content-title{
+  width: 1550px;display: flex;justify-content: left
+}
+@media (max-width: 1650px) {
+  .item-bar{
+    width: 1350px;
+  }
+  .editor-content editor{
+    width: 1350px;
+  }
+  .main-information-container{
+    width: 1350px;
+  }
+  .editor-content-title{
+    width: 1350px;
+  }
+}
+@media (max-width: 1450px) {
+  .item-bar{
+    width: 1150px;
+  }
+  .editor-content editor{
+    width: 1150px;
+  }
+  .main-information-container{
+    width: 1150px;
+  }
+  .editor-content-title{
+    width: 1150px;
+  }
+  .control-container {
+    width: 444px;
+    height: 380px;
+  }
+  .photo-selection{
+    width: 480px;
+  }
+  .image-container img{
+    width: 444px;
+    height:252px;
+  }
+  .edit-form{
+    width: 500px;
+  }
+  .edit-form-field{
+    width: 500px;
+  }
+  .edit-description-form{
+    width: 485px;
+  }
+}
+@media (max-width: 1250px) {
+  .item-bar{
+    width: 950px;
+  }
+  .editor-content editor{
+    width: 950px;
+  }
+  .main-information-container{
+    width: 950px;
+  }
+  .editor-content-title{
+    width: 950px;
+  }
+
+  .control-container {
+    width: 400px;
+    height: 380px;
+  }
+  .photo-selection{
+    width: 406px;
+  }
+  .image-container img{
+    width: 400px;
+    height:208px;
+  }
+  .edit-form{
+    width: 500px;
+  }
+  .edit-form-field{
+    width: 500px;
+  }
+  .edit-description-form{
+    width: 485px;
+  }
+}
+@media (max-width: 1050px) {
+  .main-information{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .item-bar{
+    width: 750px;
+  }
+  .editor-content editor{
+    width: 750px;
+  }
+  .main-information-container{
+    width: 750px;
+  }
+  .editor-content-title{
+    width: 750px;
+  }
+  .photo-selection{
+    width: 600px;
+  }
+  .control-container {
+    width: 750px;
+    height: 380px;
+  }
+  .image-container img{
+    width: 555px;
+    height:315px;
+  }
+  .edit-form{
+    width: 750px;
+  }
+  .edit-form-field{
+    width: 750px;
+  }
+  .edit-description-form{
+    width: 750px;
+  }
+  .edit-form-input{
+    width: 725px;
+  }
+}
+@media (max-width: 850px) {
+  .item-bar{
+    width: 550px;
+  }
+  .editor-content editor{
+    width: 550px;
+  }
+  .main-information-container{
+    width: 550px;
+  }
+  .editor-content-title{
+    width: 550px;
+  }
+  .photo-selection{
+    width: 450px;
+  }
+  .control-container {
+    width: 550px;
+    height: 380px;
+  }
+  .image-container img{
+    width: 555px;
+    height:315px;
+  }
+  .edit-form{
+    width: 550px;
+  }
+  .edit-form-field{
+    width: 550px;
+  }
+  .edit-description-form{
+    width: 550px;
+  }
+  .edit-form-input{
+    width: 525px;
+  }
+  .actions-buttons-container{
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 650px) {
+  .item-bar{
+    width: 450px;
+  }
+  .editor-content editor{
+    width: 450px;
+  }
+  .main-information-container{
+    width: 450px;
+  }
+  .editor-content-title{
+    width: 450px;
+  }
+  .photo-selection{
+    width: 450px;
+  }
+  .control-container {
+    width: 450px;
+    height: 380px;
+  }
+  .image-container img{
+    width: 420px;
+    height:228px;
+  }
+  .edit-form{
+    width: 450px;
+  }
+  .edit-form-field{
+    width: 450px;
+  }
+  .edit-description-form{
+    width: 450px;
+  }
+  .edit-form-input{
+    width: 425px;
+  }
+}
+@media (max-width: 550px) {
+  .item-bar{
+    width: 250px;
+  }
+  .editor-content editor{
+    width: 250px;
+  }
+  .main-information-container{
+    width: 250px;
+  }
+  .editor-content-title{
+    width: 250px;
+  }
+  .photo-selection{
+    width: 250px;
+  }
+  .control-container {
+    width: 250px;
+    height: 200px;
+  }
+  .control-container button{
+    width: 150px;
+  }
+  .image-container img{
+    width: 277px;
+    height:157px;
+  }
+  .edit-form{
+    width: 250px;
+  }
+  .edit-form-field{
+    width: 250px;
+  }
+  .edit-description-form{
+    width: 250px;
+  }
+  .edit-form-input{
+    width: 225px;
+  }
 }

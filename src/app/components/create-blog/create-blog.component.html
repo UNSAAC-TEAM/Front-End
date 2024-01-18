@@ -54,13 +54,11 @@
         </div>
         <div class="photo-selection">
           <p class="information-title">Foto de portada</p>
-          <div class="control-container" [style.width]="555 + 'px'">
+          <div class="control-container" >
             <div class="image-container">
               <img
                 [src]="imageSource"
-                [width]="555"
-                [height]="315"
-                class="mat-elevation-z5"
+                class="mat-elevation-z2"
                 [style.opacity]="uploading.getValue() ? 0.1 : 1" />
             </div>
             <div>
@@ -71,7 +69,7 @@
                 (change)="fileSelected($event)"
                 (click)="inputField.value = ''"
               />
-              <button mat-button [disabled]="uploading.getValue()" (click)="inputField.click()" style="width: 300px;background-color: #737373;color: white;border-radius: 10px">
+              <button mat-button [disabled]="uploading.getValue()" (click)="inputField.click()" class="image-container-button">
                 Elegir portada
               </button>
             </div>
@@ -79,7 +77,7 @@
         </div>
       </div>
       <div class="editor-content">
-        <div style="width: 1550px;display: flex;justify-content: left">
+        <div class="editor-content-title">
           <p class="information-title">Contenido</p>
         </div>
         <editor apiKey="1fim4fyjmf781d18xyj35334v9bhtk8s6j25sy0y4cis2tw2"
