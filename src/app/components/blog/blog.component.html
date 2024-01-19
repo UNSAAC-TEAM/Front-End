@@ -16,21 +16,45 @@
     </div>
     <div [innerHTML]="this.currentBlog.content" class="inner"></div>
   </div>
-  <div class="recommended-blogs">
-    <h1 class="preview-recommended-title">Recomendados para ti</h1>
-    <div class="blog-body">
-      <div *ngFor="let blog of blogArrayResponse">
-        <div class="blog-card">
-          <img [src]="blog.imageUrl" class="blog-image-card" alt="" (click)="blogRedirect(blog.id)">
-          <div class="blog-content">
-            <div class="blog-tag">
-              <p>{{blog.label}}</p>
+  <div class="recommended-section">
+    <div class="recommended-blogs">
+      <h1 class="preview-recommended-title">Recomendados para ti</h1>
+      <div class="blog-body">
+        <div *ngFor="let blog of blogArrayResponse">
+          <div class="blog-card">
+            <img [src]="blog.imageUrl" class="blog-image-card" alt="" (click)="blogRedirect(blog.id)">
+            <div class="blog-content">
+              <div class="blog-tag">
+                <p>{{blog.label}}</p>
+              </div>
+              <p class="blog-title" (click)="blogRedirect(blog.id)">{{blog.title}}</p>
             </div>
-            <p class="blog-title" (click)="blogRedirect(blog.id)">{{blog.title}}</p>
           </div>
         </div>
       </div>
+      <p class="see-more-blogs" (click)="watchMoreBlogs()">Ver más artículos >> </p>
     </div>
-    <p class="see-more-blogs" (click)="watchMoreBlogs()">Ver más artículos >> </p>
+    <div class="recommended-courses">
+      <h1 class="preview-recommended-title">Cursos recomendados</h1>
+      <div class="course-body">
+        <div *ngFor="let course of courseArrayResponse">
+          <div class="course-card">
+            <img [src]="course.imageUrl" class="course-image-card" alt="" (click)="blogRedirect(course.id)">
+            <div class="course-content">
+              <p class="course-title" (click)="blogRedirect(course.id)">{{course.title}}</p>
+              <div class="course-stars">
+                <p>{{course.stars}}</p>
+              </div>
+              <p class="course-duration"><mat-icon>watch_later</mat-icon> {{course.durationInMinutes}}</p>
+              <p class="course-difficulty"><mat-icon>signal_cellular_alt</mat-icon> {{course.difficulty}}</p>
+              <p class="course-price">USD {{course.priceInDollars}}</p>
+              <button mat-button> Ver mas</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="see-more-blogs" (click)="watchMoreCourses()">Ver más cursos >> </p>
+    </div>
   </div>
+
 </div>

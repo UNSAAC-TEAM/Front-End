@@ -46,13 +46,23 @@
   width: 100%;
   word-wrap: break-word;
 }
+.recommended-section{
+  display: flex;
+  flex-direction: column;
+}
 .recommended-blogs{
   background-color: white;
   border-radius: 1rem;
   width: 355px;
-  height: 100%;
   padding: 30px 30px 10px 30px;
-  margin: 4rem 0 4rem 0;
+  margin: 4rem 0 1rem 0;
+}
+.recommended-courses{
+  background-color: white;
+  border-radius: 1rem;
+  width: 355px;
+  padding: 30px 30px 10px 30px;
+  margin: 0 0 1rem 0;
 }
 .preview-recommended-title{
   font-size: 26px;
@@ -61,6 +71,10 @@
 .blog-body{
   display: flex;
   flex-direction: column;
+}
+.course-body{
+  display: flex;
+  flex-direction: row;
 }
 .blog-card{
   width: 350px;
@@ -71,9 +85,23 @@
   border-radius: 5px;
   margin-bottom: 0.8rem;
 }
+.course-card{
+  width: 168px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.03);
+  border-radius: 5px;
+  margin-right: 0.8rem;
+}
 .blog-image-card{
   width: 120px;
   height: 72px;
+  cursor: pointer;
+  border-radius:5px;
+}
+.course-image-card{
+  width: 168px;
+  height: 94px;
   cursor: pointer;
   border-radius:5px;
 }
@@ -94,6 +122,14 @@
   align-items: center; /* Centra horizontalmente */
   font-size: 14px;
 
+}
+.course-title{
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  height: 34px;
+  margin-top: 1rem;
+  overflow: hidden;
 }
 .blog-description-container {
   height: 63px;
