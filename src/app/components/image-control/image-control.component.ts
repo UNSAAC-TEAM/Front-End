@@ -132,7 +132,6 @@ export class ImageControlComponent {
   async uploadImage(blob: Blob) {
     if (this.loginDataService.userAccount.sessionToken != null) {
       const decoded = jwtDecode(this.loginDataService.userAccount.sessionToken);
-      console.log(decoded)
       let email=decoded.sub
       this.uploading.next(true);
       const filePath = "profilePicture/"+email+".png";

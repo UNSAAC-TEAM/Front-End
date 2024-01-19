@@ -113,7 +113,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    new UserServices().getUserById(this.loginDataService.getUserId(this.token)).then(response=>{
+    new UserServices().getUserById(this.token,this.loginDataService.getUserId(this.token)).then(response=>{
       this.userFormGroup.patchValue({
         description: response.data.description,
         country: this.country[this.findIndexByCountryName(response.data.country)],
@@ -128,7 +128,7 @@ export class EditProfileComponent implements OnInit {
     })
   }
   imageReady(imageUrl: string) {
-    console.log('Firebase Uploaded Image: ', imageUrl);
+    console.log('Firebase Uploaded Image: ');
   }
   updateDays() {
     const daysInMonth = new Date(this.selectedYear, this.selectedMonth, 0).getDate();

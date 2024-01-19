@@ -16,4 +16,21 @@
     </div>
     <div [innerHTML]="this.currentBlog.content" class="inner"></div>
   </div>
+  <div class="recommended-blogs">
+    <h1 class="preview-recommended-title">Recomendados para ti</h1>
+    <div class="blog-body">
+      <div *ngFor="let blog of blogArrayResponse">
+        <div class="blog-card">
+          <img [src]="blog.imageUrl" class="blog-image-card" alt="" (click)="blogRedirect(blog.id)">
+          <div class="blog-content">
+            <div class="blog-tag">
+              <p>{{blog.label}}</p>
+            </div>
+            <p class="blog-title" (click)="blogRedirect(blog.id)">{{blog.title}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="see-more-blogs" (click)="watchMoreBlogs()">Ver más artículos >> </p>
+  </div>
 </div>
