@@ -15,15 +15,15 @@ import { jwtDecode } from "jwt-decode";
 import {SessionStorageService} from "ngx-webstorage";
 import {NgToastService} from "ng-angular-popup";
 import {BlogCropperDialogComponent} from "../blog-cropper-dialog/blog-cropper-dialog.component";
+import {BlogApiService} from "../../services/blog.api-service";
+import {CryptoData} from "../../services/CryptoJs/crypto-data";
 
 interface BlogContent {
-  author: string;
   label: string;
   imageUrl: string;
   title: string;
   description: string;
   content: string;
-  publishDate: string;
 }
 
 @Component({
@@ -32,6 +32,9 @@ interface BlogContent {
   styleUrls: ['./create-blog.component.css']
 })
 export class CreateBlogComponent implements OnInit {
+  token=""
+  isBlogUploading=false
+  uploadingText="PUBLICAR"
   imageSelected=false
   blogFormGroup  = new FormGroup({
     title: new FormControl('',[Validators.required]),
@@ -89,8 +92,9 @@ export class CreateBlogComponent implements OnInit {
   }
 
   @Output() imageReady = new EventEmitter<string>();
-  constructor(private toast: NgToastService,private sessionStorageService: SessionStorageService,private storage: AngularFireStorage,public loginDataService: LoginDataService,
+  constructor(private crypto: CryptoData,private toast: NgToastService,private sessionStorageService: SessionStorageService,private storage: AngularFireStorage,public loginDataService: LoginDataService,
               private sanitizer: DomSanitizer) {
+    this.token=this.crypto.getDecryptObjectFromStorage().sessionToken
     this.subscription = this.croppedImageURL.subscribe(value => {
       if (value) {
         this.imageReady.emit(value);
@@ -112,10 +116,13 @@ export class CreateBlogComponent implements OnInit {
   zone = inject(NgZone);
   isPreviewActive=false
   async uploadBlog() {
+    this.modificarImagenes()
     if (this.blogFormGroup.valid && this.imageSelected && this.htmlContent.length>0) {
       try {
         if (this.imageSelected) {
-          const filePath = "blogPicture/blog.png";
+          this.isBlogUploading=true
+          this.uploadingText="PUBLICANDO"
+          const filePath = "blogPicture/"+new Date().toISOString()+this.loginDataService.getUserId(this.token)+ ".png";
           const storageRef = this.storage.ref(filePath);
           const uploadTask = this.storage.upload(filePath, this.blobResponse);
 
@@ -127,24 +134,30 @@ export class CreateBlogComponent implements OnInit {
 
           this.croppedImageURL.next(downloadUrl);
 
-          console.log(downloadUrl);
           const editorHtml: string = this.htmlContent;
 
           const structuredContent: BlogContent = {
-            author: "Diego Talledo",
             label: <string>this.blogFormGroup.get('category')?.value,
             imageUrl: downloadUrl,
             title: <string>this.blogFormGroup.get('title')?.value,
             description: <string>this.blogFormGroup.get('description')?.value,
             content: editorHtml,
-            publishDate: (new Date()).toISOString()
           };
           const jsonStructuredContent = JSON.stringify(structuredContent);
           this.blogContent= JSON.parse(jsonStructuredContent);
-
-          this.toast.success({ detail: "Blog publicado", summary: 'Blog publicado correctamente', duration: 3000 });
+          new BlogApiService().postBlog(this.token,this.loginDataService.getUserId(this.token),this.blogContent).then(response=>{
+            this.clearBlogData()
+            this.isBlogUploading=false
+            this.uploadingText="PUBLICAR"
+            this.toast.success({ detail: "Blog publicado", summary: 'Blog publicado correctamente', duration: 3000 });
+          }).catch(error=>{
+            this.isBlogUploading=false
+            this.uploadingText="PUBLICAR"
+          })
         }
       } catch (error) {
+        this.isBlogUploading=false
+        this.uploadingText="PUBLICAR"
         this.toast.error({ detail: "Error al cargar la imagen", summary: 'Error', duration: 3000 });
       }
 
@@ -166,43 +179,68 @@ export class CreateBlogComponent implements OnInit {
   }
 
   preview() {
+    this.modificarImagenes()
     this.isPreviewActive=!this.isPreviewActive
     if(this.blogContent!=null){
       this.newHtmlContent = this.blogContent.content;
-      console.log(this.newHtmlContent)
     }
   }
   modificarImagenes(): void {
+    console.log("edit");
+
     // Expresión regular para encontrar etiquetas img sin width y height
-    const regexSinDimensiones = /<img\s+src="([^"]+)"\s*\/?>/gi;
+    const regexSinDimensiones = /<img\s+src="([^"]+)"\s*(?:(?:(?:width|height)\s*=\s*"\d+%\s*")?\s*alt="[^"]*")?\s*\/?>/gi;
+
 
     this.htmlContent = this.htmlContent.replace(regexSinDimensiones, (match, src) => {
       // Agregar width="50%" por defecto si no tiene dimensiones
-      return `<img src="${src}" width="50%">`;
+      return `<img src="${src}" width="99%">`;
     });
 
+    // Eliminar alt en todas las etiquetas img
+    this.htmlContent = this.htmlContent.replace(/<img\s+([^>]+)?alt="[^"]*"([^>]*)>/gi, '<img $1$2>');
+
     // Expresión regular para encontrar etiquetas img con width y height en píxeles
-    const regexConDimensionesEnPixeles = /<img\s+src="([^"]+)"\s+width="(\d+)"\s+height="(\d+)"\s*\/?>/gi;
+    const regexConDimensionesEnPixeles = /<img\s+src="([^"]+)"(?:\s+width="(\d+)"\s+height="(\d+)")?\s*\/?>/gi;
 
     this.htmlContent = this.htmlContent.replace(regexConDimensionesEnPixeles, (match, src, width, height) => {
       // Calcular porcentaje si las dimensiones están en píxeles
       let anchoPantalla = window.innerWidth;
-      console.log(anchoPantalla)
-      if(anchoPantalla>=1000){
-        anchoPantalla=1546
+
+      if (anchoPantalla >= 1650) {
+        anchoPantalla = 1500;
+      } else if (anchoPantalla >= 1450) {
+        anchoPantalla = 1300;
+      } else if (anchoPantalla >= 1250) {
+        anchoPantalla = 1100;
+      } else if (anchoPantalla >= 1050) {
+        anchoPantalla = 900;
+      } else if (anchoPantalla >= 850) {
+        anchoPantalla = 700;
+      } else if (anchoPantalla >= 650) {
+        anchoPantalla = 600;
+      } else if (anchoPantalla >= 550) {
+        anchoPantalla = 400;
       }
+
       const porcentajeWidth = (parseInt(width) / anchoPantalla) * 100;
-      // Eliminar height
+      // Modificar solo si las dimensiones son en píxeles
       return `<img src="${src}" width="${porcentajeWidth}%">`;
     });
 
-    // Expresión regular para encontrar etiquetas img con width y height en porcentaje
-    const regexConDimensionesEnPorcentaje = /<img\s+src="([^"]+)"\s+width="(\d+)%"\s+height="(\d+)%"\s*\/?>/gi;
 
-    this.htmlContent = this.htmlContent.replace(regexConDimensionesEnPorcentaje, (match, src, width, height) => {
-      // Mantener dimensiones si ya están en porcentaje
-      return match;
+  }
+
+
+  clearBlogData():void{
+    this.blogFormGroup.patchValue({
+      title: null,
+      description: null,
+      category: null,
     });
+    this.htmlContent=""
+    this.croppedImage= new BehaviorSubject<any | undefined>(undefined);
+    this.imageSelected=false
   }
 
 }

@@ -3,7 +3,7 @@
     <div class="item-bar">
       <p>REDACTA UN NUEVO BLOG !</p>
       <div class="actions-buttons-container">
-        <button mat-button>
+        <button mat-button (click)="clearBlogData()" [disabled]="isBlogUploading">
           <mat-icon>delete</mat-icon>
           DESCARTAR</button>
         <button mat-button (click)="preview()" *ngIf="!isPreviewActive">
@@ -12,9 +12,10 @@
         <button mat-button (click)="preview()" *ngIf="isPreviewActive">
           <mat-icon>edit</mat-icon>
           EDITAR</button>
-        <button mat-button class="publish-button" (click)="uploadBlog()">
-          <mat-icon>publish</mat-icon>
-          PUBLICAR
+        <button mat-button class="publish-button" (click)="uploadBlog()" [disabled]="isBlogUploading">
+          <mat-icon *ngIf="!isBlogUploading" >publish</mat-icon>
+          <mat-icon  *ngIf="isBlogUploading" class="fa-spin">autorenew</mat-icon>
+          {{uploadingText}}
         </button>
       </div>
     </div>
@@ -85,12 +86,6 @@
                 [(ngModel)]="htmlContent"
         ></editor>
       </div>
-      <div>
-        {{htmlContent}}
-      </div>
-      <button mat-button (click)="modificarImagenes()">
-        <mat-icon>delete</mat-icon>
-        MODIFCIA</button>
     </div>
   </div>
   <div *ngIf="isPreviewActive" class="preview-content">
@@ -101,14 +96,11 @@
           <p>{{this.blogFormGroup.get('category')?.value || 'Indefinido'}}</p>
         </div>
         <p class="preview-author">
-          <mat-icon>person</mat-icon> Por: Diego Talledo
+          <mat-icon>person</mat-icon> Por: {{loginDataService.userAccount.name+" "+loginDataService.userAccount.lastName}}
         </p>
-        <img
-          [src]="imageSource"
-          [width]="715"
-          [height]="402"
-          class="mat-elevation-z5"
-          [style.opacity]="uploading.getValue() ? 0.1 : 1" />
+        <img class="preview-image"
+             [src]="imageSource"
+             [style.opacity]="uploading.getValue() ? 0.1 : 1" />
         <p class="preview-description">
           {{this.blogFormGroup.get('description')?.value}}
         </p>
