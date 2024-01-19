@@ -1,1 +1,19 @@
-
+<div class="preview-content">
+  <div class="preview-main-content">
+    <div class="preview-header">
+      <h1 class="preview-title">{{this.currentBlog.title}}</h1>
+      <div class="blog-tag">
+        <p>{{this.currentBlog.label}}</p>
+      </div>
+      <p class="preview-author">
+        <mat-icon>person</mat-icon> Por: {{this.currentBlog.authorName}}
+      </p>
+      <img class="preview-image"
+           [src]="this.currentBlog.imageUrl"/>
+      <p class="preview-description">
+        {{this.currentBlog.description}}
+      </p>
+    </div>
+    <div [innerHTML]="this.currentBlog.content" class="inner"></div>
+  </div>
+</div>

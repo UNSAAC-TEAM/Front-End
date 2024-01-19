@@ -62,7 +62,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
 }
 .edit-form{
   width: 700px;
@@ -424,6 +423,10 @@ editor{
   }
 }
 @media (max-width: 550px) {
+  .preview-title{
+    font-size: 26px;
+    font-weight: bold;
+  }
   .preview-main-content{
     width: 215px;
   }

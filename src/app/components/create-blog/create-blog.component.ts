@@ -186,7 +186,6 @@ export class CreateBlogComponent implements OnInit {
     }
   }
   modificarImagenes(): void {
-    console.log("edit");
 
     // Expresión regular para encontrar etiquetas img sin width y height
     const regexSinDimensiones = /<img\s+src="([^"]+)"\s*(?:(?:(?:width|height)\s*=\s*"\d+%\s*")?\s*alt="[^"]*")?\s*\/?>/gi;

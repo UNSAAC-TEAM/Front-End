@@ -1,0 +1,89 @@
+.preview-content{
+  display: flex;
+  justify-content: center;
+}
+.preview-main-content{
+  background-color: white;
+  border-radius: 1rem;
+  width: 715px;
+  padding: 30px 30px;
+  margin: 5rem 0 5rem 0;
+}
+.preview-title{
+  font-size: 36px;
+  font-weight: bold;
+}
+.blog-tag {
+  background-color: #e8a134;
+  color: white;
+  display: inline-block;
+  padding: 3px 10px; /* Ajusta esto según sea necesario para agregar espacio alrededor del texto */
+  margin-bottom: 0.5rem;
+  border-radius: 3px;
+}
+.blog-tag p{
+  margin: 0;
+}
+.preview-author{
+  display: flex;
+  align-items: center;
+}
+.preview-image{
+  width: 715px;
+  height: 402px;
+}
+.preview-description{
+  margin-top: 2rem;
+}
+.preview-body {
+  width: 715px;
+  overflow-x: hidden; /* O también puedes probar con overflow: hidden */
+}
+.inner {
+  width: 100%;
+  word-wrap: break-word;
+}
+
+@media (max-width: 1650px) {
+
+}
+@media (max-width: 1450px) {
+
+}
+@media (max-width: 1250px) {
+
+}
+@media (max-width: 1050px) {
+
+}
+@media (max-width: 850px) {
+  .preview-main-content{
+    width: 515px;
+  }
+  .preview-image{
+    width: 515px;
+    height: 315px;
+  }
+}
+@media (max-width: 650px) {
+  .preview-main-content{
+    width: 415px;
+  }
+  .preview-image{
+    width: 415px;
+    height: 245px;
+  }
+}
+@media (max-width: 550px) {
+  .preview-title{
+    font-size: 26px;
+    font-weight: bold;
+  }
+  .preview-main-content{
+    width: 215px;
+  }
+  .preview-image{
+    width: 215px;
+    height: 135px;
+  }
+}
