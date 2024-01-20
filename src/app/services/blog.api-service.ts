@@ -5,10 +5,10 @@ import axios, { AxiosRequestConfig } from 'axios';
 export class BlogApiService{
 
   getAllBlogs(page: number,elements: number){
-    return axios.get("https://my-json-server.typicode.com/UNSAAC-TEAM/Json/currentPageBlogs")
+    return http.get("blog/get/page/?page="+page+"&itemsPerPage="+elements)
   }
   getCurrentBlogById(blogId: number){
-    return axios.get("https://my-json-server.typicode.com/UNSAAC-TEAM/jsonBlog/currentBlog/1")
+    return http.get("blog/get/"+blogId)
   }
   getRecommendBlogByUserId(userId: number){
     return axios.get("https://my-json-server.typicode.com/UNSAAC-TEAM/jsonBlog/recommendedBlogs")

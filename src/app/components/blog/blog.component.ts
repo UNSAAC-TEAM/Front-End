@@ -5,9 +5,13 @@ import {BlogApiService} from "../../services/blog.api-service";
 import {LoginDataService} from "../../services/comunication/login/login-data.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
+interface Star{
+  content:""
+}
+
 interface BlogRecommendedContent {
   id: number;
-  authorName: string;
+  authorFullName: string;
   label: string;
   imageUrl: string;
   title: string;
@@ -34,11 +38,12 @@ export class BlogComponent implements OnInit {
   token=""
   userId= 0;
   isBlogLoading=true
+  displayableStarArray: Array<Star>=[]
   blogArrayResponse: Array<BlogRecommendedContent>=[]
   courseArrayResponse: Array<CourseRecommendedContent>=[]
   currentBlog: BlogRecommendedContent={
     id:1,
-    authorName:"",
+    authorFullName:"",
     label: "",
     imageUrl: "",
     title: "",
@@ -49,9 +54,7 @@ export class BlogComponent implements OnInit {
   constructor(private router: Router,private sanitizer: DomSanitizer,private crypto: CryptoData,private route: ActivatedRoute,private loginDataService: LoginDataService) { }
 
   ngOnInit(): void {
-    if(this.loginDataService.userAccount.sessionToken!=null){
-      this.token=this.loginDataService.userAccount.sessionToken
-      this.userId=this.loginDataService.getUserId(this.token)
+
       this.route.params.subscribe((params) => {
         const encodedId = params['encryptedID'] || "";
         console.log(encodedId)
@@ -65,7 +68,17 @@ export class BlogComponent implements OnInit {
         this.currentBlog=response.data
         console.log(this.currentBlog)
       })
+    if(this.loginDataService.userAccount.sessionToken!=null){
+      this.token=this.loginDataService.userAccount.sessionToken
+      this.userId=this.loginDataService.getUserId(this.token)
       new BlogApiService().getRecommendBlogByUserId(this.loginDataService.getUserId(this.loginDataService.userAccount.sessionToken)).then(response=>{
+        this.blogArrayResponse=response.data
+      })
+      new BlogApiService().getRecommendCourses().then(response=>{
+        this.courseArrayResponse=response.data
+      })
+    }else {
+      new BlogApiService().getRecommendBlogByUserId(0).then(response=>{
         this.blogArrayResponse=response.data
       })
       new BlogApiService().getRecommendCourses().then(response=>{
@@ -120,5 +133,26 @@ export class BlogComponent implements OnInit {
 
   watchMoreCourses() {
     this.router.navigate(['/courses']);
+  }
+  setStarNumber(stars: number): number[] {
+    // Redondear al número entero más cercano y devolver un array de estrellas
+    return Array(Math.round(stars)).fill(0);
+  }
+  returnDisplayableDuration(timeInMinutes: number): string {
+    const totalMinutes = Math.floor(timeInMinutes);
+    const days = Math.floor(totalMinutes / (24 * 60));
+    const hours = Math.floor((totalMinutes % (24 * 60)) / 60);
+    const minutes = totalMinutes % 60;
+
+    let displayableDuration = "";
+
+    if (days > 0) {
+      displayableDuration += days.toString().padStart(2, '0') + " días ";
+    }
+
+    displayableDuration += hours.toString().padStart(2, '0') + ":" +
+      minutes.toString().padStart(2, '0') + " Hrs";
+
+    return displayableDuration;
   }
 }

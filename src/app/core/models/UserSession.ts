@@ -4,5 +4,6 @@ export interface UserSession{
   lastName: string|null,
   imageUrl: string|null,
   alias: string|null,
-  isLogged: boolean
+  isLogged: boolean,
+  roll: string|null
 }

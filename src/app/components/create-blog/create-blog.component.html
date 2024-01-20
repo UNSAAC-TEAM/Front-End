@@ -37,7 +37,7 @@
             </div>
             <div class="edit-description-form">
               <p>Descripcion:</p>
-              <textarea matInput class="edit-form-input" (input)="descriptionOnType()" autocomplete="off" type="text" formControlName="description" placeholder="Introduce una descripcion" maxLength="504"></textarea>
+              <textarea matInput class="edit-form-input" (input)="descriptionOnType()" autocomplete="off" type="text" formControlName="description" placeholder="Introduce una descripcion" maxLength="900"></textarea>
               <mat-error *ngIf="isBlogEmpty">
                 La descripcion es <strong>requerida</strong>
               </mat-error>
@@ -45,7 +45,7 @@
             <div class="edit-form">
               <p>Categoria:</p>
               <mat-form-field class="edit-form-field" appearance="outline">
-                <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="category" placeholder="Agrega una categoria" maxLength="30">
+                <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="category" placeholder="Agrega una categoria" maxLength="50">
                 <mat-error *ngIf="blogFormGroup.get('category')?.hasError('required')">
                   Categoria <strong>requerido</strong>
                 </mat-error>

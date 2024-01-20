@@ -6,7 +6,7 @@
         <p>{{this.currentBlog.label}}</p>
       </div>
       <p class="preview-author">
-        <mat-icon>person</mat-icon> Por: {{this.currentBlog.authorName}}
+        <mat-icon>person</mat-icon> Por: {{this.currentBlog.authorFullName}}
       </p>
       <img class="preview-image"
            [src]="this.currentBlog.imageUrl"/>
@@ -43,12 +43,20 @@
             <div class="course-content">
               <p class="course-title" (click)="blogRedirect(course.id)">{{course.title}}</p>
               <div class="course-stars">
+                <mat-icon *ngFor="let star of setStarNumber(course.stars)">star</mat-icon>
                 <p>{{course.stars}}</p>
               </div>
-              <p class="course-duration"><mat-icon>watch_later</mat-icon> {{course.durationInMinutes}}</p>
-              <p class="course-difficulty"><mat-icon>signal_cellular_alt</mat-icon> {{course.difficulty}}</p>
+              <div class="course-duration">
+                <mat-icon>watch_later</mat-icon>
+                <p> {{returnDisplayableDuration(course.durationInMinutes)}}</p>
+              </div>
+              <div class="course-difficulty">
+                <mat-icon>signal_cellular_alt</mat-icon>
+                <p> {{course.difficulty}}</p>
+              </div>
+
               <p class="course-price">USD {{course.priceInDollars}}</p>
-              <button mat-button> Ver mas</button>
+              <button class="course-details-button" mat-button> <div style="width: 100%;display: flex;justify-content: center">Ver mas</div></button>
             </div>
           </div>
         </div>

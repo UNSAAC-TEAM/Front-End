@@ -94,7 +94,6 @@ export class CreateBlogComponent implements OnInit {
   @Output() imageReady = new EventEmitter<string>();
   constructor(private crypto: CryptoData,private toast: NgToastService,private sessionStorageService: SessionStorageService,private storage: AngularFireStorage,public loginDataService: LoginDataService,
               private sanitizer: DomSanitizer) {
-    this.token=this.crypto.getDecryptObjectFromStorage().sessionToken
     this.subscription = this.croppedImageURL.subscribe(value => {
       if (value) {
         this.imageReady.emit(value);
@@ -143,13 +142,16 @@ export class CreateBlogComponent implements OnInit {
             description: <string>this.blogFormGroup.get('description')?.value,
             content: editorHtml,
           };
+
           const jsonStructuredContent = JSON.stringify(structuredContent);
           this.blogContent= JSON.parse(jsonStructuredContent);
+
           new BlogApiService().postBlog(this.token,this.loginDataService.getUserId(this.token),this.blogContent).then(response=>{
             this.clearBlogData()
             this.isBlogUploading=false
             this.uploadingText="PUBLICAR"
             this.toast.success({ detail: "Blog publicado", summary: 'Blog publicado correctamente', duration: 3000 });
+            this.isPreviewActive=false
           }).catch(error=>{
             this.isBlogUploading=false
             this.uploadingText="PUBLICAR"
@@ -166,6 +168,13 @@ export class CreateBlogComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.token=this.crypto.getDecryptObjectFromStorage().sessionToken
+    if(this.loginDataService.userAccount.roll=="ADMIN"){
+
+      console.log("permiso aceptado")
+    }else {
+      console.log("permiso denegado")
+    }
   }
 
   descriptionOnType() {

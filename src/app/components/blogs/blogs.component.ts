@@ -25,10 +25,10 @@ export class BlogsComponent implements OnInit {
       this.pageNumber = +params['pageNumber'] || 1;
     });
     console.log(this.pageNumber,this.elementsPerPage)
-    new BlogApiService().getAllBlogs(this.pageNumber,this.elementsPerPage).then(response=>{
+    new BlogApiService().getAllBlogs(this.pageNumber-1,this.elementsPerPage).then(response=>{
       console.log(response.data)
-      this.blogArrayResponse=response.data
-      const totalElements = response.data.length;
+      this.blogArrayResponse=response.data.content
+      const totalElements = response.data.totalBlogsQuantity;
       this.totalPageBlogsQuantity = Math.ceil(totalElements / this.elementsPerPage);
     })
   }
@@ -70,15 +70,14 @@ export class BlogsComponent implements OnInit {
     this.pageNumber=pageNumber
     console.log(this.pageNumber,this.elementsPerPage)
     this.blogArrayResponse=[]
-    new BlogApiService().getAllBlogs(this.pageNumber,this.elementsPerPage).then(response=>{
+    new BlogApiService().getAllBlogs(this.pageNumber-1,this.elementsPerPage).then(response=>{
       console.log(response.data)
-      this.blogArrayResponse=response.data
-      const totalElements = response.data.length;
+      this.blogArrayResponse=response.data.content
+      const totalElements = response.data.totalBlogsQuantity;
       this.totalPageBlogsQuantity = Math.ceil(totalElements / this.elementsPerPage);
     })
     this.router.navigate(['/blogs/page/'+pageNumber]);
   }
-
   blogRedirect(blogId: number) {
     let encrypted = this.crypto.encryptPageId(blogId.toString());
     this.router.navigate(['/blog/' + encodeURIComponent(encrypted)]);

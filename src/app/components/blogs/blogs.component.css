@@ -44,7 +44,7 @@
 }
 .blog-body{
   width: 1110px;
-  height: 1240px;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: auto;
@@ -113,7 +113,7 @@
   }
   .blog-body{
     width: 720px;
-    height: 2004px;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: auto;
@@ -126,7 +126,7 @@
   }
   .blog-body{
     width: 540px;
-    height: 4391px;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-auto-rows: auto;
@@ -167,7 +167,7 @@
   }
   .blog-body{
     width: 350px;
-    height: 3691px;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-auto-rows: auto;
