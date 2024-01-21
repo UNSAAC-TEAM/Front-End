@@ -48,6 +48,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { BlogComponent } from './components/blog/blog.component';
 import { CreateCourseComponent } from './components/create-course/create-course.component';
 import {SafeHtmlPipe} from "./components/create-blog/safe-html.pipe";
+import { ManageBlogsComponent } from './components/manage-blogs/manage-blogs.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {SafeHtmlPipe} from "./components/create-blog/safe-html.pipe";
     ForgotPasswordComponent,
     BlogComponent,
     CreateCourseComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    ManageBlogsComponent
   ],
   imports: [
 
