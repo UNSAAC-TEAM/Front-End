@@ -57,36 +57,25 @@ export class BlogComponent implements OnInit {
 
       this.route.params.subscribe((params) => {
         const encodedId = params['encryptedID'] || "";
-        console.log(encodedId)
         const decodedId = decodeURIComponent(encodedId);
-        console.log(decodedId)
         this.blogId = this.crypto.decryptPageId(decodedId);
-        console.log(this.blogId)
+        this.getCurrentPageContent()
       });
-      new BlogApiService().getCurrentBlogById(parseInt(this.blogId)).then(response=>{
-        this.isBlogLoading=false
-        this.currentBlog=response.data
-        console.log(this.currentBlog)
-      })
-    if(this.loginDataService.userAccount.sessionToken!=null){
-      this.token=this.loginDataService.userAccount.sessionToken
-      this.userId=this.loginDataService.getUserId(this.token)
-      new BlogApiService().getRecommendBlogByUserId(this.loginDataService.getUserId(this.loginDataService.userAccount.sessionToken)).then(response=>{
-        this.blogArrayResponse=response.data
-      })
-      new BlogApiService().getRecommendCourses().then(response=>{
-        this.courseArrayResponse=response.data
-      })
-    }else {
-      new BlogApiService().getRecommendBlogByUserId(0).then(response=>{
-        this.blogArrayResponse=response.data
-      })
-      new BlogApiService().getRecommendCourses().then(response=>{
-        this.courseArrayResponse=response.data
-      })
-    }
+
+    new BlogApiService().getRecommendBlog(3).then(response=>{
+      this.blogArrayResponse=response.data
+    })
+    new BlogApiService().getRecommendCourses().then(response=>{
+      this.courseArrayResponse=response.data
+    })
 
 
+  }
+  getCurrentPageContent(){
+    new BlogApiService().getCurrentBlogById(parseInt(this.blogId)).then(response=>{
+      this.isBlogLoading=false
+      this.currentBlog=response.data
+    })
   }
   getDisplayableDate(date: number): string {
     const publishDate = new Date(date);
@@ -97,31 +86,6 @@ export class BlogComponent implements OnInit {
 
     return `${day}-${month}-${year}`;
   }
-  addEllipsis(text: string): string {
-    const lineHeight = 1; // Ajusta según sea necesario
-    const maxLines = 150; // Ajusta según sea necesario
-    const maxHeight = lineHeight * maxLines;
-
-    const container = document.createElement('div');
-    container.style.position = 'absolute';
-    container.style.visibility = 'hidden';
-    container.style.width = '300px'; // Ajusta según sea necesario
-
-    const textNode = document.createTextNode(text);
-    container.appendChild(textNode);
-
-    document.body.appendChild(container);
-
-    const isOverflowing = container.offsetHeight > maxHeight;
-
-    document.body.removeChild(container);
-
-    if (isOverflowing) {
-      return `${text.slice(0, maxHeight / lineHeight - 1)}...` ;
-    }
-
-    return text;
-  }
   blogRedirect(blogId: number) {
     let encrypted = this.crypto.encryptPageId(blogId.toString());
     this.router.navigate(['/blog/' + encodeURIComponent(encrypted)]);
@@ -130,7 +94,6 @@ export class BlogComponent implements OnInit {
   watchMoreBlogs() {
     this.router.navigate(['/blogs/']);
   }
-
   watchMoreCourses() {
     this.router.navigate(['/courses']);
   }

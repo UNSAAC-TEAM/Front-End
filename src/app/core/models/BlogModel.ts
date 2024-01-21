@@ -1,6 +1,6 @@
 export interface BlogModel {
   id: number;
-  author: string;
+  authorFullName: string;
   label: string;
   imageUrl: string;
   title: string;

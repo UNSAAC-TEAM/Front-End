@@ -5,9 +5,14 @@
       <div class="blog-tag">
         <p>{{this.currentBlog.label}}</p>
       </div>
-      <p class="preview-author">
-        <mat-icon>person</mat-icon> Por: {{this.currentBlog.authorFullName}}
-      </p>
+      <div style="display: flex;justify-content: space-between;width: 100%">
+        <p class="preview-author">
+          <mat-icon>person</mat-icon> Por: {{this.currentBlog.authorFullName}}
+        </p>
+        <p class="preview-date">
+          {{getDisplayableDate(this.currentBlog.publishDate)}}
+        </p>
+      </div>
       <img class="preview-image"
            [src]="this.currentBlog.imageUrl"/>
       <p class="preview-description">

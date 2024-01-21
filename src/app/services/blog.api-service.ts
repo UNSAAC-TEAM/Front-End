@@ -10,8 +10,8 @@ export class BlogApiService{
   getCurrentBlogById(blogId: number){
     return http.get("blog/get/"+blogId)
   }
-  getRecommendBlogByUserId(userId: number){
-    return axios.get("https://my-json-server.typicode.com/UNSAAC-TEAM/jsonBlog/recommendedBlogs")
+  getRecommendBlog(blogQuantity: number){
+    return http.get("blog/get/"+blogQuantity+"/recommended")
   }
   getRecommendCourses(){
     return axios.get("https://my-json-server.typicode.com/UNSAAC-TEAM/jsonBlog/recommendedCourses")
