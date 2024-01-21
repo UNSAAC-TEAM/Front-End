@@ -14,7 +14,7 @@ export interface BlogHistory{
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
-  elementsPerPage: number=3;
+  elementsPerPage: number=9;
   pageNumber: number=1;
   blogArrayResponse: Array<BlogModel>=[]
   totalPageBlogsQuantity?:number
@@ -24,13 +24,7 @@ export class BlogsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.pageNumber = +params['pageNumber'] || 1;
     });
-    console.log(this.pageNumber,this.elementsPerPage)
-    new BlogApiService().getAllBlogs(this.pageNumber-1,this.elementsPerPage).then(response=>{
-      console.log(response.data)
-      this.blogArrayResponse=response.data.content
-      const totalElements = response.data.totalBlogsQuantity;
-      this.totalPageBlogsQuantity = Math.ceil(totalElements / this.elementsPerPage);
-    })
+    this.getAllBlogsPerPage()
   }
   addEllipsis(text: string): string {
     const lineHeight = 1; // Ajusta según sea necesario
@@ -66,16 +60,17 @@ export class BlogsComponent implements OnInit {
 
     return `${day}-${month}-${year}`;
   }
-  globalPageChange(pageNumber: number){
-    this.pageNumber=pageNumber
-    console.log(this.pageNumber,this.elementsPerPage)
-    this.blogArrayResponse=[]
+  getAllBlogsPerPage(){
     new BlogApiService().getAllBlogs(this.pageNumber-1,this.elementsPerPage).then(response=>{
-      console.log(response.data)
       this.blogArrayResponse=response.data.content
       const totalElements = response.data.totalBlogsQuantity;
       this.totalPageBlogsQuantity = Math.ceil(totalElements / this.elementsPerPage);
     })
+  }
+  globalPageChange(pageNumber: number){
+    this.pageNumber=pageNumber
+    this.blogArrayResponse=[]
+    this.getAllBlogsPerPage()
     this.router.navigate(['/blogs/page/'+pageNumber]);
   }
   blogRedirect(blogId: number) {
