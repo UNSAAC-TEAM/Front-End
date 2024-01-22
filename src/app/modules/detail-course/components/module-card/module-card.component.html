@@ -16,8 +16,14 @@
     </mat-panel-title>
   </mat-expansion-panel-header>
   <div class="checkbox-container">
-    <mat-checkbox>Option 1</mat-checkbox>
-    <mat-checkbox>Option 2</mat-checkbox>
-    <mat-checkbox>Option 3</mat-checkbox>
+    <mat-panel-description *ngFor="let _ of [1, 2, 3]">
+      <div class="row-container">
+        <div class="left-content">
+          <i class="fas fa-video"></i>
+          <h4>1.Introducción al curso</h4>
+        </div>
+        <span>00:02:21</span>
+      </div>
+    </mat-panel-description>
   </div>
 </mat-expansion-panel>

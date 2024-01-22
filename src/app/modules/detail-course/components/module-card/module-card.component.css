@@ -2,8 +2,10 @@
 .mat-expansion-panel{
   margin-bottom: 20px;
   width: 90%;
-  padding: 20px;
+  padding-left: 0;
+  padding-right: 0;
   padding-top: 25px;
+  padding-bottom: 20px;
 
 }
 .mat-panel-title{
@@ -41,4 +43,43 @@ h3{
 
 .mat-expansion-panel:hover{
   background-color: rgba(236, 240, 241, 0.3);
+}
+
+.mat-expansion-panel .checkbox-container mat-panel-description {
+  font-size: 15px;
+  color: #afb8cb;
+  position: relative;
+  padding: 15px 24px;
+  border-top: 1px solid #5d677a;
+  line-height: 130%;
+  margin:0;
+  display: block;
+
+}
+.checkbox-container{
+  padding-top: 22px;
+}
+.mat-expansion-panel.mat-expanded {
+  padding-bottom: 0;
+}
+
+.row-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left-content {
+  display: flex;
+  align-items: center;
+}
+.left-content i{
+  font-size: 16px;
+  margin-right: 10px;
+}
+.fas{
+  margin-right: 5px;
+}
+h4{
+  margin: 0;
 }
