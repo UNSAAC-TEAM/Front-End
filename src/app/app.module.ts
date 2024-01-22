@@ -49,6 +49,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { CreateCourseComponent } from './components/create-course/create-course.component';
 import {SafeHtmlPipe} from "./components/create-blog/safe-html.pipe";
 import { ManageBlogsComponent } from './components/manage-blogs/manage-blogs.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -104,6 +106,8 @@ import { ManageBlogsComponent } from './components/manage-blogs/manage-blogs.com
     ReactiveFormsModule,
     FontAwesomeModule,
     NgxPaginationModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
