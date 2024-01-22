@@ -1,0 +1,44 @@
+
+.mat-expansion-panel{
+  margin-bottom: 20px;
+  width: 90%;
+  padding: 20px;
+  padding-top: 25px;
+
+}
+.mat-panel-title{
+  display: flex;
+  flex-direction: column;
+}
+.mat-expansion-panel-header-title{
+  display: block;
+}
+
+.reset-ul{
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  padding: 0;
+
+}
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+}
+
+li{
+  margin-right: 25px;
+}
+
+h3{
+  font-size: 20px;
+  font-weight: 500;
+
+}
+.mat-expansion-panel-header:hover{
+  background: transparent !important;
+}
+
+.mat-expansion-panel:hover{
+  background-color: rgba(236, 240, 241, 0.3);
+}

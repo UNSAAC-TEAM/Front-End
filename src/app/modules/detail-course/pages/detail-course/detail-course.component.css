@@ -125,3 +125,33 @@ i{
   margin-bottom: 2000px;
 }
 
+.content ul{
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  flex-wrap: wrap;
+  padding: 0;
+
+}
+.content{
+  margin-top: 5em;
+}
+.content li{
+  margin-right: 20px;
+}
+.content h3{
+  font-size: 26px;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+ul.reset-ul li i {
+  font-size: 28px;
+  font-weight: 900;
+  vertical-align: middle;
+
+}
+.reset-ul{
+  margin-bottom: 2em;
+}
+
