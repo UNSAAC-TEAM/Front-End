@@ -74,7 +74,8 @@ export class LoginComponent implements OnInit {
           lastName: response.data.lastName,
           imageUrl: response.data.imageUrl,
           alias: this.getAlias(response.data.firstName,response.data.lastName),
-          isLogged: true
+          isLogged: true,
+          roll: response.data.roll
         }
         this.loginDataService.userAccount=userLogged;
         this.crypto.EncryptAndSetObjectToStorage(this.loginDataService.userAccount)

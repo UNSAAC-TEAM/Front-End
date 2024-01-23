@@ -1,12 +1,10 @@
 :host {
   display: block; /* Asegura que el estilo se aplique al componente en lugar de a un elemento hijo */
   background-color: white;
-  height: 100%;
 }
 
 .container {
   width: 100%;
-  height: 100vh;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;

@@ -18,18 +18,18 @@ export class ProfileComponent implements OnInit {
   constructor(private crypto: CryptoData,public loginDataService: LoginDataService,private router: Router) {
     this.token=this.crypto.getDecryptObjectFromStorage().sessionToken
     this.imageUrl='https://i.imgur.com/tdi3NGag.jpg'
-    if(this.loginDataService.userAccount.imageUrl!=null || this.loginDataService.userAccount.imageUrl!=''){
+    if(this.loginDataService.userAccount.imageUrl!=null){
       this.imageUrl=this.loginDataService.userAccount.imageUrl
     }
   }
 
   ngOnInit(): void {
-    new UserServices().getUserById(this.loginDataService.getUserId(this.token)).then(response=>{
+    new UserServices().getUserById(this.token,this.loginDataService.getUserId(this.token)).then(response=>{
       this.description=response.data.description
     })
   }
   redirectToEditProfile(){
-    this.router.navigate(['//account/edit-profile']);
+    this.router.navigate(['/account/edit-profile']);
 
   }
 

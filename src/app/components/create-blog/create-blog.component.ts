@@ -1,162 +1,254 @@
 import {Component, inject, OnInit} from '@angular/core'
-import {finalize} from "rxjs/operators";
-import {AngularFireStorage} from "@angular/fire/compat/storage";
-import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {getDownloadURL, ref, uploadBytes} from "@angular/fire/storage";
-import firebase from "firebase/compat";
-import storage = firebase.storage;
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {  SafeHtml } from '@angular/platform-browser';
 
+import { EventEmitter,  Input, NgZone,  Output} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import {CropperDialogResult} from "../blog-cropper-dialog/blog-cropper-dialog.component";
+import { filter } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { Subscription } from 'rxjs';
+import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {LoginDataService} from "../../services/comunication/login/login-data.service";
+import { jwtDecode } from "jwt-decode";
+import {SessionStorageService} from "ngx-webstorage";
+import {NgToastService} from "ng-angular-popup";
+import {BlogCropperDialogComponent} from "../blog-cropper-dialog/blog-cropper-dialog.component";
+import {BlogApiService} from "../../services/blog.api-service";
+import {CryptoData} from "../../services/CryptoJs/crypto-data";
 
+interface BlogContent {
+  label: string;
+  imageUrl: string;
+  title: string;
+  description: string;
+  content: string;
+}
 
 @Component({
   selector: 'app-create-blog',
   templateUrl: './create-blog.component.html',
   styleUrls: ['./create-blog.component.css']
 })
-
 export class CreateBlogComponent implements OnInit {
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
-  selectedFile: File | null = null; // Inicializa con un valor
-  selectedPhotoFile: File | null = null; // Inicializa con un valor
+  token=""
+  isBlogUploading=false
+  uploadingText="PUBLICAR"
+  imageSelected=false
+  blogFormGroup  = new FormGroup({
+    title: new FormControl('',[Validators.required]),
+    description: new FormControl('',[Validators.required]),
+    category: new FormControl('',[Validators.required]),
+  });
+  blogContent?: BlogContent
+  private subscription: Subscription
+  imagePath = new BehaviorSubject('');
+  @Input() set path(val: string) {
+    this.imagePath.next(val);
+  }
+  get placeholder() {
+    return 'https://github.com/UNSAAC-TEAM/img/blob/main/portada.jpg?raw=true';
+  }
+  blobResponse:Blob=new Blob()
+  croppedImageURL = new BehaviorSubject<string | undefined>(undefined);
+  croppedImage = new BehaviorSubject<any | undefined>(undefined);
 
-  constructor(private sanitizer: DomSanitizer,private storage: AngularFireStorage) { }
+  get imageSource() {
+    if(this.imageSelected){
+      return this.croppedImage
+    }else {
+      return this.placeholder
+    }
+    //return this.croppedImage.value ?? this.placeholder;
+  }
+
+  uploading = new BehaviorSubject(false);
+
+  dialog = inject(MatDialog);
+
+  fileSelected(event: any) {
+    const file = event.target?.files[0];
+    if (file) {
+      const dialogRef = this.dialog.open(BlogCropperDialogComponent, {
+        data: {
+          image: file,
+          width: 555,
+          height: 315,
+        },
+        width: '555',
+      });
+
+      dialogRef
+        .afterClosed()
+        .pipe(filter((result) => !!result))
+        .subscribe((result: CropperDialogResult) => {
+          this.croppedImage=result.safeUrl
+          this.imageSelected=true
+          this.blobResponse=result.blob
+          //this.uploadImage();//cuando se cierra ahi recien se puede subir la imagen
+        });
+    }
+  }
+
+  @Output() imageReady = new EventEmitter<string>();
+  constructor(private crypto: CryptoData,private toast: NgToastService,private sessionStorageService: SessionStorageService,private storage: AngularFireStorage,public loginDataService: LoginDataService,
+              private sanitizer: DomSanitizer) {
+    this.subscription = this.croppedImageURL.subscribe(value => {
+      if (value) {
+        this.imageReady.emit(value);
+      }
+    });
+    this.subscription=this.croppedImage.subscribe(value => {
+      if(value){
+        this.imageReady.emit(value)
+      }
+    })
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   htmlContent='';
-  firebaseVideoUrl = 'https://firebasestorage.googleapis.com/v0/b/agripure-678b4.appspot.com/o/Comp%202.mp4?alt=media&token=5d0a2c99-fdad-4d69-b3d0-59d297d5dee3';
+  newHtmlContent=''
+  isBlogEmpty=false
+  zone = inject(NgZone);
+  isPreviewActive=false
+  async uploadBlog() {
+    this.modificarImagenes()
+    if (this.blogFormGroup.valid && this.imageSelected && this.htmlContent.length>0) {
+      try {
+        if (this.imageSelected) {
+          this.isBlogUploading=true
+          this.uploadingText="PUBLICANDO"
+          const filePath = "blogPicture/"+new Date().toISOString()+this.loginDataService.getUserId(this.token)+ ".png";
+          const storageRef = this.storage.ref(filePath);
+          const uploadTask = this.storage.upload(filePath, this.blobResponse);
+
+          // Espera a que la tarea de carga se complete
+          await uploadTask;
+
+          // Luego obtén la URL de descarga
+          const downloadUrl = await storageRef.getDownloadURL().toPromise();
+
+          this.croppedImageURL.next(downloadUrl);
+
+          const editorHtml: string = this.htmlContent;
+
+          const structuredContent: BlogContent = {
+            label: <string>this.blogFormGroup.get('category')?.value,
+            imageUrl: downloadUrl,
+            title: <string>this.blogFormGroup.get('title')?.value,
+            description: <string>this.blogFormGroup.get('description')?.value,
+            content: editorHtml,
+          };
+
+          const jsonStructuredContent = JSON.stringify(structuredContent);
+          this.blogContent= JSON.parse(jsonStructuredContent);
+
+          new BlogApiService().postBlog(this.token,this.loginDataService.getUserId(this.token),this.blogContent).then(response=>{
+            this.clearBlogData()
+            this.isBlogUploading=false
+            this.uploadingText="PUBLICAR"
+            this.toast.success({ detail: "Blog publicado", summary: 'Blog publicado correctamente', duration: 3000 });
+            this.isPreviewActive=false
+          }).catch(error=>{
+            this.isBlogUploading=false
+            this.uploadingText="PUBLICAR"
+          })
+        }
+      } catch (error) {
+        this.isBlogUploading=false
+        this.uploadingText="PUBLICAR"
+        this.toast.error({ detail: "Error al cargar la imagen", summary: 'Error', duration: 3000 });
+      }
+
+    }else {
+      this.toast.error({ detail: "Error", summary: 'Se deben rellenar todos los campos', duration: 4000 });
+    }
+  }
   ngOnInit(): void {
-  }
-  uploadVideoService(file: File): Promise<string> {
-    const filePath = `videos/${file.name}`;
-    const storageRef = this.storage.ref(filePath);
-    const uploadTask = this.storage.upload(filePath, file);
+    this.token=this.crypto.getDecryptObjectFromStorage().sessionToken
+    if(this.loginDataService.userAccount.roll=="ADMIN"){
 
-    return new Promise((resolve, reject) => {
-      uploadTask.snapshotChanges().pipe(
-        finalize(() => {
-          storageRef.getDownloadURL().subscribe((downloadURL) => {
-            resolve(downloadURL);
-          });
-        })
-      ).subscribe(
-        null,
-        (error) => reject(error)
-      );
+      console.log("permiso aceptado")
+    }else {
+      console.log("permiso denegado")
+    }
+  }
+
+  descriptionOnType() {
+    let description: string = <string>this.blogFormGroup.get('description')?.value;
+    if(description.length==0){
+      this.isBlogEmpty=true
+    }else {
+      this.isBlogEmpty=false
+    }
+    // Tu lógica aquí...
+  }
+
+  preview() {
+    this.modificarImagenes()
+    this.isPreviewActive=!this.isPreviewActive
+    if(this.blogContent!=null){
+      this.newHtmlContent = this.blogContent.content;
+    }
+  }
+  modificarImagenes(): void {
+
+    // Expresión regular para encontrar etiquetas img sin width y height
+    const regexSinDimensiones = /<img\s+src="([^"]+)"\s*(?:(?:(?:width|height)\s*=\s*"\d+%\s*")?\s*alt="[^"]*")?\s*\/?>/gi;
+
+
+    this.htmlContent = this.htmlContent.replace(regexSinDimensiones, (match, src) => {
+      // Agregar width="50%" por defecto si no tiene dimensiones
+      return `<img src="${src}" width="99%">`;
     });
-  }
-  uploadPhotoService(file: File): Promise<string> {
-    const filePath = `photo/${file.name}`;
-    const storageRef = this.storage.ref(filePath);
-    const uploadTask = this.storage.upload(filePath, file);
 
-    return new Promise((resolve, reject) => {
-      uploadTask.snapshotChanges().pipe(
-        finalize(() => {
-          storageRef.getDownloadURL().subscribe((downloadURL) => {
-            resolve(downloadURL);
-          });
-        })
-      ).subscribe(
-        null,
-        (error) => reject(error)
-      );
+    // Eliminar alt en todas las etiquetas img
+    this.htmlContent = this.htmlContent.replace(/<img\s+([^>]+)?alt="[^"]*"([^>]*)>/gi, '<img $1$2>');
+
+    // Expresión regular para encontrar etiquetas img con width y height en píxeles
+    const regexConDimensionesEnPixeles = /<img\s+src="([^"]+)"(?:\s+width="(\d+)"\s+height="(\d+)")?\s*\/?>/gi;
+
+    this.htmlContent = this.htmlContent.replace(regexConDimensionesEnPixeles, (match, src, width, height) => {
+      // Calcular porcentaje si las dimensiones están en píxeles
+      let anchoPantalla = window.innerWidth;
+
+      if (anchoPantalla >= 1650) {
+        anchoPantalla = 1500;
+      } else if (anchoPantalla >= 1450) {
+        anchoPantalla = 1300;
+      } else if (anchoPantalla >= 1250) {
+        anchoPantalla = 1100;
+      } else if (anchoPantalla >= 1050) {
+        anchoPantalla = 900;
+      } else if (anchoPantalla >= 850) {
+        anchoPantalla = 700;
+      } else if (anchoPantalla >= 650) {
+        anchoPantalla = 600;
+      } else if (anchoPantalla >= 550) {
+        anchoPantalla = 400;
+      }
+
+      const porcentajeWidth = (parseInt(width) / anchoPantalla) * 100;
+      // Modificar solo si las dimensiones son en píxeles
+      return `<img src="${src}" width="${porcentajeWidth}%">`;
     });
+
+
   }
 
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0] as File;
-  }
-  onPhotoFileSelected(event: any) {
-    this.selectedPhotoFile = event.target.files[0] as File;
-  }
 
-  uploadVideo() {
-    if (this.selectedFile) {
-      this.uploadVideoService(this.selectedFile)
-        .then((downloadURL) => {
-          console.log('URL del video:', downloadURL);
-          // Aquí puedes hacer algo con la URL del video, por ejemplo, guardarla en una base de datos.
-        })
-        .catch((error) => {
-          console.error('Error al subir el video:', error);
-        });
-    } else {
-      console.warn('No se ha seleccionado ningún video.');
-    }
-  }
-  uploadPhoto() {
-    if (this.selectedPhotoFile) {
-      this.uploadPhotoService(this.selectedPhotoFile)
-        .then((downloadURL) => {
-          console.log('URL de la foto:', downloadURL);
-          // Puedes hacer algo con la URL de la foto, por ejemplo, guardarla en una base de datos.
-        })
-        .catch((error) => {
-          console.error('Error al subir la foto:', error);
-        });
-    } else {
-      console.warn('No se ha seleccionado ninguna foto.');
-    }
-  }
-  uploadCroppedPhoto() {
-    if (this.croppedImage) {
-      let safeUrl=this.croppedImage
-      // Convierte SafeUrl a Blob
-      this.convertSafeUrlToBlob(safeUrl)
-    } else {
-      //console.warn('No se ha seleccionado ninguna foto.');
-    }
-  }
-  convertSafeUrlToBlob(safeUrl: SafeUrl): Promise<Blob> {
-    return new Promise((resolve, reject) => {
-      const url: string = this.sanitizer.sanitize(1, safeUrl) as string;
-
-      fetch(url)
-        .then(response => response.blob())
-        .then(blob => resolve(blob))
-        .catch(error => reject(error));
+  clearBlogData():void{
+    this.blogFormGroup.patchValue({
+      title: null,
+      description: null,
+      category: null,
     });
-  }
-  saveBlobAsFile(blob: Blob, fileName: string): void {
-    const a = document.createElement('a');
-    document.body.appendChild(a);
-    a.style.display = 'none';
-
-    const url = window.URL.createObjectURL(blob);
-    a.href = url;
-    a.download = fileName;
-
-    a.click();
-
-    window.URL.revokeObjectURL(url);
-  }
-
-  async convertSafeUrlToPngAndSave(safeUrl: SafeUrl, fileName: string): Promise<void> {
-    try {
-      const blob = await this.convertSafeUrlToBlob(safeUrl);
-      this.saveBlobAsFile(blob, fileName + '.png');
-    } catch (error) {
-      console.error('Error al convertir SafeUrl a PNG:', error);
-    }
-  }
-
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-  }
-  imageCropped(event: ImageCroppedEvent) {
-    if (event.objectUrl != null) {
-      this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
-    }
-    // event.blob can be used to upload the cropped image
-  }
-  imageLoaded(image: LoadedImage) {
-    // show cropper
-  }
-  cropperReady() {
-    // cropper ready
-  }
-  loadImageFailed() {
-    // show message
+    this.htmlContent=""
+    this.croppedImage= new BehaviorSubject<any | undefined>(undefined);
+    this.imageSelected=false
   }
 
 }

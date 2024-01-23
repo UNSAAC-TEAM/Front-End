@@ -18,7 +18,8 @@ export class LoginDataService {
     lastName:null,
     imageUrl: null,
     alias: null,
-    isLogged: false
+    isLogged: false,
+    roll: null
   }
   constructor() { }
   public getUserId(token: string): number{

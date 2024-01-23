@@ -13,6 +13,10 @@ import {MyCoursesComponent} from "./modules/account/components/my-courses/my-cou
 import {SubscriptionComponent} from "./modules/account/components/subscription/subscription.component";
 import {CredentialsComponent} from "./modules/account/components/credentials/credentials.component";
 import {SupportComponent} from "./modules/account/components/support/support.component";
+import {BlogComponent} from "./components/blog/blog.component";
+import {CreateCourseComponent} from "./components/create-course/create-course.component";
+import {ManageBlogsComponent} from "./components/manage-blogs/manage-blogs.component";
+import {TeacherFormComponent} from "./components/teacher-form/teacher-form.component";
 
 const routes: Routes = [
 
@@ -21,9 +25,14 @@ const routes: Routes = [
     loadChildren: () => import('./modules/account/account.module').then((m) => m.AccountModule)
   },
   {path: 'routes', component: RoutesComponent},
-  {path: 'blogs', component: BlogsComponent},
+  { path: 'blogs/page/:pageNumber', component: BlogsComponent },
+  { path: 'blogs', redirectTo: 'blogs/page/1', pathMatch: 'full' },
+  {path: 'blog/:encryptedID', component: BlogComponent},
   {path: 'teachers', component: TeachersComponent},
   {path: 'create-blog', component: CreateBlogComponent},
+  {path: 'manage-blogs', component: ManageBlogsComponent},
+  {path: 'create-course', component: CreateCourseComponent},
+  {path: 'teacher-form', component: TeacherFormComponent},
   {
     path: 'courses',
     loadChildren: () => import('./modules/courses/courses.module').then((m) => m.CoursesModule)

@@ -7,7 +7,7 @@
     <mat-nav-list class="top-menu-items">
       <a [routerLinkActive]="'top-active'" [routerLinkActiveOptions]="{exact: true}" routerLink="/courses" class="top-menu-items">Cursos</a>
       <a [routerLinkActive]="'top-active'" [routerLinkActiveOptions]="{exact: true}" routerLink="/routes" class="top-menu-items">Rutas</a>
-      <a [routerLinkActive]="'top-active'" [routerLinkActiveOptions]="{exact: true}" routerLink="/blogs" class="top-menu-items">Blog</a>
+      <a [routerLinkActive]="'top-active'"  routerLink="/blogs" class="top-menu-items">Blog</a>
       <a [routerLinkActive]="'top-active'" [routerLinkActiveOptions]="{exact: true}" routerLink="/teachers" class="top-menu-items">Docentes</a>
       <a [routerLinkActive]="'top-active'" [routerLinkActiveOptions]="{exact: true}" routerLink="/events" class="top-menu-items">Eventos</a>
     </mat-nav-list>
@@ -128,10 +128,11 @@
            mat-list-item (click)="sidenav.close()" routerLink="/routes" class="side-menu-items">
           <span matlistitemtitle>Rutas</span>
         </a>
-        <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
+        <a [routerLinkActive]="'side-active'"
            mat-list-item (click)="sidenav.close()" routerLink="/blogs" class="side-menu-items">
           <span matlistitemtitle>Blog</span>
         </a>
+
         <a [routerLinkActive]="'side-active'" [routerLinkActiveOptions]="{exact: true}"
            mat-list-item (click)="sidenav.close()" routerLink="/teachers" class="side-menu-items">
           <span matlistitemtitle>Profesores</span>

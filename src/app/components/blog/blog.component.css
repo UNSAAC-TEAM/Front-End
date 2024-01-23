@@ -1,0 +1,267 @@
+.preview-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #f3f3f4;
+}
+.preview-main-content{
+  background-color: white;
+  border-radius: 1rem;
+  width: 715px;
+  padding: 30px 30px;
+  margin: 4rem 1rem 4rem 1rem;
+}
+.preview-title{
+  font-size: 36px;
+  font-weight: bold;
+}
+.blog-tag p{
+  font-size: 11px;
+  margin: 0;
+}
+.preview-author{
+  display: flex;
+  align-items: center;
+}
+.preview-image{
+  width: 715px;
+  height: 402px;
+}
+.preview-description{
+  margin-top: 2rem;
+}
+.preview-body {
+  width: 715px;
+  overflow-x: hidden; /* O también puedes probar con overflow: hidden */
+}
+.inner {
+  width: 100%;
+  word-wrap: break-word;
+}
+.recommended-section{
+  display: flex;
+  flex-direction: column;
+}
+.recommended-blogs{
+  background-color: white;
+  border-radius: 1rem;
+  width: 355px;
+  padding: 30px 30px 10px 30px;
+  margin: 4rem 0 1rem 0;
+}
+.recommended-courses{
+  background-color: white;
+  border-radius: 1rem;
+  width: 355px;
+  padding: 30px 30px 10px 30px;
+  margin: 0 0 1rem 0;
+}
+.preview-recommended-title{
+  font-size: 26px;
+  font-weight: bold;
+}
+.blog-body{
+  display: flex;
+  flex-direction: column;
+}
+.course-body{
+  display: flex;
+  flex-direction: row;
+}
+.blog-card{
+  width: 350px;
+  height: 72px;
+  display: flex;
+  flex-direction: row;
+  box-shadow: -3px 3px 5px 3px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  margin-bottom: 0.8rem;
+}
+.course-card{
+  width: 168px;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.03);
+  border-radius: 5px;
+  margin-right: 0.8rem;
+}
+.blog-image-card{
+  width: 120px;
+  height: 72px;
+  cursor: pointer;
+  border-radius:5px;
+}
+.course-image-card{
+  width: 168px;
+  height: 94px;
+  cursor: pointer;
+  border-radius:5px;
+}
+.blog-content{
+  padding: 0 10px;
+}
+.blog-tag {
+  background-color: #e8a134;
+  color: white;
+  display: inline-block;
+  padding: 1px 10px; /* Ajusta esto según sea necesario para agregar espacio alrededor del texto */
+  margin: 0.3rem 0 0.1rem 0;
+  border-radius: 3px;
+}
+.blog-title{
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Centra horizontalmente */
+  font-size: 14px;
+
+}
+.course-title{
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  height: 34px;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+.course-stars {
+  color: #e8a134;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.course-stars p{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin: 0.2rem 0 0 0.2rem;
+}
+
+.course-duration{
+  margin: 0.5rem 0 0 0;
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+.course-duration mat-icon{
+  font-size:20px ;
+  display: flex;
+  justify-content: right;
+}
+.course-duration p{
+margin: 0;
+  margin-left: 0.2rem;
+}
+.course-difficulty{
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+.course-difficulty mat-icon{
+  font-size:20px ;
+  display: flex;
+  justify-content: right;
+}
+.course-difficulty p{
+  font-size: 12px;
+  margin: 0;
+  margin-left: 0.2rem;
+}
+.course-stars mat-icon {
+  display: inline-block;
+}
+.course-price{
+  margin-top: 0.8rem;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  margin-left: 0.5rem;
+  justify-content: left;
+}
+.course-details-button{
+  margin-left: 0.2rem;
+  border-radius: 2rem;
+  background-color: #e9a135;
+  color: white;
+}
+.blog-description-container {
+  height: 63px;
+  width: 330px;
+  overflow: hidden;
+  position: relative;
+
+}
+.blog-description {
+  white-space: pre-line;
+  max-height: 63px; /* ajusta según sea necesario */
+  max-width: 330px; /* ajusta según sea necesario */
+  cursor: pointer;
+}
+.blog-footer{
+  padding:  0 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.see-more-blogs{
+  margin: 10px 0;
+  cursor: pointer;
+}
+.see-more-blogs:hover {
+  text-decoration: underline;
+  color: #505050;
+}
+
+@media (max-width: 1260px) {
+  .preview-main-content{
+    width: 515px;
+  }
+  .preview-image{
+    width: 515px;
+    height: 315px;
+  }
+}
+@media (max-width: 1045px) {
+  .recommended-section{
+    display: none;
+  }
+  .preview-main-content{
+    width: 715px;
+  }
+  .preview-image{
+    width: 715px;
+    height: 402px;
+  }
+}
+@media (max-width: 810px) {
+  .preview-main-content{
+    width: 515px;
+  }
+  .preview-image{
+    width: 515px;
+    height: 315px;
+  }
+}
+@media (max-width: 650px) {
+  .preview-main-content{
+    width: 415px;
+  }
+  .preview-image{
+    width: 415px;
+    height: 245px;
+  }
+}
+@media (max-width: 550px) {
+  .preview-title{
+    font-size: 26px;
+    font-weight: bold;
+  }
+  .preview-main-content{
+    width: 215px;
+  }
+  .preview-image{
+    width: 215px;
+    height: 135px;
+  }
+}

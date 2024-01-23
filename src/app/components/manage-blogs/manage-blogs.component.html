@@ -1,0 +1,84 @@
+<div class="background">
+  <div class="header">
+    <div class="item-bar">
+      <p>ADMINISTRA TUS BLOGS !</p>
+    </div>
+  </div>
+  <div class="content">
+    <div class="table-content">
+      <div class="edit-form">
+        <div class="search-content">
+          <mat-form-field class="edit-form-field" appearance="outline">
+            <input matInput class="edit-form-input" autocomplete="off" placeholder="Busqueda por palabras clave" (keyup)="Filterchange($event)">
+          </mat-form-field>
+          <mat-icon class="search-icon">search</mat-icon>
+        </div>
+        <div class="actions-buttons-container">
+          <button mat-button class="add-blog-button" (click)="addNewBlog()">
+            <mat-icon>add</mat-icon>
+            NUEVO BLOG</button>
+        </div>
+      </div>
+      <table mat-table matSort [dataSource]="dataSource">
+        <ng-container matColumnDef="imageUrl" >
+          <th mat-sort-header mat-header-cell *matHeaderCellDef > Portada </th>
+          <td mat-cell *matCellDef="let element"> <img class="image-port" [src]="element.imageUrl" style="width: 100px" alt="" > </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> Titulo </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="title-content">
+              <div class="truncate-text">{{element.title}}</div>
+            </div>
+
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="label">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef> Categoria </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="blog-tag">
+              {{element.label}}
+            </div>
+
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="publishDate">
+          <th mat-header-cell *matHeaderCellDef> Fecha </th>
+          <td mat-cell *matCellDef="let element"> {{this.getDisplayableDate(element.publishDate)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="action-buttons-mat-container">
+              <button mat-flat-button (click)="viewBlog(element.id)">
+                <div class="view-button">
+                  <mat-icon>remove_red_eye</mat-icon>
+                  <p>Visitar</p>
+                </div>
+              </button>
+              <button mat-flat-button (click)="showDeleteBlogDialog(element.id,'100ms', '100ms')" class="delete-button"  >
+                <div class="view-button">
+                  <mat-icon>delete</mat-icon>
+                  <p>Eliminar</p>
+                </div>
+              </button>
+            </div>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayableColumns"></tr>
+        <tr (click)="getrow(row)" mat-row *matRowDef="let row; columns: displayableColumns;"></tr>
+      </table  >
+      <mat-paginator [pageSizeOptions]="[9,18,27]" showFirstLastButtons>
+
+      </mat-paginator>
+    </div>
+  </div>
+
+</div>

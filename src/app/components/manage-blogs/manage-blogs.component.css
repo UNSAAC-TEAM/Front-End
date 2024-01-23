@@ -1,0 +1,189 @@
+.background{
+  background-color: #f3f3f4;
+  width: 100%;
+}
+.header{
+  padding: 15px 0 15px 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.item-bar{
+  width: 86%;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+.item-bar p{
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Asegura que el contenedor amarillo ocupe toda la altura de la ventana */
+}
+
+.table-content {
+  width: 86%;
+  background-color: white;
+  border-radius: 1.3rem;
+  padding: 20px 30px;
+  margin-bottom: 5rem;
+}
+
+.mat-table {
+  width: 100%;
+}
+.image-port{
+  border-radius: 5px;
+  margin: 5px 0 0 0;
+}
+.edit-form-field{
+  width: 400px;
+}
+.edit-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.search-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.search-icon{
+  height: 40px;
+  width: 40px;
+  font-size: 30px;
+  background-color: #f3f3f3;
+  color: #606060;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin-left: -5px;
+}
+.information-title{
+  font-size: 25px;
+  font-weight: bold;
+  margin: 15px 0 20px 0;
+}
+.blog-tag {
+  background-color: #e8a134;
+  color: white;
+  display: inline-block;
+  padding: 3px 10px; /* Ajusta esto según sea necesario para agregar espacio alrededor del texto */
+  margin-bottom: 0.5rem;
+  border-radius: 3px;
+}
+.delete-button{
+  background-color: #c7102c;
+  color: white;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 2rem;
+}
+.add-blog-button{
+  background-color: #e9a135;
+  color: white;
+  margin-right: 2rem;
+  border-radius: 1rem;
+  padding-right: 1.5rem;
+}
+.action-buttons-mat-container{
+  display: flex;
+  flex-direction: row;
+}
+.hidden-row {
+  display: none;
+}
+.view-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.view-button p{
+  text-align: center;
+  padding: 0;
+  margin: 0 0 0 0.3rem;
+}
+.delete-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.delete-button p{
+  text-align: center;
+  padding: 0;
+  margin: 0 0 0 0.3rem;
+}
+@media (max-width: 1650px) {
+  .delete-button{
+    margin-left: 1rem;
+  }
+}
+@media (max-width: 1074px) {
+  .delete-button{
+    margin-left: 0.1rem;
+  }
+  .delete-button p{
+    display: none;
+  }
+  .view-button p{
+    display: none;
+  }
+
+}
+@media (max-width: 760px) {
+  .title-content {
+    width: 180px;
+    overflow: hidden;
+  }
+  .edit-form{
+    flex-direction: column;
+  }
+
+  .truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+@media (max-width: 460px) {
+  .edit-form-field{
+    width: 200px;
+  }
+  .item-bar{
+    width: 70%;
+  }
+  .table-content {
+    width: 70%;
+  }
+  .action-buttons-mat-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .view-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  .title-content {
+    width: 100px;
+    overflow: hidden;
+  }
+}

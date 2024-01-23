@@ -1,0 +1,73 @@
+<div class="preview-content">
+  <div class="preview-main-content">
+    <div class="preview-header">
+      <h1 class="preview-title">{{this.currentBlog.title}}</h1>
+      <div class="blog-tag">
+        <p>{{this.currentBlog.label}}</p>
+      </div>
+      <div style="display: flex;justify-content: space-between;width: 100%">
+        <p class="preview-author">
+          <mat-icon>person</mat-icon> Por: {{this.currentBlog.authorFullName}}
+        </p>
+        <p class="preview-date">
+          {{getDisplayableDate(this.currentBlog.publishDate)}}
+        </p>
+      </div>
+      <img class="preview-image"
+           [src]="this.currentBlog.imageUrl"/>
+      <p class="preview-description">
+        {{this.currentBlog.description}}
+      </p>
+    </div>
+    <div [innerHTML]="this.currentBlog.content" class="inner"></div>
+  </div>
+  <div class="recommended-section">
+    <div class="recommended-blogs">
+      <h1 class="preview-recommended-title">Recomendados para ti</h1>
+      <div class="blog-body">
+        <div *ngFor="let blog of blogArrayResponse">
+          <div class="blog-card">
+            <img [src]="blog.imageUrl" class="blog-image-card" alt="" (click)="blogRedirect(blog.id)">
+            <div class="blog-content">
+              <div class="blog-tag">
+                <p>{{blog.label}}</p>
+              </div>
+              <p class="blog-title" (click)="blogRedirect(blog.id)">{{blog.title}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="see-more-blogs" (click)="watchMoreBlogs()">Ver más artículos >> </p>
+    </div>
+    <div class="recommended-courses">
+      <h1 class="preview-recommended-title">Cursos recomendados</h1>
+      <div class="course-body">
+        <div *ngFor="let course of courseArrayResponse">
+          <div class="course-card">
+            <img [src]="course.imageUrl" class="course-image-card" alt="" (click)="blogRedirect(course.id)">
+            <div class="course-content">
+              <p class="course-title" (click)="blogRedirect(course.id)">{{course.title}}</p>
+              <div class="course-stars">
+                <mat-icon *ngFor="let star of setStarNumber(course.stars)">star</mat-icon>
+                <p>{{course.stars}}</p>
+              </div>
+              <div class="course-duration">
+                <mat-icon>watch_later</mat-icon>
+                <p> {{returnDisplayableDuration(course.durationInMinutes)}}</p>
+              </div>
+              <div class="course-difficulty">
+                <mat-icon>signal_cellular_alt</mat-icon>
+                <p> {{course.difficulty}}</p>
+              </div>
+
+              <p class="course-price">USD {{course.priceInDollars}}</p>
+              <button class="course-details-button" mat-button> <div style="width: 100%;display: flex;justify-content: center">Ver mas</div></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="see-more-blogs" (click)="watchMoreCourses()">Ver más cursos >> </p>
+    </div>
+  </div>
+
+</div>

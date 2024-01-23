@@ -37,6 +37,9 @@
   align-content: start;
   margin-top: 0.5rem;
 }
+textarea{
+  width: 420px;
+}
 .edit-form-field{
   width: 420px;
 }
@@ -287,7 +290,10 @@ textarea{
     width: 320px;
   }
   .edit-form-input{
-    width: 310px;
+    width: 300px;
+  }
+  textarea{
+    width: 300px;
   }
   .select-box {
     width:320px ;

@@ -21,4 +21,13 @@ export class CryptoData{
     const decryptedObject = JSON.parse(decrypted);
     return decryptedObject
   }
+
+  encryptPageId(pageId: string) {
+    const encrypted = CryptoJS.AES.encrypt(pageId, this.secretKey).toString();
+    return encrypted
+  }
+  decryptPageId(encryptedPageId: string): string {
+    const decrypted = CryptoJS.AES.decrypt(encryptedPageId, this.secretKey).toString(CryptoJS.enc.Utf8);
+    return decrypted
+  }
 }

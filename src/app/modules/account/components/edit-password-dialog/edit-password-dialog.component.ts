@@ -34,6 +34,8 @@ export class EditPasswordDialogComponent implements OnInit {
     if (this.userFormGroup.valid){
       if(password==repeatedPassword){
         new UserServices().updateUserPassword(this.token,this.loginDataService.getUserId(this.token),password).then(response=>{
+          this.loginDataService.userAccount.sessionToken=response.data.token
+          this.crypto.EncryptAndSetObjectToStorage(this.loginDataService.userAccount)
           this.toast.success({detail:"Contraseña actualizada",summary:'Contraseña actualizada exitosamente',duration:1500});
           this.dialogRef.close();
         })

@@ -1,39 +1,114 @@
-<!--div >
-  <h1>TinyMCE 6 Angular Demo</h1>
-  <editor apiKey="1fim4fyjmf781d18xyj35334v9bhtk8s6j25sy0y4cis2tw2"
-          [init]="{ plugins: 'lists link image table code help wordcount' }" [(ngModel)]="htmlContent"
-  ></editor>
-  <h1>HTML:</h1>
-  {{htmlContent}}
-  <h1>Render Blog:</h1>
-  <div [innerHTML]="htmlContent"></div>
-  <video width="640" height="360" controls >
-    <source [src]="firebaseVideoUrl" type="video/mp4">
-    Tu navegador no soporta el elemento de video.
-  </video>
+<div style="background-color: #f3f3f4">
+  <div class="header">
+    <div class="item-bar">
+      <p>REDACTA UN NUEVO BLOG !</p>
+      <div class="actions-buttons-container">
+        <button mat-button (click)="clearBlogData()" [disabled]="isBlogUploading">
+          <mat-icon>delete</mat-icon>
+          DESCARTAR</button>
+        <button mat-button (click)="preview()" *ngIf="!isPreviewActive">
+          <mat-icon>remove_red_eye</mat-icon>
+          PREVISUALIZAR</button>
+        <button mat-button (click)="preview()" *ngIf="isPreviewActive">
+          <mat-icon>edit</mat-icon>
+          EDITAR</button>
+        <button mat-button class="publish-button" (click)="uploadBlog()" [disabled]="isBlogUploading">
+          <mat-icon *ngIf="!isBlogUploading" >publish</mat-icon>
+          <mat-icon  *ngIf="isBlogUploading" class="fa-spin">autorenew</mat-icon>
+          {{uploadingText}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isPreviewActive" class="content">
+    <div class="main-information-container">
+      <div class="main-information">
+        <div class="information">
+          <p class="information-title">Informacion principal</p>
+          <form [formGroup]="blogFormGroup"  >
+            <div class="edit-form">
+              <p>Titulo:</p>
+              <mat-form-field class="edit-form-field" appearance="outline">
+                <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="title" placeholder="Introduce un titulo" maxLength="80">
+                <mat-error *ngIf="blogFormGroup.get('title')?.hasError('required')">
+                  El titulo es <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="edit-description-form">
+              <p>Descripcion:</p>
+              <textarea matInput class="edit-form-input" (input)="descriptionOnType()" autocomplete="off" type="text" formControlName="description" placeholder="Introduce una descripcion" maxLength="900"></textarea>
+              <mat-error *ngIf="isBlogEmpty">
+                La descripcion es <strong>requerida</strong>
+              </mat-error>
+            </div>
+            <div class="edit-form">
+              <p>Categoria:</p>
+              <mat-form-field class="edit-form-field" appearance="outline">
+                <input matInput class="edit-form-input" autocomplete="off" type="text" formControlName="category" placeholder="Agrega una categoria" maxLength="50">
+                <mat-error *ngIf="blogFormGroup.get('category')?.hasError('required')">
+                  Categoria <strong>requerido</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </form>
+        </div>
+        <div class="photo-selection">
+          <p class="information-title">Foto de portada</p>
+          <div class="control-container" >
+            <div class="image-container">
+              <img
+                [src]="imageSource"
+                class="mat-elevation-z2"
+                [style.opacity]="uploading.getValue() ? 0.1 : 1" />
+            </div>
+            <div>
+              <input
+                #inputField
+                hidden
+                type="file"
+                (change)="fileSelected($event)"
+                (click)="inputField.value = ''"
+              />
+              <button mat-button [disabled]="uploading.getValue()" (click)="inputField.click()" class="image-container-button">
+                Elegir portada
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="editor-content">
+        <div class="editor-content-title">
+          <p class="information-title">Contenido</p>
+        </div>
+        <editor apiKey="1fim4fyjmf781d18xyj35334v9bhtk8s6j25sy0y4cis2tw2"
+                [init]="{ plugins: 'lists link image table code help wordcount' }"
+                [(ngModel)]="htmlContent"
+        ></editor>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isPreviewActive" class="preview-content">
+    <div class="preview-main-content">
+      <div class="preview-header">
+        <h1 class="preview-title">{{this.blogFormGroup.get('title')?.value|| 'Titulo Vacio'}}</h1>
+        <div class="blog-tag">
+          <p>{{this.blogFormGroup.get('category')?.value || 'Indefinido'}}</p>
+        </div>
+        <p class="preview-author">
+          <mat-icon>person</mat-icon> Por: {{loginDataService.userAccount.name+" "+loginDataService.userAccount.lastName}}
+        </p>
+        <img class="preview-image"
+             [src]="imageSource"
+             [style.opacity]="uploading.getValue() ? 0.1 : 1" />
+        <p class="preview-description">
+          {{this.blogFormGroup.get('description')?.value}}
+        </p>
+      </div>
+      <div [innerHTML]="htmlContent" class="inner"></div>
+    </div>
+  </div>
+  <!--img [src]="croppedImage" /-->
+
 </div>
-<div>
-  <input type="file" (change)="onFileSelected($event)">
-  <button (click)="uploadVideo()">Subir Video</button>
-</div>
 
-<div>
-  <input type="file" accept="image/*" (change)="onPhotoFileSelected($event)">
-  <button (click)="uploadPhoto()">Subir Foto</button>
-</div-->
-
-<input type="file" (change)="fileChangeEvent($event)" />
-
-<image-cropper style="height: 200px;width: 200px"
-  [imageChangedEvent]="imageChangedEvent"
-  [maintainAspectRatio]="true"
-  [aspectRatio]="1 / 1"
-  format="png"
-  (imageCropped)="imageCropped($event)"
-  (imageLoaded)="imageLoaded($event)"
-  (cropperReady)="cropperReady()"
-  (loadImageFailed)="loadImageFailed()"
-></image-cropper>
-
-<img style="height: 200px;width: 200px" [src]="croppedImage" />
-<button (click)="uploadCroppedPhoto()">Subir Foto</button>

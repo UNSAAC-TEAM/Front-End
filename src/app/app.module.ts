@@ -43,7 +43,17 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSidenavModule} from "@angular/material/sidenav";
-
+import {MatGridListModule} from '@angular/material/grid-list';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { BlogComponent } from './components/blog/blog.component';
+import { CreateCourseComponent } from './components/create-course/create-course.component';
+import {SafeHtmlPipe} from "./components/create-blog/safe-html.pipe";
+import { ManageBlogsComponent } from './components/manage-blogs/manage-blogs.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from "@angular/material/table";
+import { ConfirmActionsDialogComponent } from './components/confirm-actions-dialog/confirm-actions-dialog.component';
+import {SharedModule} from "./shared/shared.module";
+import { TeacherFormComponent } from './components/teacher-form/teacher-form.component';
 
 @NgModule({
   declarations: [
@@ -58,42 +68,53 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
+    BlogComponent,
+    CreateCourseComponent,
+    SafeHtmlPipe,
+    ManageBlogsComponent,
+    ConfirmActionsDialogComponent,
+    TeacherFormComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    NavbarModule,
-    AppRoutingModule,
+    imports: [
 
-    EditorModule,
-    MatProgressSpinnerModule,
-    MatIconModule,
-    MatListModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideStorage(() => getStorage()),
+        BrowserModule,
+        BrowserAnimationsModule,
+        NavbarModule,
+        AppRoutingModule,
 
-    EditorModule,
-    NgxWebstorageModule.forRoot(),
+        EditorModule,
+        MatProgressSpinnerModule,
+        MatIconModule,
+        MatListModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideStorage(() => getStorage()),
 
-    ImageCropperModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    FormsModule,
-    MatMenuModule,
-    MatDividerModule,
-    MatDialogModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    NgToastModule,
-    ReactiveFormsModule,
-    FontAwesomeModule
-  ],
+        EditorModule,
+        NgxWebstorageModule.forRoot(),
+        MatGridListModule,
+        ImageCropperModule,
+        MatNativeDateModule,
+        MatDatepickerModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        FormsModule,
+        MatMenuModule,
+        MatDividerModule,
+        MatDialogModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        NgToastModule,
+        ReactiveFormsModule,
+        FontAwesomeModule,
+        NgxPaginationModule,
+        MatTableModule,
+        MatPaginatorModule,
+        SharedModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

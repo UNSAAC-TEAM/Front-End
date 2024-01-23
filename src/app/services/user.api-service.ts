@@ -25,13 +25,13 @@ export class UserServices{
       "password": password,
     })
   }
-  getUserById(userId: number){
-    return http.get("profile/"+userId)
+  getUserById(token: string,userId: number){
+    return http.get("profile/"+userId,{ headers: {"Authorization" : `Bearer ${token}`} })
   }
   updateProfilePicture(token: string,userId: number,imageUrl: string){
     return http.put("profile/"+userId+"/changeImageProfile",{
       "imageUrl": imageUrl
-    })
+    },{ headers: {"Authorization" : `Bearer ${token}`} })
   }
   updateProfileData(token: string,userId: number,editProfileBody: any){
     return http.put("profile/"+userId+"/edit",editProfileBody,{ headers: {"Authorization" : `Bearer ${token}`} })

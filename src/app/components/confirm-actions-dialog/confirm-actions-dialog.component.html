@@ -1,0 +1,17 @@
+<div style="display: flex;justify-content: center;align-items: center">
+  <div class="container">
+    <div class="header">
+      <h1>{{this.header}}</h1>
+    </div>
+    <div class="detail-message">
+      <p>{{data.mainVisibleName}}</p>
+      <p>{{this.message}}</p>
+    </div>
+    <div class="actions" mat-dialog-actions>
+      <div class="button-container">
+        <button mat-flat-button  class="cancel-button" (click)="closeDialog()">Cancelar</button>
+        <button mat-flat-button  class="delete-button" (click)="deleteBlog()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
