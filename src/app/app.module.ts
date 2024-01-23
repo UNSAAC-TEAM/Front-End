@@ -51,6 +51,7 @@ import {SafeHtmlPipe} from "./components/create-blog/safe-html.pipe";
 import { ManageBlogsComponent } from './components/manage-blogs/manage-blogs.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from "@angular/material/table";
+import { ConfirmActionsDialogComponent } from './components/confirm-actions-dialog/confirm-actions-dialog.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import {MatTableModule} from "@angular/material/table";
     BlogComponent,
     CreateCourseComponent,
     SafeHtmlPipe,
-    ManageBlogsComponent
+    ManageBlogsComponent,
+    ConfirmActionsDialogComponent
   ],
   imports: [
 

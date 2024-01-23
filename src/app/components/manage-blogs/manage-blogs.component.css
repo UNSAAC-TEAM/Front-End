@@ -9,10 +9,10 @@
   width: 100%;
 }
 .item-bar{
+  width: 86%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 1610px;
+  flex-direction: row;
+  justify-content: left;
 }
 .item-bar p{
   font-size: 25px;
@@ -27,7 +27,7 @@
 }
 
 .table-content {
-  width: 1610px;
+  width: 86%;
   background-color: white;
   border-radius: 1.3rem;
   padding: 20px 30px;
@@ -97,4 +97,93 @@
   margin-right: 2rem;
   border-radius: 1rem;
   padding-right: 1.5rem;
+}
+.action-buttons-mat-container{
+  display: flex;
+  flex-direction: row;
+}
+.hidden-row {
+  display: none;
+}
+.view-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.view-button p{
+  text-align: center;
+  padding: 0;
+  margin: 0 0 0 0.3rem;
+}
+.delete-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.delete-button p{
+  text-align: center;
+  padding: 0;
+  margin: 0 0 0 0.3rem;
+}
+@media (max-width: 1650px) {
+  .delete-button{
+    margin-left: 1rem;
+  }
+}
+@media (max-width: 1074px) {
+  .delete-button{
+    margin-left: 0.1rem;
+  }
+  .delete-button p{
+    display: none;
+  }
+  .view-button p{
+    display: none;
+  }
+
+}
+@media (max-width: 760px) {
+  .title-content {
+    width: 180px;
+    overflow: hidden;
+  }
+  .edit-form{
+    flex-direction: column;
+  }
+
+  .truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+@media (max-width: 460px) {
+  .edit-form-field{
+    width: 200px;
+  }
+  .item-bar{
+    width: 70%;
+  }
+  .table-content {
+    width: 70%;
+  }
+  .action-buttons-mat-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .view-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  .title-content {
+    width: 100px;
+    overflow: hidden;
+  }
 }
