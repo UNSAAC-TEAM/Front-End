@@ -1,11 +1,13 @@
 .blog-cont{
   display: flex;
   width: 1110px;
+  min-height: 518px;
   flex-direction: column;
   margin-top: 8em;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
+  margin-bottom: 6rem;
 }
 
 /* HEADER*/

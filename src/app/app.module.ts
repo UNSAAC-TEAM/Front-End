@@ -52,6 +52,8 @@ import { ManageBlogsComponent } from './components/manage-blogs/manage-blogs.com
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from "@angular/material/table";
 import { ConfirmActionsDialogComponent } from './components/confirm-actions-dialog/confirm-actions-dialog.component';
+import {SharedModule} from "./shared/shared.module";
+import { TeacherFormComponent } from './components/teacher-form/teacher-form.component';
 
 @NgModule({
   declarations: [
@@ -70,47 +72,49 @@ import { ConfirmActionsDialogComponent } from './components/confirm-actions-dial
     CreateCourseComponent,
     SafeHtmlPipe,
     ManageBlogsComponent,
-    ConfirmActionsDialogComponent
+    ConfirmActionsDialogComponent,
+    TeacherFormComponent
   ],
-  imports: [
+    imports: [
 
-    BrowserModule,
-    BrowserAnimationsModule,
-    NavbarModule,
-    AppRoutingModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        NavbarModule,
+        AppRoutingModule,
 
-    EditorModule,
-    MatProgressSpinnerModule,
-    MatIconModule,
-    MatListModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideStorage(() => getStorage()),
+        EditorModule,
+        MatProgressSpinnerModule,
+        MatIconModule,
+        MatListModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideStorage(() => getStorage()),
 
-    EditorModule,
-    NgxWebstorageModule.forRoot(),
-    MatGridListModule,
-    ImageCropperModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    FormsModule,
-    MatMenuModule,
-    MatDividerModule,
-    MatDialogModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    NgToastModule,
-    ReactiveFormsModule,
-    FontAwesomeModule,
-    NgxPaginationModule,
-    MatTableModule,
-    MatPaginatorModule,
-  ],
+        EditorModule,
+        NgxWebstorageModule.forRoot(),
+        MatGridListModule,
+        ImageCropperModule,
+        MatNativeDateModule,
+        MatDatepickerModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        FormsModule,
+        MatMenuModule,
+        MatDividerModule,
+        MatDialogModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        NgToastModule,
+        ReactiveFormsModule,
+        FontAwesomeModule,
+        NgxPaginationModule,
+        MatTableModule,
+        MatPaginatorModule,
+        SharedModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

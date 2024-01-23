@@ -16,6 +16,7 @@ import {SupportComponent} from "./modules/account/components/support/support.com
 import {BlogComponent} from "./components/blog/blog.component";
 import {CreateCourseComponent} from "./components/create-course/create-course.component";
 import {ManageBlogsComponent} from "./components/manage-blogs/manage-blogs.component";
+import {TeacherFormComponent} from "./components/teacher-form/teacher-form.component";
 
 const routes: Routes = [
 
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: 'create-blog', component: CreateBlogComponent},
   {path: 'manage-blogs', component: ManageBlogsComponent},
   {path: 'create-course', component: CreateCourseComponent},
+  {path: 'teacher-form', component: TeacherFormComponent},
   {
     path: 'courses',
     loadChildren: () => import('./modules/courses/courses.module').then((m) => m.CoursesModule)
